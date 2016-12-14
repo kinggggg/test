@@ -12,3 +12,14 @@ mvn mybatis-generator:generate
 '''
 
 更详尽的文档可以参考http://mbg.cndocs.tk/quickstart.html
+
+在实际生产环境中，应该将mybatis集成到spring当中，让spring来管理mybatis的session；
+并在spring中配置指向生成的mapper配置文件，类似如下的配置
+'''
+<bean id="xxxSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="xxxDataSource"/>
+        <property name="configLocation" value="classpath:dao/mybatis-config.xml"/>
+        <property name="mapperLocations" value="classpath:dao/xxx/mappers/*.xml"/>
+    </bean>
+'''
+其中xxx为定制化的项目信息
