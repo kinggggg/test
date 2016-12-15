@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zeek.athena.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.zeek.athena.domain.User" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="password_salt" property="passwordSalt" jdbcType="VARCHAR" />
+    <result column="password_hash" property="passwordHash" jdbcType="VARCHAR" />
+    <result column="phone_number" property="phoneNumber" jdbcType="VARCHAR" />
+    <result column="phone_number_verified" property="phoneNumberVerified" jdbcType="BIT" />
+    <result column="phone_number_invisible" property="phoneNumberInvisible" jdbcType="BIT" />
+    <result column="phone_number_visible_type" property="phoneNumberVisibleType" jdbcType="INTEGER" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="email_verified" property="emailVerified" jdbcType="BIT" />
+    <result column="email_invisible" property="emailInvisible" jdbcType="BIT" />
+    <result column="email_visible_type" property="emailVisibleType" jdbcType="INTEGER" />
+    <result column="authentication_status" property="authenticationStatus" jdbcType="INTEGER" />
+    <result column="authentication_type" property="authenticationType" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="region" property="region" jdbcType="VARCHAR" />
+    <result column="id_card" property="idCard" jdbcType="VARCHAR" />
+    <result column="country" property="country" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="certificate_path" property="certificatePath" jdbcType="VARCHAR" />
+    <result column="license_number" property="licenseNumber" jdbcType="VARCHAR" />
+    <result column="license_agency" property="licenseAgency" jdbcType="VARCHAR" />
+    <result column="register_date" property="registerDate" jdbcType="TIMESTAMP" />
+    <result column="last_login_date" property="lastLoginDate" jdbcType="TIMESTAMP" />
+    <result column="last_modify_date" property="lastModifyDate" jdbcType="TIMESTAMP" />
+    <result column="small_avatar_path" property="smallAvatarPath" jdbcType="VARCHAR" />
+    <result column="medium_avatar_path" property="mediumAvatarPath" jdbcType="VARCHAR" />
+    <result column="large_avatar_path" property="largeAvatarPath" jdbcType="VARCHAR" />
+    <result column="original_avatar_path" property="originalAvatarPath" jdbcType="VARCHAR" />
+    <result column="qq" property="qq" jdbcType="VARCHAR" />
+    <result column="wechat" property="wechat" jdbcType="VARCHAR" />
+    <result column="homepage_url" property="homepageUrl" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="has_avatar" property="hasAvatar" jdbcType="BIT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.zeek.athena.domain.User" extends="BaseResultMap" >
+    <result column="self_description" property="selfDescription" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, username, real_name, password_salt, password_hash, phone_number, phone_number_verified, 
+    phone_number_invisible, phone_number_visible_type, email, email_verified, email_invisible, 
+    email_visible_type, authentication_status, authentication_type, status, region, id_card, 
+    country, province, city, address, certificate_path, license_number, license_agency, 
+    register_date, last_login_date, last_modify_date, small_avatar_path, medium_avatar_path, 
+    large_avatar_path, original_avatar_path, qq, wechat, homepage_url, type, has_avatar
+  </sql>
+  <sql id="Blob_Column_List" >
+    self_description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from user
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectTest" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from user
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from user
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zeek.athena.domain.User" >
+    insert into user (id, username, real_name, 
+      password_salt, password_hash, phone_number, 
+      phone_number_verified, phone_number_invisible, phone_number_visible_type, 
+      email, email_verified, email_invisible, 
+      email_visible_type, authentication_status, 
+      authentication_type, status, region, 
+      id_card, country, province, 
+      city, address, certificate_path, 
+      license_number, license_agency, register_date, 
+      last_login_date, last_modify_date, small_avatar_path, 
+      medium_avatar_path, large_avatar_path, original_avatar_path, 
+      qq, wechat, homepage_url, 
+      type, has_avatar, self_description
+      )
+    values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, 
+      #{passwordSalt,jdbcType=VARCHAR}, #{passwordHash,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=VARCHAR}, 
+      #{phoneNumberVerified,jdbcType=BIT}, #{phoneNumberInvisible,jdbcType=BIT}, #{phoneNumberVisibleType,jdbcType=INTEGER}, 
+      #{email,jdbcType=VARCHAR}, #{emailVerified,jdbcType=BIT}, #{emailInvisible,jdbcType=BIT}, 
+      #{emailVisibleType,jdbcType=INTEGER}, #{authenticationStatus,jdbcType=INTEGER}, 
+      #{authenticationType,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{region,jdbcType=VARCHAR}, 
+      #{idCard,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, 
+      #{city,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{certificatePath,jdbcType=VARCHAR}, 
+      #{licenseNumber,jdbcType=VARCHAR}, #{licenseAgency,jdbcType=VARCHAR}, #{registerDate,jdbcType=TIMESTAMP}, 
+      #{lastLoginDate,jdbcType=TIMESTAMP}, #{lastModifyDate,jdbcType=TIMESTAMP}, #{smallAvatarPath,jdbcType=VARCHAR}, 
+      #{mediumAvatarPath,jdbcType=VARCHAR}, #{largeAvatarPath,jdbcType=VARCHAR}, #{originalAvatarPath,jdbcType=VARCHAR}, 
+      #{qq,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, #{homepageUrl,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{hasAvatar,jdbcType=BIT}, #{selfDescription,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zeek.athena.domain.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="realName != null" >
+        real_name,
+      </if>
+      <if test="passwordSalt != null" >
+        password_salt,
+      </if>
+      <if test="passwordHash != null" >
+        password_hash,
+      </if>
+      <if test="phoneNumber != null" >
+        phone_number,
+      </if>
+      <if test="phoneNumberVerified != null" >
+        phone_number_verified,
+      </if>
+      <if test="phoneNumberInvisible != null" >
+        phone_number_invisible,
+      </if>
+      <if test="phoneNumberVisibleType != null" >
+        phone_number_visible_type,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="emailVerified != null" >
+        email_verified,
+      </if>
+      <if test="emailInvisible != null" >
+        email_invisible,
+      </if>
+      <if test="emailVisibleType != null" >
+        email_visible_type,
+      </if>
+      <if test="authenticationStatus != null" >
+        authentication_status,
+      </if>
+      <if test="authenticationType != null" >
+        authentication_type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="region != null" >
+        region,
+      </if>
+      <if test="idCard != null" >
+        id_card,
+      </if>
+      <if test="country != null" >
+        country,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="certificatePath != null" >
+        certificate_path,
+      </if>
+      <if test="licenseNumber != null" >
+        license_number,
+      </if>
+      <if test="licenseAgency != null" >
+        license_agency,
+      </if>
+      <if test="registerDate != null" >
+        register_date,
+      </if>
+      <if test="lastLoginDate != null" >
+        last_login_date,
+      </if>
+      <if test="lastModifyDate != null" >
+        last_modify_date,
+      </if>
+      <if test="smallAvatarPath != null" >
+        small_avatar_path,
+      </if>
+      <if test="mediumAvatarPath != null" >
+        medium_avatar_path,
+      </if>
+      <if test="largeAvatarPath != null" >
+        large_avatar_path,
+      </if>
+      <if test="originalAvatarPath != null" >
+        original_avatar_path,
+      </if>
+      <if test="qq != null" >
+        qq,
+      </if>
+      <if test="wechat != null" >
+        wechat,
+      </if>
+      <if test="homepageUrl != null" >
+        homepage_url,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="hasAvatar != null" >
+        has_avatar,
+      </if>
+      <if test="selfDescription != null" >
+        self_description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordSalt != null" >
+        #{passwordSalt,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordHash != null" >
+        #{passwordHash,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null" >
+        #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumberVerified != null" >
+        #{phoneNumberVerified,jdbcType=BIT},
+      </if>
+      <if test="phoneNumberInvisible != null" >
+        #{phoneNumberInvisible,jdbcType=BIT},
+      </if>
+      <if test="phoneNumberVisibleType != null" >
+        #{phoneNumberVisibleType,jdbcType=INTEGER},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="emailVerified != null" >
+        #{emailVerified,jdbcType=BIT},
+      </if>
+      <if test="emailInvisible != null" >
+        #{emailInvisible,jdbcType=BIT},
+      </if>
+      <if test="emailVisibleType != null" >
+        #{emailVisibleType,jdbcType=INTEGER},
+      </if>
+      <if test="authenticationStatus != null" >
+        #{authenticationStatus,jdbcType=INTEGER},
+      </if>
+      <if test="authenticationType != null" >
+        #{authenticationType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="region != null" >
+        #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null" >
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="certificatePath != null" >
+        #{certificatePath,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseNumber != null" >
+        #{licenseNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseAgency != null" >
+        #{licenseAgency,jdbcType=VARCHAR},
+      </if>
+      <if test="registerDate != null" >
+        #{registerDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginDate != null" >
+        #{lastLoginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyDate != null" >
+        #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="smallAvatarPath != null" >
+        #{smallAvatarPath,jdbcType=VARCHAR},
+      </if>
+      <if test="mediumAvatarPath != null" >
+        #{mediumAvatarPath,jdbcType=VARCHAR},
+      </if>
+      <if test="largeAvatarPath != null" >
+        #{largeAvatarPath,jdbcType=VARCHAR},
+      </if>
+      <if test="originalAvatarPath != null" >
+        #{originalAvatarPath,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null" >
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null" >
+        #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="homepageUrl != null" >
+        #{homepageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="hasAvatar != null" >
+        #{hasAvatar,jdbcType=BIT},
+      </if>
+      <if test="selfDescription != null" >
+        #{selfDescription,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zeek.athena.domain.User" >
+    update user
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordSalt != null" >
+        password_salt = #{passwordSalt,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordHash != null" >
+        password_hash = #{passwordHash,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null" >
+        phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumberVerified != null" >
+        phone_number_verified = #{phoneNumberVerified,jdbcType=BIT},
+      </if>
+      <if test="phoneNumberInvisible != null" >
+        phone_number_invisible = #{phoneNumberInvisible,jdbcType=BIT},
+      </if>
+      <if test="phoneNumberVisibleType != null" >
+        phone_number_visible_type = #{phoneNumberVisibleType,jdbcType=INTEGER},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="emailVerified != null" >
+        email_verified = #{emailVerified,jdbcType=BIT},
+      </if>
+      <if test="emailInvisible != null" >
+        email_invisible = #{emailInvisible,jdbcType=BIT},
+      </if>
+      <if test="emailVisibleType != null" >
+        email_visible_type = #{emailVisibleType,jdbcType=INTEGER},
+      </if>
+      <if test="authenticationStatus != null" >
+        authentication_status = #{authenticationStatus,jdbcType=INTEGER},
+      </if>
+      <if test="authenticationType != null" >
+        authentication_type = #{authenticationType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="region != null" >
+        region = #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null" >
+        id_card = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        country = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="certificatePath != null" >
+        certificate_path = #{certificatePath,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseNumber != null" >
+        license_number = #{licenseNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseAgency != null" >
+        license_agency = #{licenseAgency,jdbcType=VARCHAR},
+      </if>
+      <if test="registerDate != null" >
+        register_date = #{registerDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginDate != null" >
+        last_login_date = #{lastLoginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyDate != null" >
+        last_modify_date = #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="smallAvatarPath != null" >
+        small_avatar_path = #{smallAvatarPath,jdbcType=VARCHAR},
+      </if>
+      <if test="mediumAvatarPath != null" >
+        medium_avatar_path = #{mediumAvatarPath,jdbcType=VARCHAR},
+      </if>
+      <if test="largeAvatarPath != null" >
+        large_avatar_path = #{largeAvatarPath,jdbcType=VARCHAR},
+      </if>
+      <if test="originalAvatarPath != null" >
+        original_avatar_path = #{originalAvatarPath,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null" >
+        qq = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null" >
+        wechat = #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="homepageUrl != null" >
+        homepage_url = #{homepageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="hasAvatar != null" >
+        has_avatar = #{hasAvatar,jdbcType=BIT},
+      </if>
+      <if test="selfDescription != null" >
+        self_description = #{selfDescription,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zeek.athena.domain.User" >
+    update user
+    set username = #{username,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      password_salt = #{passwordSalt,jdbcType=VARCHAR},
+      password_hash = #{passwordHash,jdbcType=VARCHAR},
+      phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      phone_number_verified = #{phoneNumberVerified,jdbcType=BIT},
+      phone_number_invisible = #{phoneNumberInvisible,jdbcType=BIT},
+      phone_number_visible_type = #{phoneNumberVisibleType,jdbcType=INTEGER},
+      email = #{email,jdbcType=VARCHAR},
+      email_verified = #{emailVerified,jdbcType=BIT},
+      email_invisible = #{emailInvisible,jdbcType=BIT},
+      email_visible_type = #{emailVisibleType,jdbcType=INTEGER},
+      authentication_status = #{authenticationStatus,jdbcType=INTEGER},
+      authentication_type = #{authenticationType,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      region = #{region,jdbcType=VARCHAR},
+      id_card = #{idCard,jdbcType=VARCHAR},
+      country = #{country,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      certificate_path = #{certificatePath,jdbcType=VARCHAR},
+      license_number = #{licenseNumber,jdbcType=VARCHAR},
+      license_agency = #{licenseAgency,jdbcType=VARCHAR},
+      register_date = #{registerDate,jdbcType=TIMESTAMP},
+      last_login_date = #{lastLoginDate,jdbcType=TIMESTAMP},
+      last_modify_date = #{lastModifyDate,jdbcType=TIMESTAMP},
+      small_avatar_path = #{smallAvatarPath,jdbcType=VARCHAR},
+      medium_avatar_path = #{mediumAvatarPath,jdbcType=VARCHAR},
+      large_avatar_path = #{largeAvatarPath,jdbcType=VARCHAR},
+      original_avatar_path = #{originalAvatarPath,jdbcType=VARCHAR},
+      qq = #{qq,jdbcType=VARCHAR},
+      wechat = #{wechat,jdbcType=VARCHAR},
+      homepage_url = #{homepageUrl,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      has_avatar = #{hasAvatar,jdbcType=BIT},
+      self_description = #{selfDescription,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zeek.athena.domain.User" >
+    update user
+    set username = #{username,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      password_salt = #{passwordSalt,jdbcType=VARCHAR},
+      password_hash = #{passwordHash,jdbcType=VARCHAR},
+      phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      phone_number_verified = #{phoneNumberVerified,jdbcType=BIT},
+      phone_number_invisible = #{phoneNumberInvisible,jdbcType=BIT},
+      phone_number_visible_type = #{phoneNumberVisibleType,jdbcType=INTEGER},
+      email = #{email,jdbcType=VARCHAR},
+      email_verified = #{emailVerified,jdbcType=BIT},
+      email_invisible = #{emailInvisible,jdbcType=BIT},
+      email_visible_type = #{emailVisibleType,jdbcType=INTEGER},
+      authentication_status = #{authenticationStatus,jdbcType=INTEGER},
+      authentication_type = #{authenticationType,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      region = #{region,jdbcType=VARCHAR},
+      id_card = #{idCard,jdbcType=VARCHAR},
+      country = #{country,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      certificate_path = #{certificatePath,jdbcType=VARCHAR},
+      license_number = #{licenseNumber,jdbcType=VARCHAR},
+      license_agency = #{licenseAgency,jdbcType=VARCHAR},
+      register_date = #{registerDate,jdbcType=TIMESTAMP},
+      last_login_date = #{lastLoginDate,jdbcType=TIMESTAMP},
+      last_modify_date = #{lastModifyDate,jdbcType=TIMESTAMP},
+      small_avatar_path = #{smallAvatarPath,jdbcType=VARCHAR},
+      medium_avatar_path = #{mediumAvatarPath,jdbcType=VARCHAR},
+      large_avatar_path = #{largeAvatarPath,jdbcType=VARCHAR},
+      original_avatar_path = #{originalAvatarPath,jdbcType=VARCHAR},
+      qq = #{qq,jdbcType=VARCHAR},
+      wechat = #{wechat,jdbcType=VARCHAR},
+      homepage_url = #{homepageUrl,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      has_avatar = #{hasAvatar,jdbcType=BIT}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
