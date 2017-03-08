@@ -23,6 +23,8 @@ public class DumbJob implements Job {
 
         JobDataMap dataMap = context.getJobDetail().getJobDataMap();
 
+        System.out.println("每次执行Job时，都是不同的实例对象：" + this);
+
         System.err.println("Instance " + key + " of DumbJob says: " + jobSays + ", and val is: " + myFloatValue);
     }
 
