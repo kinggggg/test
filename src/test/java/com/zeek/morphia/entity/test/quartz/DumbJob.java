@@ -21,7 +21,7 @@ public class DumbJob implements Job {
     {
         JobKey key = context.getJobDetail().getKey();
 
-        JobDataMap dataMap = context.getMergedJobDataMap();
+        JobDataMap dataMap = context.getJobDetail().getJobDataMap();
 
         System.err.println("Instance " + key + " of DumbJob says: " + jobSays + ", and val is: " + myFloatValue);
     }
