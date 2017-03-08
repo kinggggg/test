@@ -42,11 +42,17 @@
       <version>4.12</version>
     </dependency>
 
-    <!--<dependency>-->
-      <!--<groupId>org.checkerframework</groupId>-->
-      <!--<artifactId>compiler</artifactId>-->
-      <!--<version>2.1.8</version>-->
-    <!--</dependency>-->
+    <!--quartz依赖-->
+    <dependency>
+      <groupId>org.quartz-scheduler</groupId>
+      <artifactId>quartz</artifactId>
+      <version>2.2.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.quartz-scheduler</groupId>
+      <artifactId>quartz-jobs</artifactId>
+      <version>2.2.1</version>
+    </dependency>
 
   </dependencies>
 
