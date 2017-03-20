@@ -7,6 +7,7 @@ import java.util.ArrayList;
 /**
  * Created by weibo_li on 2017/3/8.
  */
+@DisallowConcurrentExecution
 public class DumbJob implements Job {
 
     String jobSays;
@@ -23,9 +24,15 @@ public class DumbJob implements Job {
 
         JobDataMap dataMap = context.getJobDetail().getJobDataMap();
 
-        System.out.println("Ã¿´ÎÖ´ĞĞJobÊ±£¬¶¼ÊÇ²»Í¬µÄÊµÀı¶ÔÏó£º" + this);
+        System.out.println("æ¯æ¬¡æ‰§è¡ŒJobæ—¶ï¼Œéƒ½æ˜¯ä¸åŒçš„å®ä¾‹å¯¹è±¡" + this);
 
-        System.err.println("Instance " + key + " of DumbJob says: " + jobSays + ", and val is: " + myFloatValue);
+//        System.err.println("Instance " + key + " of DumbJob says: " + jobSays + ", and val is: " + myFloatValue);
+
+        try {
+            Thread.sleep(1000);
+        }catch (Exception e) {
+
+        }
     }
 
     public void setJobSays(String jobSays) {
