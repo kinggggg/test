@@ -21,6 +21,10 @@ public class GsonTest {
 
         Teacher1 teacher11 = gson.fromJson(jsonString, Teacher1.class);
 
+        HuaWeiMessage huaWeiMessage = new HuaWeiMessage("我是谁？", "我是招生为", 2, "www.baidu.com");
+
+        System.out.println(gson.toJson(huaWeiMessage));
+
 
 
     }
