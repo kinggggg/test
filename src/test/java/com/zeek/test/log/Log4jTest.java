@@ -14,5 +14,6 @@ public class Log4jTest {
     @Test
     public void test() {
         logger.info("info");
+
     }
 }
