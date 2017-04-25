@@ -9,11 +9,13 @@ import org.slf4j.LoggerFactory;
  */
 public class Log4jTest {
 
-    Logger logger = LoggerFactory.getLogger(Log4jTest.class);
-
     @Test
     public void test() {
-        logger.info("info");
+        Logger log4JTestLogger = LoggerFactory.getLogger(Log4jTest.class);
+        log4JTestLogger.info("log4JTestLogger info");
+
+        Logger log4JTest2Logger = LoggerFactory.getLogger(Log4jTest2.class);
+        log4JTest2Logger.info("log4JTest2Logger info");
 
     }
 }
