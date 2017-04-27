@@ -1,7 +1,9 @@
 package com.zeek.test;
 
 import com.zeek.domain.User;
+import com.zeek.domain.concert.Audience;
 import com.zeek.domain.concert.Performance;
+import com.zeek.domain.concert.Performance2;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -27,8 +29,13 @@ public class SpringAOPTest {
     @Test
     public void test2() {
 
+        Audience bean = applicationContext.getBean(Audience.class);
+
         Performance performance = (Performance)applicationContext.getBean("performance");
         performance.perform();
+
+        Performance2 performance2 = (Performance2)applicationContext.getBean("performance2");
+        performance2.perform();
     }
 
     @Test

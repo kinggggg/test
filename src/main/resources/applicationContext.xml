@@ -22,4 +22,6 @@
 
     <bean id="performance" class="com.zeek.domain.concert.Performance" />
 
+    <bean id="performance2" class="com.zeek.domain.concert.Performance2" />
+
 </beans>

@@ -13,7 +13,7 @@ public class Audience {
 
     final Logger logger  =  LoggerFactory.getLogger(Audience.class );
 
-    @Before("execution(** com.zeek.domain.concert.Performance.perform(..))")
+    @Before("execution(* com.zeek.domain.concert.*.*(..))")
     public void silenceCellPhones() {
         logger.warn("before===================>: silenceCellPhones");
     }
