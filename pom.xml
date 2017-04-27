@@ -21,6 +21,13 @@
       <version>4.2.6.RELEASE</version>
     </dependency>
 
+    <!--Spring AOP-->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-aop</artifactId>
+      <version>4.2.6.RELEASE</version>
+    </dependency>
+
     <!--Spring TestContext Framework-->
     <dependency>
       <groupId>org.springframework</groupId>
@@ -47,6 +54,19 @@
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-log4j12</artifactId>
       <version>1.7.21</version>
+    </dependency>
+
+    <!-- Aspectj Runtime -->
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjrt</artifactId>
+      <version>1.8.10</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjweaver</artifactId>
+      <version>1.8.10</version>
     </dependency>
 
   </dependencies>
