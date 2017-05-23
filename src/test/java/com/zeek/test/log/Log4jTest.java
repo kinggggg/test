@@ -12,7 +12,7 @@ public class Log4jTest {
     @Test
     public void test() {
         Logger log4JTestLogger = LoggerFactory.getLogger(Log4jTest.class);
-        log4JTestLogger.info("log4JTestLogger info");
+        log4JTestLogger.error("log4JTestLogger info");
 
         Logger log4JTest2Logger = LoggerFactory.getLogger(Log4jTest2.class);
         log4JTest2Logger.info("log4JTest2Logger info");
