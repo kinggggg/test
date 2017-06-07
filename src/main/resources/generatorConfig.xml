@@ -91,5 +91,14 @@
                selectByExampleQueryId="false">
         </table>
 
+        <table tableName="message_publish_task"
+               domainObjectName="MessagePublishTask"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+
     </context>
 </generatorConfiguration>
