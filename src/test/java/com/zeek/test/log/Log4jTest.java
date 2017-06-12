@@ -1,21 +1,36 @@
 package com.zeek.test.log;
 
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import java.util.Date;
 
 /**
  * Created by weibo_li on 2017/4/1.
  */
 public class Log4jTest {
 
-    @Test
-    public void test() {
-        Logger log4JTestLogger = LoggerFactory.getLogger(Log4jTest.class);
-        log4JTestLogger.error("log4JTestLogger info");
 
-        Logger log4JTest2Logger = LoggerFactory.getLogger(Log4jTest2.class);
-        log4JTest2Logger.info("log4JTest2Logger info");
+    @Test
+    public void test2() {
+        BasicConfigurator.configure();
+
+        Logger logger = Logger.getLogger("cd.itcast");
+        logger.getLoggerRepository().setThreshold(Level.INFO);
+//        logger.setLevel(Level.WARN);
+        Logger barLogger = Logger.getLogger("cd.itcast.log");
+        barLogger.setLevel(Level.WARN);
+
+        logger.warn("logger warn");
+        logger.info("logger info");
+        logger.debug("logger debug");
+        barLogger.warn("bar logger warn");
+        barLogger.info("bar logger info");
+        barLogger.debug("bar logger debug");
 
     }
+
+
 }
