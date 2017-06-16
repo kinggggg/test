@@ -100,5 +100,23 @@
                selectByExampleQueryId="false">
         </table>
 
+        <table tableName="advice_order"
+               domainObjectName="AdviceOrder"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+
+        <table tableName="advice_apply"
+               domainObjectName="AdviceApply"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+
     </context>
 </generatorConfiguration>
