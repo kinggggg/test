@@ -1,6 +1,6 @@
-package com.zeek.athena.dao;
+package com.wusong.firefly.dao.mysql.firefly;
 
-import com.zeek.athena.domain.EnquiryOrder;
+import com.wusong.firefly.domain.firefly.EnquiryOrder;
 
 public interface EnquiryOrderMapper {
     /**

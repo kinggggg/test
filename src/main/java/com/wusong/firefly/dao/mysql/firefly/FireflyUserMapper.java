@@ -1,6 +1,6 @@
-package com.zeek.athena.dao;
+package com.wusong.firefly.dao.mysql.firefly;
 
-import com.zeek.athena.domain.FireflyUser;
+import com.wusong.firefly.domain.firefly.FireflyUser;
 
 public interface FireflyUserMapper {
     /**

@@ -1,4 +1,4 @@
-package com.zeek.athena.domain;
+package com.wusong.firefly.domain.firefly;
 
 import java.util.Date;
 
