@@ -17,7 +17,7 @@
 
         <!-- 数据库地址、用户名、密码 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://192.168.25.16:3306/firefly?useUnicode=true&amp;characterEncoding=utf8" userId="root"
+                        connectionURL="jdbc:mysql://192.168.25.161:3306/firefly?useUnicode=true&amp;characterEncoding=utf8" userId="root"
                         password="tiantong@123">
         </jdbcConnection>
 
@@ -27,7 +27,7 @@
 
         <!-- 后台生成 -->
         <!-- model -->
-        <javaModelGenerator targetPackage="com.zeek.athena.domain"
+        <javaModelGenerator targetPackage="com.wusong.firefly.domain.firefly"
                             targetProject="src/main/java">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
@@ -41,13 +41,102 @@
 
         <!-- Mapper接口 -->
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="com.zeek.athena.dao" targetProject="src/main/java">
+                             targetPackage="com.wusong.firefly.dao.mysql.firefly" targetProject="src/main/java">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
         <!-- 表 -->
-        <table tableName="base_order"
-               domainObjectName="BaseOrder"
+        <!--<table tableName="base_order"-->
+               <!--domainObjectName="BaseOrder"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+        <!--</table>-->
+
+        <!--<table tableName="enquiry_order"-->
+               <!--domainObjectName="EnquiryOrder"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+        <!--</table>-->
+
+        <!--<table tableName="firefly_user"-->
+               <!--domainObjectName="FireflyUser"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+        <!--</table>-->
+
+        <!--<table tableName="user_subscribe"-->
+               <!--domainObjectName="UserSubscribe"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+        <!--</table>-->
+
+        <!--<table tableName="black_list"-->
+               <!--domainObjectName="BlackList"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+        <!--</table>-->
+
+        <!--<table tableName="message_publish_task"-->
+               <!--domainObjectName="MessagePublishTask"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+        <!--</table>-->
+
+        <!--<table tableName="advice_order"-->
+               <!--domainObjectName="AdviceOrder"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+        <!--</table>-->
+
+        <!--<table tableName="advice_apply"-->
+               <!--domainObjectName="AdviceApply"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+        <!--</table>-->
+
+        <!--<table tableName="cooperation_order"-->
+               <!--domainObjectName="CooperationOrder"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+        <!--</table>-->
+
+        <!--<table tableName="cooperation_apply"-->
+               <!--domainObjectName="CooperationApply"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+
+        <table tableName="business_label"
+               domainObjectName="BusinessLabel"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"
@@ -55,62 +144,8 @@
                selectByExampleQueryId="false">
         </table>
 
-        <table tableName="enquiry_order"
-               domainObjectName="EnquiryOrder"
-               enableCountByExample="false"
-               enableUpdateByExample="false"
-               enableDeleteByExample="false"
-               enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
-
-        <table tableName="firefly_user"
-               domainObjectName="FireflyUser"
-               enableCountByExample="false"
-               enableUpdateByExample="false"
-               enableDeleteByExample="false"
-               enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
-
-        <table tableName="user_subscribe"
-               domainObjectName="UserSubscribe"
-               enableCountByExample="false"
-               enableUpdateByExample="false"
-               enableDeleteByExample="false"
-               enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
-
-        <table tableName="black_list"
-               domainObjectName="BlackList"
-               enableCountByExample="false"
-               enableUpdateByExample="false"
-               enableDeleteByExample="false"
-               enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
-
-        <table tableName="message_publish_task"
-               domainObjectName="MessagePublishTask"
-               enableCountByExample="false"
-               enableUpdateByExample="false"
-               enableDeleteByExample="false"
-               enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
-
-        <table tableName="advice_order"
-               domainObjectName="AdviceOrder"
-               enableCountByExample="false"
-               enableUpdateByExample="false"
-               enableDeleteByExample="false"
-               enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
-
-        <table tableName="advice_apply"
-               domainObjectName="AdviceApply"
+        <table tableName="business_label_category"
+               domainObjectName="BusinessLabelCategory"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"
