@@ -171,8 +171,8 @@
                <!--selectByExampleQueryId="false">-->
         <!--</table>-->
 
-        <table tableName="other_order"
-               domainObjectName="OtherOrder"
+        <table tableName="other_apply"
+               domainObjectName="OtherApply"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"
