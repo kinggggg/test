@@ -135,17 +135,44 @@
                <!--enableSelectByExample="false"-->
                <!--selectByExampleQueryId="false">-->
 
-        <table tableName="business_label"
-               domainObjectName="BusinessLabel"
-               enableCountByExample="false"
-               enableUpdateByExample="false"
-               enableDeleteByExample="false"
-               enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
+        <!--<table tableName="business_label"-->
+               <!--domainObjectName="BusinessLabel"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+        <!--</table>-->
 
-        <table tableName="business_label_category"
-               domainObjectName="BusinessLabelCategory"
+        <!--<table tableName="business_label_category"-->
+               <!--domainObjectName="BusinessLabelCategory"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+        <!--</table>-->
+
+        <!--<table tableName="legal_order"-->
+               <!--domainObjectName="LegalOrder"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+        <!--</table>-->
+
+        <!--<table tableName="other_order"-->
+               <!--domainObjectName="OtherOrder"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+        <!--</table>-->
+
+        <table tableName="other_order"
+               domainObjectName="OtherOrder"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"
