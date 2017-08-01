@@ -11,6 +11,24 @@ import java.util.*;
 public class ArrayListTest {
 
     @Test
+    public void test4() {
+        List<String> lists = new ArrayList();
+        lists.add("1");
+        lists.add("2");
+        lists.add("3");
+        lists.add("4");
+        lists.add("5");
+
+        List<String> rems = new ArrayList();
+        rems.add("1");
+        rems.add("2");
+        rems.add("5");
+
+        lists.removeAll(rems);
+        System.out.println(lists);
+    }
+
+    @Test
     public void test3() {
         List<User> usersList = new ArrayList<>();
         User one = new User("1", "张三");
