@@ -171,8 +171,17 @@
                <!--selectByExampleQueryId="false">-->
         <!--</table>-->
 
-        <table tableName="other_apply"
-               domainObjectName="OtherApply"
+        <!--<table tableName="other_apply"-->
+               <!--domainObjectName="OtherApply"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+        <!--</table>-->
+
+        <table tableName="refund"
+               domainObjectName="Refund"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"
