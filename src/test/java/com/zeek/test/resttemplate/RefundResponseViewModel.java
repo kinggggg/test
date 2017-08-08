@@ -1,6 +1,5 @@
 package com.zeek.test.resttemplate;
 
-import com.wusong.firefly.util.ResourceReader;
 
 /**
  * Created by liweibo on 17/5/23.
@@ -14,7 +13,7 @@ public class RefundResponseViewModel<T> {
     public RefundResponseViewModel(){
         result = new RefundResult();
         result.setCode(0);
-        result.getErrorMessage().add(ResourceReader.getCommonsValidationMessage("unified.response.success"));
+        result.getErrorMessage().add("失败");
     }
 
     public RefundResult getResult() {
