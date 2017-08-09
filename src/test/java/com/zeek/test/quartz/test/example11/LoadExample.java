@@ -31,6 +31,8 @@ import org.quartz.impl.StdSchedulerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Date;
+
 /**
  * This example will spawn a large number of jobs to run
  * 
@@ -53,6 +55,8 @@ public class LoadExample {
 
     log.info("------- Initialization Complete -----------");
 
+    Date exe = new Date();
+
     // schedule 500 jobs to run
     for (int count = 1; count <= _numberOfJobs; count++) {
       JobDetail job = newJob(SimpleJob.class).withIdentity("job" + count, "group_1").requestRecovery() // ask scheduler
@@ -65,11 +69,11 @@ public class LoadExample {
           .build();
 
       // tell the job to delay some small amount... to simulate work...
-      long timeDelay = (long) (Math.random() * 2500);
-      job.getJobDataMap().put(SimpleJob.DELAY_TIME, timeDelay);
+//      long timeDelay = (long) (Math.random() * 2500);
+//      job.getJobDataMap().put(SimpleJob.DELAY_TIME, timeDelay);
 
       Trigger trigger = newTrigger().withIdentity("trigger_" + count, "group_1")
-          .startAt(futureDate((10000 + (count * 100)), IntervalUnit.MILLISECOND)) // space fire times a small bit
+          .startAt(exe) // space fire times a small bit
           .build();
 
       sched.scheduleJob(job, trigger);

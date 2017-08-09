@@ -62,12 +62,12 @@ public class SimpleJob implements Job {
     _log.info("Executing job: " + jobKey + " executing at " + new Date());
 
     // wait for a period of time
-    long delayTime = context.getJobDetail().getJobDataMap().getLong(DELAY_TIME);
-    try {
-      Thread.sleep(delayTime);
-    } catch (Exception e) {
-      //
-    }
+//    long delayTime = context.getJobDetail().getJobDataMap().getLong(DELAY_TIME);
+//    try {
+//      Thread.sleep(delayTime);
+//    } catch (Exception e) {
+//      //
+//    }
 
     _log.info("Finished Executing job: " + jobKey + " at " + new Date());
   }
