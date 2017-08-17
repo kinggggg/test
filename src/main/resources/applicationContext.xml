@@ -10,18 +10,7 @@
                            http://www.springframework.org/schema/aop
                            http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-    <aop:aspectj-autoproxy/>
+    <import resource="applicationContext-quartz.xml"/>
 
-    <bean id="user" class="com.zeek.domain.User">
-        <property name="id"  value="1"></property>
-        <property name="name" value="zhangsan"></property>
-        <property name="age" value="20"></property>
-    </bean>
-
-    <bean class="com.zeek.domain.concert.Audience" />
-
-    <bean id="performance" class="com.zeek.domain.concert.Performance" />
-
-    <bean id="performance2" class="com.zeek.domain.concert.Performance2" />
 
 </beans>
