@@ -7,10 +7,17 @@
 		<setting name="logImpl" value="LOG4J" />
 		<setting name="cacheEnabled" value="true" />
 	</settings>
+
 	<!-- 定义别名 -->
 	<typeAliases>
 		<typeAlias alias="role" type="com.zeek.po.Role" />
+		<typeAlias alias="user" type="com.zeek.po.User" />
 	</typeAliases>
+
+	<typeHandlers>
+		<typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler" javaType="com.zeek.common.Sex"/>
+	</typeHandlers>
+
 	<!-- 定义数据库信息，默认使用development数据库构建环境 -->
 	<environments default="development">
 		<environment id="development">
@@ -22,14 +29,17 @@
 			<dataSource type="POOLED">
 				<property name="driver" value="com.mysql.jdbc.Driver" />
 				<property name="url"
-					value="jdbc:mysql://localhost:3307/mybatis-test?serverTimezone=UTC" />
+					value="jdbc:mysql://localhost:3307/mybatis?serverTimezone=UTC" />
 				<property name="username" value="root" />
 				<property name="password" value="root" />
 			</dataSource>
 		</environment>
 	</environments>
+
 	<!-- 定义映射器 -->
 	<mappers>
-		<mapper resource="com/learn/chapter2/mapper/roleMapper.xml" />
+		<mapper resource="com/zeek/mapper/roleMapper.xml" />
+		<mapper resource="com/zeek/mapper/userMapper.xml" />
 	</mappers>
+
 </configuration>
