@@ -17,7 +17,7 @@
 
         <!-- 数据库地址、用户名、密码 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://192.168.25.61:3306/hanukkah?useUnicode=true&amp;characterEncoding=utf8" userId="root"
+                        connectionURL="jdbc:mysql://192.168.25.16:3306/hanukkah?useUnicode=true&amp;characterEncoding=utf8" userId="root"
                         password="tiantong@123">
         </jdbcConnection>
 
@@ -27,7 +27,7 @@
 
         <!-- 后台生成 -->
         <!-- model -->
-        <javaModelGenerator targetPackage="com.wusong.hanukkah.domain.mysql."
+        <javaModelGenerator targetPackage="com.wusong.hanukkah.domain.mysql"
                             targetProject="src/main/java">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
@@ -49,6 +49,24 @@
 
         <table tableName="wusong_course"
                domainObjectName="WusongCourse"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+
+        <table tableName="wusong_course_code"
+               domainObjectName="WusongCourseCode"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+
+        <table tableName="user_wusong_course_code"
+               domainObjectName="UserWusongCourseCode"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"
