@@ -15,7 +15,7 @@
 	</typeAliases>
 
 	<typeHandlers>
-		<typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler" javaType="com.zeek.common.Sex"/>
+		<typeHandler handler="org.apache.ibatis.type.EnumTypeHandler" javaType="com.zeek.common.Sex"/>
 	</typeHandlers>
 
 	<!-- 定义数据库信息，默认使用development数据库构建环境 -->
