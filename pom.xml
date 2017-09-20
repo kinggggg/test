@@ -70,6 +70,20 @@
       <version>4.2.6.RELEASE</version>
     </dependency>
 
+    <!--Spring Web-->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+      <version>4.2.6.RELEASE</version>
+    </dependency>
+
+    <!--Spring Webmvc-->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>4.2.6.RELEASE</version>
+    </dependency>
+
     <!--Spring TestContext Framework-->
     <dependency>
       <groupId>org.springframework</groupId>
