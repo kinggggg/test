@@ -13,5 +13,10 @@ public interface UserMapper {
 
 	List<User> listUser(User user);
 
+	/**
+	 * where会吧if中第一个条件成立的and自动去掉
+	 * @param user
+	 * @return
+	 */
 	List<User> practiceWhere(User user);
 }
