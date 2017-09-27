@@ -13,6 +13,21 @@ import java.util.UUID;
 public class MybatisTest {
 
     @Test
+    public  void test4() {
+        SqlSession sqlSession = SqlSessionFactoryUtil.openSession();
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+        User user = new User();
+        user.setUsername("张三");
+        user.setAddress("北京");
+
+        List<User> users = userMapper.practiceWhere(user);
+
+        sqlSession.commit();
+        sqlSession.close();
+    }
+
+    @Test
     public  void test3() {
         SqlSession sqlSession = SqlSessionFactoryUtil.openSession();
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);

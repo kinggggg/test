@@ -36,4 +36,17 @@
 		</where>
 	</select>
 
+	<select id="practiceWhere" resultMap="userMap">
+		SELECT id, username, sex
+		FROM user
+		<where>
+			<if test="username != null">
+				and username = #{username}
+			</if>
+			<if test="address != null">
+				and address = #{address}
+			</if>
+		</where>
+	</select>
+
 </mapper>
