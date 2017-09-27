@@ -7,9 +7,25 @@ import com.zeek.util.SqlSessionFactoryUtil;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
+import java.util.List;
 import java.util.UUID;
 
 public class MybatisTest {
+
+    @Test
+    public  void test3() {
+        SqlSession sqlSession = SqlSessionFactoryUtil.openSession();
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+        User user = new User();
+        user.setUsername("张三");
+        user.setAddress("北京");
+
+        List<User> users = userMapper.listUser(user);
+
+        sqlSession.commit();
+        sqlSession.close();
+    }
 
     @Test
     public  void test2() {
@@ -30,7 +46,7 @@ public class MybatisTest {
 
         User user = new User();
         user.setId(UUID.randomUUID().toString());
-        user.setName("zhangsan1");
+        user.setUsername("zhangsan1");
         user.setSex(Sex.FEMALE);
         userMapper.insertUser(user);
 

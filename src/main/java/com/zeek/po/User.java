@@ -6,9 +6,19 @@ public class User {
 
     private String id;
 
-    private String name;
+    private String username;
 
     private Sex sex;
+
+    private String address;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public String getId() {
         return id;
@@ -18,12 +28,12 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public Sex getSex() {
@@ -38,7 +48,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "id='" + id + '\'' +
-                ", name='" + name + '\'' +
+                ", username='" + username + '\'' +
                 ", sex=" + sex +
                 '}';
     }

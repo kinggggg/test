@@ -5,7 +5,7 @@
   <artifactId>test</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>test Maven Webapp</name>
+  <username>test Maven Webapp</username>
   <url>http://maven.apache.org</url>
 
   <properties>
@@ -118,7 +118,7 @@
   <repositories>
     <repository>
       <id>spring-milestone</id>
-      <name>Spring Maven MILESTONE Repository</name>
+      <username>Spring Maven MILESTONE Repository</username>
       <url>http://repo.spring.io/libs-milestone</url>
     </repository>
   </repositories>
