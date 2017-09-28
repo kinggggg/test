@@ -19,7 +19,7 @@
 
 	<select id="getUser" parameterType="String" resultMap="userMap">
 		select id,
-		username , sex from t_user where id = #{id}
+		username , sex from user where id = #{id}
 	</select>
 
 	<select id="listUser" parameterType="com.zeek.po.User" resultMap="userMap">
