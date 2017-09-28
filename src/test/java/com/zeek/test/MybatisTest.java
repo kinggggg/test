@@ -13,13 +13,41 @@ import java.util.UUID;
 public class MybatisTest {
 
     @Test
+    public  void test6() {
+        SqlSession sqlSession = SqlSessionFactoryUtil.openSession();
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+        List<User> users = userMapper.listAll();
+        System.out.println(users);
+
+        sqlSession.commit();
+        sqlSession.close();
+    }
+
+    @Test
+    public  void test5() {
+        SqlSession sqlSession = SqlSessionFactoryUtil.openSession();
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+        User user = new User();
+        user.setUsername("张三");
+        user.setAddress("北京市");
+
+        List<User> users = userMapper.practiceTrim(user);
+        System.out.println(users);
+
+        sqlSession.commit();
+        sqlSession.close();
+    }
+
+    @Test
     public  void test4() {
         SqlSession sqlSession = SqlSessionFactoryUtil.openSession();
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
 
         User user = new User();
         user.setUsername("张三");
-        user.setAddress("北京");
+        user.setAddress("北京市");
 
         List<User> users = userMapper.practiceWhere(user);
 
@@ -34,7 +62,7 @@ public class MybatisTest {
 
         User user = new User();
         user.setUsername("张三");
-        user.setAddress("北京");
+        user.setAddress("北京市");
 
         List<User> users = userMapper.listUser(user);
 
@@ -60,9 +88,8 @@ public class MybatisTest {
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
 
         User user = new User();
-        user.setId(UUID.randomUUID().toString());
-        user.setUsername("zhangsan1");
-        user.setSex(Sex.FEMALE);
+        user.setUsername("aaaa");
+        user.setSex(Sex.MALE);
         userMapper.insertUser(user);
 
         sqlSession.commit();

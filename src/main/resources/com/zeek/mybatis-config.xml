@@ -6,7 +6,7 @@
 
 	<settings>
 		<setting name="logImpl" value="LOG4J" />
-		<setting name="cacheEnabled" value="true" />
+		<!--<setting name="cacheEnabled" value="true" />-->
 	</settings>
 
 	<!-- 定义别名 -->
@@ -16,7 +16,7 @@
 	</typeAliases>
 
 	<typeHandlers>
-		<typeHandler handler="org.apache.ibatis.type.EnumTypeHandler" javaType="com.zeek.common.Sex"/>
+		<typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler" javaType="com.zeek.common.Sex"/>
 	</typeHandlers>
 
 	<!-- 定义数据库信息，默认使用development数据库构建环境 -->

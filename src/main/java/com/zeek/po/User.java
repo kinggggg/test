@@ -2,11 +2,15 @@ package com.zeek.po;
 
 import com.zeek.common.Sex;
 
+import java.util.Date;
+
 public class User {
 
     private String id;
 
     private String username;
+
+    private Date birthday;
 
     private Sex sex;
 
@@ -34,6 +38,14 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 
     public Sex getSex() {

@@ -19,4 +19,8 @@ public interface UserMapper {
 	 * @return
 	 */
 	List<User> practiceWhere(User user);
+
+	List<User> practiceTrim(User user);
+
+	List<User> listAll();
 }

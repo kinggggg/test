@@ -7,13 +7,14 @@
 	<resultMap id="userMap" type="com.zeek.po.User">
 		<id column="id" property="id"/>
 		<result column="username" property="username"/>
-		<result column="sex" property="sex" />
+		<result column="birthday" property="birthday"/>
+		<result column="sex" property="sex"/>
 		<result column="address" property="address" />
 	</resultMap>
 
 	<insert id="insertUser" parameterType="com.zeek.po.User">
-		insert into t_user(id,
-		username, sex) values(#{id}, #{username}, #{sex})
+		insert into user(
+		username, sex) values(#{username}, #{sex})
 	</insert>
 
 	<select id="getUser" parameterType="String" resultMap="userMap">
@@ -47,6 +48,24 @@
 				and address = #{address}
 			</if>
 		</where>
+	</select>
+
+	<select id="practiceTrim" resultMap="userMap">
+		SELECT id, username, birthday, sex, address
+		FROM user
+		<trim prefix="where" prefixOverrides="and">
+			<if test="username != null">
+				and username = #{username}
+			</if>
+			<if test="address != null">
+				and address = #{address}
+			</if>
+		</trim>
+	</select>
+
+	<select id="listAll" resultMap="userMap">
+		SELECT id, username, birthday, sex, address
+		FROM user
 	</select>
 
 </mapper>
