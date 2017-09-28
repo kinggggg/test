@@ -18,8 +18,8 @@
 	</insert>
 
 	<select id="getUser" parameterType="String" resultMap="userMap">
-		select id,
-		username , sex from user where id = #{id}
+		select id, username, sex, address
+		from user where id = #{id}
 	</select>
 
 	<select id="listUser" parameterType="com.zeek.po.User" resultMap="userMap">

@@ -75,7 +75,7 @@ public class MybatisTest {
         SqlSession sqlSession = SqlSessionFactoryUtil.openSession();
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
 
-        User user = userMapper.getUser("ddde37aa-1bc4-4b41-8a74-734695aeabe3");
+        User user = userMapper.getUser("1");
         System.out.println(user);
 
         sqlSession.commit();
