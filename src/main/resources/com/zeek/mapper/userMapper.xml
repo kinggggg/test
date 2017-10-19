@@ -12,6 +12,14 @@
 		<result column="address" property="address" />
 	</resultMap>
 
+	<select id="bindTest" parameterType="java.lang.String" resultMap="userMap">
+		<bind name="pattern" value="'%' + _parameter.getUsername() + '%'" />
+		SELECT id, username
+		FROM user
+		WHERE username LIKE #{pattern}
+
+	</select>
+
 	<insert id="insertUser" parameterType="com.zeek.po.User">
 		insert into user(
 		username, sex) values(#{username}, #{sex})

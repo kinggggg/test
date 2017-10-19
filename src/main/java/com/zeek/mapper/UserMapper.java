@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface UserMapper {
 
+	List<User> bindTest(User user);
+
 	User getUser(String id);
 
 	int insertUser(User user);
