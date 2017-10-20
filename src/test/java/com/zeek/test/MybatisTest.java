@@ -19,7 +19,7 @@ public class MybatisTest {
 
         User user = new User();
         user.setUsername("张三");
-        List<User> users = userMapper.bindTest(user.getUsername());
+        List<User> users = userMapper.bindTest(user);
         System.out.println(users);
 
         sqlSession.commit();
