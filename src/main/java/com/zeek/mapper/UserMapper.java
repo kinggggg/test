@@ -1,13 +1,14 @@
 package com.zeek.mapper;
 
 import com.zeek.po.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 
 public interface UserMapper {
 
-	List<User> bindTest(User user);
+	List<User> bindTest(@Param("username") String username);
 
 	User getUser(String id);
 

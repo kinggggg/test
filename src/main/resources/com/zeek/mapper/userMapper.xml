@@ -12,8 +12,8 @@
 		<result column="address" property="address" />
 	</resultMap>
 
-	<select id="bindTest" parameterType="java.lang.String" resultMap="userMap">
-		<bind name="pattern" value="'%' + _parameter.getUsername() + '%'" />
+	<select id="bindTest" resultMap="userMap">
+		<bind name="pattern" value="'%' + username + '%'" />
 		SELECT id, username
 		FROM user
 		WHERE username LIKE #{pattern}
