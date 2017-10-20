@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface UserMapper {
 
+	//mybatis bind使用第一种方式：jav接口中使用@Param参数"
 	List<User> bindTest(@Param("username") String username);
 
 	User getUser(String id);
