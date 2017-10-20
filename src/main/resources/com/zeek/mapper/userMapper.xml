@@ -13,7 +13,7 @@
 	</resultMap>
 
 	<select id="bindTest" resultMap="userMap">
-		<bind name="pattern" value="'%' + _parameter.getUsername() + '%'" />
+		<bind name="pattern" value="'%' + username + '%'" />
 		SELECT id, username
 		FROM user
 		WHERE username LIKE #{pattern}
