@@ -1,12 +1,24 @@
 package com.zeek.test.String;
 
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by weibo_li on 2017/3/20.
  */
 public class StringTest {
 
+    @Test
+    public void joinTest() {
+        List<String> strings = Arrays.asList("a", "b");
+
+        System.out.println(StringUtils.join(strings, ","));
+
+
+    }
 
     @Test
     public void indexOfTest() {
