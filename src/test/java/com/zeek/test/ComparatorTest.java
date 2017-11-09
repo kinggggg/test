@@ -1,5 +1,6 @@
 package com.zeek.test;
 
+import com.zeek.test.singleton.Singleton3;
 import org.junit.Test;
 
 import java.util.Comparator;
