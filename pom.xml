@@ -14,6 +14,14 @@
 
   <dependencies>
 
+    <!-- https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib -->
+    <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-stdlib</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+
+
     <!-- MyBatis Generator - a code generator for MyBatis and iBatis. -->
     <dependency>
       <groupId>org.mybatis.generator</groupId>
