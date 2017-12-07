@@ -11,6 +11,18 @@ import java.util.*;
 public class ArrayListTest {
 
     @Test
+    public void test5() {
+        String[] arrays = new String[] { "1", "2", "3" };
+        List<String> list = Arrays.asList(arrays);
+        System.out.println(list);
+        System.out.println(list.getClass());
+        List<String> list2 = new ArrayList<String>(list);
+        list2.add(0, "0");
+        System.out.println(list2);
+        System.out.println(list.getClass());
+    }
+
+    @Test
     public void test4() {
         List<String> lists = new ArrayList();
         lists.add("1");
