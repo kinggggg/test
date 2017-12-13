@@ -3,9 +3,8 @@ package com.zeek.test.ByteBuffer;
 import java.nio.CharBuffer;
 
 /**
- * Description:
- * Created by weibo_li
- * Date: 2017-12-13 下午3:07
+ * @author: weibo_li
+ * @since: 2017/12/13 下午4:12
  */
 public class BufferFillDrain {
 
