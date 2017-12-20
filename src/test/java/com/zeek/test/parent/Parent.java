@@ -5,6 +5,8 @@ package com.zeek.test.parent;
  */
 public class Parent {
 
+    private String name;
+
     public void cost() {
         System.out.println("parent cost");
     }
