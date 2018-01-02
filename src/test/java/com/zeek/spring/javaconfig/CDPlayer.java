@@ -1,4 +1,4 @@
-package com.zeek.spring;
+package com.zeek.spring.javaconfig;
 
 /**
  * @author: weibo_li

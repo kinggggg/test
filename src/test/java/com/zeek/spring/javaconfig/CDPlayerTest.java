@@ -1,4 +1,4 @@
-package com.zeek.spring;
+package com.zeek.spring.javaconfig;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

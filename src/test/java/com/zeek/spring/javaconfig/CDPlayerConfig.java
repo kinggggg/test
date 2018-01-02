@@ -1,4 +1,4 @@
-package com.zeek.spring;
+package com.zeek.spring.javaconfig;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
