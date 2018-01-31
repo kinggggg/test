@@ -10,6 +10,8 @@
 
   <properties>
     <skipTests>true</skipTests>
+    <spring.version>4.2.6.RELEASE</spring.version>
+    <java.cas.client.version>3.5.0</java.cas.client.version>
   </properties>
 
   <dependencies>
@@ -33,13 +35,6 @@
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-log4j12</artifactId>
       <version>1.7.21</version>
-    </dependency>
-
-    <!--Mybatis Pagination Plugin-->
-    <dependency>
-      <groupId>com.github.pagehelper</groupId>
-      <artifactId>pagehelper</artifactId>
-      <version>4.2.1</version>
     </dependency>
 
     <!--Tomcat JDBC Pool Package-->
@@ -67,35 +62,21 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
-      <version>4.2.6.RELEASE</version>
+      <version>${spring.version}</version>
     </dependency>
 
     <!--Spring Web-->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-web</artifactId>
-      <version>4.2.6.RELEASE</version>
+      <version>${spring.version}</version>
     </dependency>
 
     <!--Spring Webmvc-->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-webmvc</artifactId>
-      <version>4.2.6.RELEASE</version>
-    </dependency>
-
-    <!--Spring TestContext Framework-->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-test</artifactId>
-      <version>4.2.6.RELEASE</version>
-    </dependency>
-
-    <!--Spring JDBC-->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-jdbc</artifactId>
-      <version>4.2.6.RELEASE</version>
+      <version>${spring.version}</version>
     </dependency>
 
     <!--MySQL JDBC Type 4 driver-->
@@ -105,12 +86,18 @@
       <version>5.1.34</version>
     </dependency>
 
-    <!--Cglib-->
     <dependency>
-      <groupId>cglib</groupId>
-      <artifactId>cglib</artifactId>
-      <version>3.1</version>
+      <groupId>org.jasig.cas.client</groupId>
+      <artifactId>cas-client-core</artifactId>
+      <version>${java.cas.client.version}</version>
     </dependency>
+
+    <dependency>
+      <groupId>org.jasig.cas.client</groupId>
+      <artifactId>cas-client-integration-tomcat-v8</artifactId>
+      <version>${java.cas.client.version}</version>
+    </dependency>
+
 
   </dependencies>
 
