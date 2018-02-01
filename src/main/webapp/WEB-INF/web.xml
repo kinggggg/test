@@ -40,7 +40,7 @@
         </init-param>
         <init-param>
             <param-name>serverName</param-name>
-            <param-value>http://hello.com:8383</param-value>
+            <param-value>http://hello1.com:8383</param-value>
         </init-param>
     </filter>
     <filter-mapping>
@@ -59,7 +59,7 @@
         </init-param>
         <init-param>
             <param-name>serverName</param-name>
-            <param-value>http://hello.com:8383</param-value>
+            <param-value>http://hello1.com:8383</param-value>
         </init-param>
     </filter>
     <filter-mapping>
