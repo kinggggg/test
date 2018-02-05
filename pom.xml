@@ -103,6 +103,13 @@
       <version>4.2.6.RELEASE</version>
     </dependency>
 
+    <!-- Spring TestContext Framework -->
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-core</artifactId>
+      <version>4.2.3.RELEASE</version>
+    </dependency>
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
