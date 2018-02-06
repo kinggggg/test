@@ -47,7 +47,8 @@
     <filter-mapping>
         <filter-name>CAS Filter</filter-name>
         <!--<url-pattern>/*</url-pattern>-->
-        <url-pattern>/hello1/world1</url-pattern>
+        <!--<url-pattern>/hello1/world1</url-pattern>-->
+        <url-pattern>/hello1/*</url-pattern>
     </filter-mapping>
 
     <!-- 该过滤器负责对Ticket的校验工作，必须启用它 -->
