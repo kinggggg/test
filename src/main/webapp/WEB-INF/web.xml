@@ -37,6 +37,7 @@
         <init-param>
             <param-name>casServerLoginUrl</param-name>
             <param-value>https://yellowcong.com:8443/cas/login</param-value>
+            <!--<param-value>http://www.baidu.com</param-value>-->
         </init-param>
         <init-param>
             <param-name>serverName</param-name>
@@ -45,8 +46,10 @@
     </filter>
     <filter-mapping>
         <filter-name>CAS Filter</filter-name>
-        <url-pattern>/*</url-pattern>
+        <!--<url-pattern>/*</url-pattern>-->
+        <url-pattern>/hello1/world1</url-pattern>
     </filter-mapping>
+
     <!-- 该过滤器负责对Ticket的校验工作，必须启用它 -->
     <filter>
         <filter-name>CAS Validation Filter</filter-name>
@@ -64,7 +67,8 @@
     </filter>
     <filter-mapping>
         <filter-name>CAS Validation Filter</filter-name>
-        <url-pattern>/*</url-pattern>
+        <!--<url-pattern>/*</url-pattern>-->
+        <url-pattern>/hello1/world1</url-pattern>
     </filter-mapping>
 
     <!--
