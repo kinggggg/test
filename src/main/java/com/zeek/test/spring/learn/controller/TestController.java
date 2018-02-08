@@ -55,6 +55,7 @@ public class TestController {
         Cookie cookie = new Cookie(casCookie.getName(), casCookie.getValue());
         cookie.setPath(casCookie.getPath());
         cookie.setSecure(casCookie.isSecure());
+        cookie.setHttpOnly(true);
         httpResponse.addCookie(cookie);
 
     }
