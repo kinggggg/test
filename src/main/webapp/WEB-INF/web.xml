@@ -36,8 +36,8 @@
         <filter-class>org.jasig.cas.client.authentication.AuthenticationFilter</filter-class>
         <init-param>
             <param-name>casServerLoginUrl</param-name>
-            <!--<param-value>https://yellowcong.com:8443/cas/login</param-value>-->
-            <param-value>http://test1.sso.com:3000/login</param-value>
+            <param-value>https://yellowcong.com:8443/cas/login</param-value>
+            <!--<param-value>http://test1.sso.com:3000/login</param-value>-->
             <!--<param-value>http://www.baidu.com</param-value>-->
         </init-param>
         <init-param>

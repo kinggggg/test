@@ -58,6 +58,10 @@ public class TestController {
         cookie.setHttpOnly(true);
         httpResponse.addCookie(cookie);
 
+//        String serviceTicket = CasServerUtil.validateFromCAS("", "");
+//
+//        return "redirect:" + "http://hello1.com:8383/sso1/test/list?ticket=" + serviceTicket;
+
     }
 
     private final static String CAS_LOGIN_URL = "https://yellowcong.com:8443/cas/login";
