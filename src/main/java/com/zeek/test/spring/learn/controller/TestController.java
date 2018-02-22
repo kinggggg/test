@@ -1,6 +1,7 @@
 package com.zeek.test.spring.learn.controller;
 
 import com.google.gson.Gson;
+import com.zeek.test.spring.learn.domain.User;
 import com.zeek.test.spring.learn.utils.CasLoginData;
 import com.zeek.test.spring.learn.utils.CasServerUtil;
 import com.zeek.test.spring.learn.utils.HttpClient;
@@ -10,25 +11,30 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
-@RequestMapping(value = "/sso1")
+@RequestMapping(value = "/")
 public class TestController {
 
-    @RequestMapping(value = "/test/list", method = RequestMethod.GET)
-    public String testList() {
+    @RequestMapping(value = "/api/list", method = RequestMethod.GET)
+    @ResponseBody
+    public Object apiList() {
 
-        return "test/list";
-    }
+        User user1 = new User("xiaoming", 18);
+        User user2 = new User("xiaohong", 20);
 
-    @RequestMapping(value = "/test/list2", method = RequestMethod.GET)
-    public String testList2() {
+        List<User> users = new ArrayList<>();
+        users.add(user1);
+        users.add(user2);
 
-        return "test/list2";
+        return users;
     }
 
     @RequestMapping(value = "/login_bak", method = RequestMethod.POST)
