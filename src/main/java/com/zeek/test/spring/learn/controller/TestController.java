@@ -9,6 +9,7 @@ import com.zeek.test.spring.learn.utils.HttpMethod;
 import com.zeek.test.spring.learn.viewmodel.login.ExecutionData;
 import com.zeek.test.spring.learn.viewmodel.login.LoginData;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,7 +28,7 @@ import java.util.List;
 @RequestMapping(value = "/")
 public class TestController {
 
-    private final static String APP_URL = "http:///cas.client1.com:8383/api/list";
+    private final static String APP_URL = "http://cas.client1.com:8383/api/list";
 
     @RequestMapping(value = "/api/list", method = RequestMethod.GET)
     @ResponseBody
@@ -53,6 +54,17 @@ public class TestController {
         executionData.setExecution(execution);
 
         return executionData;
+
+    }
+
+    @RequestMapping(value = "/loginPage", method = RequestMethod.GET)
+    public String loginPage(Model model) throws Exception {
+
+        String execution = CasServerUtil.getExecution(APP_URL);
+
+        model.addAttribute("execution", execution);
+
+        return "login/login" ;
 
     }
 
