@@ -1,14 +1,22 @@
 package com.zeek.test.spring.learn.utils;
 
 import org.apache.http.Header;
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.CookieStore;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.utils.URIUtils;
+import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.conn.socket.LayeredConnectionSocketFactory;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
+import org.apache.http.cookie.Cookie;
 import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -17,12 +25,11 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 import java.io.*;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
+import java.net.*;
 import java.security.cert.X509Certificate;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author: weibo_li
@@ -30,14 +37,37 @@ import java.util.Arrays;
  */
 public class CasServerUtil {
 
-    public static String validateFromCAS(String username, String password) throws Exception {
+    private static final String CAS_CLIENT_SERVICE_URL = "http://cas.client1.com:8383/api/list" ;
 
-        String url = "https://cas.server.com:8443/cas/v1/tickets";
+    private static final String CAS_SERVER_PROTOCOL = "https" ;
+
+    private static final String CAS_SERVER_URI = "cas.server.com:8443" ;
+
+    private static final String CAS_SERVER_LOGIN_PATH = "/cas/login" ;
+
+    public static final String CAS_SERVER_LOGIN_URL = "https://cas.server.com:8443/cas/login" ;
+
+    private static final String CAS_SERVER_TICKETS = "https://cas.server.com:8443/cas/v1/tickets" ;
+
+    private static final String CAS_SERVER_USERNAME = "casuser" ;
+
+    private static final String CAS_SERVER_PASSWORD = "Mellon" ;
+
+    private static final String CAS_SERVER__EVENTID_KEY = "_eventid" ;
+
+    private static final String CAS_SERVER__EVENTID_VALUE = "submit" ;
+
+    private static final String CAS_SERVER_EXECUTION_KEY = "execution" ;
+
+    //execution动态变化，必须动态获取
+    private static String CAS_SERVER_EXECUTION_VALUE = "" ;
+
+    public static String validateFromCAS() throws Exception {
         String serviceTicket = "" ;
         try {
-            HttpsURLConnection hsu = (HttpsURLConnection) openConn(url);
-            String s = URLEncoder.encode("username", "UTF-8") + "=" + URLEncoder.encode("casuser", "UTF-8");
-            s += "&" + URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode("Mellon", "UTF-8");
+            HttpsURLConnection hsu = (HttpsURLConnection) openConn(CasServerUtil.CAS_SERVER_TICKETS);
+            String s = URLEncoder.encode("username", "UTF-8") + "=" + URLEncoder.encode(CasServerUtil.CAS_SERVER_USERNAME, "UTF-8");
+            s += "&" + URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(CasServerUtil.CAS_SERVER_PASSWORD, "UTF-8");
 
             System.out.println(s);
             OutputStreamWriter out = new OutputStreamWriter(hsu.getOutputStream());
@@ -57,13 +87,11 @@ public class CasServerUtil {
                 bwr.close();
                 closeConn(hsu);
 
-
-                String serviceURL = "http://hello1.com:8383/hello1/world1";
-                String encodedServiceURL = URLEncoder.encode("service", "utf-8") + "=" + URLEncoder.encode(serviceURL, "utf-8");
+                String encodedServiceURL = URLEncoder.encode("service", "utf-8") + "=" + URLEncoder.encode(CasServerUtil.CAS_CLIENT_SERVICE_URL, "utf-8");
                 System.out.println("Service url is : " + encodedServiceURL);
 
 
-                String myURL = url + "/" + tgt;
+                String myURL = CasServerUtil.CAS_SERVER_TICKETS + "/" + tgt;
                 System.out.println(myURL);
                 hsu = (HttpsURLConnection) openConn(myURL);
                 out = new OutputStreamWriter(hsu.getOutputStream());
@@ -130,7 +158,7 @@ public class CasServerUtil {
         CloseableHttpClient client = createHttpClientWithNoSsl(httpCookieStore);
 
         /* 第一次请求[GET] 拉取流水号信息 */
-        HttpGet request = new HttpGet("https://cas.server.com:8443/cas/login" + "?service=" + redirectUrl);
+        HttpGet request = new HttpGet(CasServerUtil.CAS_SERVER_LOGIN_URL + "?service=" + redirectUrl);
         HttpResponse response = client.execute(request);
 
         System.out.println("第一次请求[GET] 拉取流水号信息，Header响应");
@@ -196,5 +224,54 @@ public class CasServerUtil {
             result += line;
         }
         return result;
+    }
+
+    /**
+     * 通过后端Httpclient方式得到cas server登录cookie
+     * @param requestUrl
+     * @param casLoginData
+     * @param httpMethod
+     * @return
+     * @throws Exception
+     */
+    public static Cookie getCasServerCookieByHttpClientCall() throws Exception {
+
+        CookieStore cookieStore = new BasicCookieStore();
+        //核心应用类
+        CloseableHttpClient httpClient = HttpClients.custom().setDefaultCookieStore(cookieStore).build();
+
+        //设定表单需要提交的参数
+        List<NameValuePair> qparams = new ArrayList<NameValuePair>();
+
+        //示例：提交用户名和密码
+        qparams.add(new BasicNameValuePair("username", CasServerUtil.CAS_SERVER_USERNAME));
+        qparams.add(new BasicNameValuePair("password", CasServerUtil.CAS_SERVER_PASSWORD));
+        qparams.add(new BasicNameValuePair(CasServerUtil.CAS_SERVER__EVENTID_KEY, CasServerUtil.CAS_SERVER__EVENTID_VALUE));
+        qparams.add(new BasicNameValuePair(CasServerUtil.CAS_SERVER_EXECUTION_KEY, CasServerUtil.getExecution(CasServerUtil.CAS_CLIENT_SERVICE_URL)));
+
+        //设定需要访问的URL，第四个参数为表单提交路径
+        URI uri = URIUtils.createURI(CasServerUtil.CAS_SERVER_PROTOCOL, CasServerUtil.CAS_SERVER_URI, -1, CasServerUtil.CAS_SERVER_LOGIN_PATH,
+                //将参数加入URL中
+                URLEncodedUtils.format(qparams, "UTF-8"), null);
+        //Post提交
+        HttpPost httpPost = new HttpPost(uri);
+
+        //System.out.println(httpPost.getURI());
+
+        //httpClient执行，返回response
+        HttpResponse response = httpClient.execute(httpPost);
+
+        //获取实体
+        HttpEntity httpEntity= response.getEntity();
+
+        //打印StatusLine
+        System.out.println("StatusLine: " + response.getStatusLine());
+
+        //读取内容
+        String content = EntityUtils.toString(httpEntity, "UTF-8");
+        //打印输出结果内容
+        System.out.println(content);
+
+        return cookieStore.getCookies().get(0);
     }
 }

@@ -36,7 +36,7 @@ public class LoginController {
 
         System.out.println(loginData);
 
-        String serviceTicket = CasServerUtil.validateFromCAS("", "");
+        String serviceTicket = CasServerUtil.validateFromCAS();
 
         return "redirect:" + "http://hello1.com:8383/hello1/world1?ticket=" + serviceTicket;
 

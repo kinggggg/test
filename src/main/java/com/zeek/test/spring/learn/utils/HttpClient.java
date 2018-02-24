@@ -91,49 +91,7 @@ public class HttpClient {
                 e.printStackTrace();
             }
         }
-        // FIXME: 2017/7/26 用于生产环境测试
-        //return  "success" ;
-    }
 
-    public static Cookie getCasServerCookieByHttpClientCall(String requestUrl, CasLoginData casLoginData, HttpMethod httpMethod) throws Exception {
-
-        CookieStore cookieStore = new BasicCookieStore();
-        //核心应用类
-        CloseableHttpClient httpClient = HttpClients.custom().setDefaultCookieStore(cookieStore).build();
-
-        //设定表单需要提交的参数
-        List<NameValuePair> qparams = new ArrayList<NameValuePair>();
-
-        //示例：提交用户名和密码
-        qparams.add(new BasicNameValuePair("username", "casuser"));
-        qparams.add(new BasicNameValuePair("password", "Mellon"));
-        qparams.add(new BasicNameValuePair("_eventId", "submit"));
-        qparams.add(new BasicNameValuePair("execution", "bfca648e-85d3-40e2-b8b0-f56cd8023984_ZXlKaGJHY2lPaUpJVXpVeE1pSjkuTlcxU05ITmtUVU56VlhWclRVRm1ia0ZCWlc1emVTOVVkeXRPVEhaVFUyWmpTMU5TVWtsTldrUjBZbkpqZDJNMWNESlBTMkZzYkVoelZVZDNXak5YVTNCWlFtTnBUV2t2ZWxNeWJGZGpkakEwYkVoSFp5OTNia2x0TTBZMk5VMUtTVzQ1TjJFeE0wSkpia2x3ZUdwb00yNU1OVXRoYldsNWJuVlBMMnNyVVZNdmNVNW1XbEZYVGxFM1ZuZ3pNa2xLWVhScGFXTlVWMVZOWTAwdmNuQnlaMnRIVHpWSFYyVnFNMVo2YTAxVGFXOTRLM2N6WTJGWU4xZHBiakl5VEU1RVVsSkZUSEJhWXpCeFpVSnhWbVp2WjJWdE1ucDVhVFpXVUVFMWNWRnpSMmxZV1VZcmJUQnVZeTluVVVGcVZUaFpZWHB0YUdOTWNtMHlTMHhQYkN0bllWVlhSVGg0T1hkcmRrcEVLMHBFT0VaUU5saDVjMUJaVTIxd1FrRkRUelpuUW1GdlEzaHlTVGcwTWpWRldHaHVTaXM1VkhocWNrbGtTbkJOYW1GdmJqQnZLekJIWkRrNVVqbHRkazVGY2pkR1RVMUNOMGs1VUhnMWFTdFdRVUZUU1ROU1lXaEVOSGc0TDBsWlVWUlRhREJzUkRWdk5IWnFLMFZtY2l0TlRrSlZUelJWVmpCMlpqRmtSVGh4U21aaVowOUNTREpzZUVJM1lYRnJTVmhXYUV0clVYWklSMHBqVTJSdWRUSjVhR2h3TlV4WmNXeFphbEpXWmtGaFJYVTNiMFIzWTFaYVVYWXhlVFJQYkVaNE5FTjBUWGt6VlZoRGNGZzRjMk51VW01WlRVaFpNM1pYUTFRMWJ6Y3lTVUl4TkZaWVUyZHZiblp0THl0U01rTTVhMlJFUWl0R1V6WkdVRlJ1VWxaWFNHZHNOR0p1YWtwR1dIQXhMM0EyWVRFeE9EWnRURFZRV2xSNFVHcFNiV014Y21KbFkyUXlUVUpKYkU1NE5rTTNOa054VTNkb1RHeDZSalpPVlhaQlZUVnFNMGRqYmxjeGRHSnNNMDVITWxVd1pHaEJTelUwZG5kVFkwVjJTblV4YldsWmF6RkdZMmR3THl0Tkx5dGlWbGwyY0VORVJHWmllRlJsWWxKc1Vsa3hXSGgwTTFWbFRuZHNZa1prY25JeWJXOTNaVlJSYUZRMk16UXZkRkJRYUVsdU5WaENSVTV4V210WWRFaHRNWHBqVlc5SFlubFNNV1pRZW1ReVVIUnNjbkoxTVc1QlJtUkNTMGd4Tm5sdVUyeFBiR0pQWVhKRFN5dHRhazlPWTNFMVdrNVFabmcxUkVObVZFOUJiMkk1WnpSdmVHVnJNR2xaZEhaSWVrZEVSMFZ0YVcxcFVsaGhWVzFESzJRNGFqVkNTbkptYzJoUVZVdzVSRkY1Y2xkaVNqWkpObGRqVUhCb1JtNXhSa0ZuVldObVZFSXdPV2Q2VFdwd1EwWklZM1JaYlZSbGRWaFRPR2t3V0ZwTVozQnFhVFZ2UlRGcVUwOUdiSE5SV0VWU2EwOTVkREV2UzI1VldubDFRM0JJV1ZaQ1ZWWmtaVWd2YUZwVGFuUjJWbVp6YkVsM1ZIVnpXbk5RUjA5eVUzSXdNRUpuWjFsUU5rUlZiVGRWT1dwelprcDZPSGRJWVdzek1rdFhLMUV5WVRWTk4wUkdRWFYyYkdOWVlUUlJMemcxU1hkR2IyZDRiM0U1ZWxGSU5tOUpNaXR2TDNFMFpHeDJXbmx4UjI1UlR6ZHZOVzloZDFKWFZISTViVGhpZFN0MU5Ea3hiM1ZyTWpreEszUlVNREZxUTB3cllpOTFUVUUwU0ZFOVBRLkhQX1NCT3ZYZmF3UzhBVXM5czQ5c1hMM2VmRFlnMFo5NXpwdUpKN2JlZ0ZLUVhmUldwRWxYLTQ4elBidk9ydWZEbkZTYWpMamk4YURsYzdsMnVwZUxn"));
-
-        //设定需要访问的URL，第四个参数为表单提交路径
-        URI uri = URIUtils.createURI("https", "cas.server.com:8443", -1, "/cas/login",
-                //将参数加入URL中
-                URLEncodedUtils.format(qparams, "UTF-8"), null);
-        //Post提交
-        HttpPost httpPost = new HttpPost(uri);
-
-        //System.out.println(httpPost.getURI());
-
-        //httpClient执行，返回response
-        HttpResponse response = httpClient.execute(httpPost);
-
-        //获取实体
-        HttpEntity httpEntity= response.getEntity();
-
-        //打印StatusLine
-        System.out.println("StatusLine: " + response.getStatusLine());
-
-        //读取内容
-        String content = EntityUtils.toString(httpEntity, "UTF-8");
-        //打印输出结果内容
-        System.out.println(content);
-
-        return cookieStore.getCookies().get(0);
     }
 
 }
