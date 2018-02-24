@@ -37,7 +37,7 @@
         <init-param>
             <param-name>casServerLoginUrl</param-name>
             <param-value>https://cas.server.com:8443/cas/login</param-value>
-            <!--<param-value>http://test1.sso.com:3000/login</param-value>-->
+            <!--<param-value>http://sso.frontend1.com:3000/login</param-value>-->
             <!--<param-value>http://www.baidu.com</param-value>-->
         </init-param>
         <init-param>
@@ -47,10 +47,9 @@
     </filter>
     <filter-mapping>
         <filter-name>CAS Filter</filter-name>
-        <url-pattern>/*</url-pattern>
-        <!--<url-pattern>/hello1/world1</url-pattern>-->
-        <!--<url-pattern>/hello1/*</url-pattern>-->
-        <!--<url-pattern>/sso1/test/*</url-pattern>-->
+        <!--<url-pattern>/*</url-pattern>-->
+        <!--<url-pattern>/login</url-pattern>-->
+        <url-pattern>/api/*</url-pattern>
     </filter-mapping>
 
     <!-- 该过滤器负责对Ticket的校验工作，必须启用它 -->
