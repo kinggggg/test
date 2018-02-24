@@ -70,7 +70,7 @@
     <filter-mapping>
         <filter-name>CAS Validation Filter</filter-name>
         <url-pattern>/*</url-pattern>
-        <!--<url-pattern>/hello1/world1</url-pattern>-->
+        <url-pattern>/hello1/world1</url-pattern>
     </filter-mapping>
 
     <!--

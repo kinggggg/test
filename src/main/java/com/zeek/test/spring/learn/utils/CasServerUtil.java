@@ -15,7 +15,7 @@ public class CasServerUtil {
 
     public static String validateFromCAS(String username, String password) throws Exception {
 
-        String url = "https://yellowcong.com:8443/cas/v1/tickets";
+        String url = "https://cas.server.com:8443/cas/v1/tickets";
         String serviceTicket = "" ;
         try {
             HttpsURLConnection hsu = (HttpsURLConnection) openConn(url);
