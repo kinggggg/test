@@ -41,15 +41,18 @@ public class TestController {
         return users;
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public void login(HttpServletResponse httpServletResponse) throws Exception {
+    @RequestMapping(value = "/execution", method = RequestMethod.GET)
+    public void getExecution(HttpServletResponse httpServletResponse) throws Exception {
 
-        httpServletResponse.setHeader("Access-Control-Allow-Origin", "*");
-        httpServletResponse.sendRedirect("https://cas.server.com:8443/cas/login");
+        String execution = CasServerUtil.getExecution("http://cas.client1.com:8383/api/list");
+        System.out.println("");
+        System.out.println("");
+        System.out.println("execution = " + execution);
+
     }
 
-    @RequestMapping(value = "/login_bak", method = RequestMethod.POST)
-    public String loginBak(@RequestBody(required = false) LoginData loginData) throws Exception {
+    @RequestMapping(value = "/redirect", method = RequestMethod.POST)
+    public String redirect(@RequestBody(required = false) LoginData loginData) throws Exception {
 
         System.out.println(loginData);
 
@@ -59,12 +62,10 @@ public class TestController {
 
     }
 
-    @RequestMapping(value = "/login_bak", method = RequestMethod.GET)
-    public void login(@RequestBody(required = false) LoginData loginData, HttpServletResponse httpResponse) throws Exception {
+    @RequestMapping(value = "/loginCookie", method = RequestMethod.GET)
+    public void loginCookie(@RequestBody(required = false) LoginData loginData, HttpServletResponse httpResponse) throws Exception {
 
         System.out.println(loginData);
-
-//        String serviceTicket = CasServerUtil.validateFromCAS("", "");
 
         CasLoginData casLoginData = new CasLoginData("casuser", "Mellon", "submit", "291ee015-6726-4942-bcee-f0bd8df60774_ZXlKaGJHY2lPaUpJVXpVeE1pSjkuVjFaSmNuSnZORk01U0dGd2JtSnFkMjlWWkdOeFozRjJPWHByU1RCTFVtWjJNbE5xTkdGdk5uVlBZaTgxUW14MGVFRXZTa3MxYTJGYU5qZFRkV2RDV1RsV1JUVXpOV2haTW1kdloxWTVlVzVYVkhsR05IVlVRVXBNUkRjeFpFeEZVRVZNY1doaGNsZFhhMVV5YmpGeVVreG5Ta1JqTkdnd05teHBiR1pOVDBKdVMwNVFhV3h6TWtRMFIyY3hVbWt2ZGtoSU9VeFVjMk5rWlRoWlFrbHBUR1ZzYUVKbVYwMTRjSG93U0hndlJUZFNORkJhZDI5d2RHeFVjMVpDUzJKdllsRjFaRXAyVW13eFRpOW1MM2hQUWpCWGNqbDNlVmgzWW0xNFJUZGlkMjFMUVVKNFJUVm1VRmN2WkVScU1HdG9XRTlqVGl0RFlXSlBMM0JEUjB4Q1ZVSlJPRTFXUlhSRVZEZHlkekVyYkdVdmMwTlVka293ZDBSMWIzWjBXbUpuYUVkWFJFZHNSM2xNZVhaUk5ITlpXVmRSU0VseE1rMW1iVEJQY1VneFEzaERSV0ZxUm5ob1RESm5RMll2SzNrMFRFdEpkREJHWjA4MlZGZzFVaXQzTlhsVVdFTjFUSE5yZVdoYVMxTXdNRFYyVDFkaVRGcEJTRlIyZDFaUFlVRkZZMGxGVWpaVFMwdHRZbTlyY0dGcEwwSlhTMDQ1WkhaQllsZHFiekIwYVV4bVUyOUhhMVJFVUdwWk1VRnhRakkwYVVvdlkwa3hNWE5UY1hORWVuQlNjV3RGZDBvM2VEZ3lObWhSVkZGcWNYaFllWFkyTWxoR1FYaFRZbUYzTHpOUGNtbzFZMGxpYlhORlNXWkJWV1YwV0RsQlp5OXRZWEZwZHpsaVFtcHJlVVJVTDBOQ2R6QkZVRlowUXpSVU4wSk9VMHB3TVU1VWRtVnNNVlJNY25wNVEwZHJNRFZ6VEZsMWNFRldPRGwxZEZwM1ZrRjBNMWRIZEVSUVYxbHdNVU5LZGpWbWJrWm5PSGRJZHpSWk4wNTRXWGxvVjB0NVZ5OTJNMWRxU0hOVWRHNXdSbkZKVm5vMVV6VlhUMDUyT0d0SGVqVndjRzl1V0VGaGJFWk1UQ3RyYWt4SVVURldjM0UzY3pkTFYxUlNPRlUyUzFCV1JHNU1OR2RQYkRGSWVFTm9jbkZuUTBNNVdHRnJkak1yVVdkc05uTjRkbmhHTVdkWVYxaE1MMWx0TVU0NFYwTXJkemx3TmxOUGFucDJhbkJQVlZKbVVVaEJMMVpNTlRaTmQzVjZVa2ROT0dSbmFFMUZkbmxOUm5vNVFtTlJiVVJNV1VZdkwyRkhia3A0YjJKQlEwSnhURlJhS3pKV2VuTjRkMFUzTkZOak0xa3hjemhNTjJNM1RuRmpkMWhMT1Rockt6SnpOVmhNZEZwWVVWRmhRMlZDU0ZwUllsWnhNRnA1TlRWS00yUlVhRlYzVDJ4blRqZzFTVEJtUnpjNVVrNTFWalpQTldadlprNU9hMVZJU3paVlpubExjMHgwWmpKeFFrRllUMHhXVmxCV1FWRmthRUkzVVVaRVZGaENPRVV3YVZGV1dXcElTSFo0V1VFd05VNTBOVVZMUkZBemRsWnBVblZ0TkhrMVZ6VXdlbWM1YjNodE0xa3hXa2N4Um0xTk1pOWhkREp2Ym5wQk5GRXliVEYyU0N0RVJXc3djVEJFZVdzclNEWXpVV1J0YWtsMVFVSnViVkpwT0RRMGJtTlZNWFpaU1VVMFFuTkNVVXhrTW1kTmFuaEZOREZNTkdKblRXcHdSRXREUlhOeGJXaEhZVzVQZFN0Q1EwNTVObU5QSzI1VFRHbzNXRzlHVkVGVVR6RlVabXR2VW04eE1WTjFTWHBPWldKUVpVUnFNa1ZXTVRsMFEzQTBkaTl4T0RGbmFYWlFPVzVxZDA5U1QybHZkMlZ1UTNaTGRFTm1VV1ZyUW0xbGNubGxLMnBZYlVaT1lWVjVjbkppU0VoUVFrdHdZbTQzWW00ck1XMW1iRTFMWW1sNGVFOTFielJLYzJWcFIwUTJNRWx5VkRCb00wMXhObmRwT1dKelEwTkRNa0p3YlhkVFltVjVNVkkwU1RSb1pESXdXREV2Y0haNU1Vb3llbEo1WW10UE5tMHlMM0JyZVc4eWVHWmljR0p0V1ZsU1lVRTlQUS5hbWpVdm5ydEFOdm5PbDg4bjJ5T25rUV9KNXJaeHh1OXZ1U3hHWkNTWmh2RC12bTRoSFl3dVR1TWNqeXdrNW5TXzZ3VlhRcVpJQ1RYbm1Qbk9Wc2tkdw==");
         org.apache.http.cookie.Cookie casCookie = HttpClient.httpRequest2("", casLoginData, HttpMethod.Post);
@@ -77,9 +78,8 @@ public class TestController {
 
         httpResponse.addCookie(cookie);
 
-//        String serviceTicket = CasServerUtil.validateFromCAS("", "");
-//
-//        return "redirect:" + "http://hello1.com:8383/sso1/test/list?ticket=" + serviceTicket;
+        String execution = CasServerUtil.getExecution("http://cas.client1.com:8383/api/list");
+        System.out.println("execution = " + execution);
 
     }
 

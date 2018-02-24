@@ -1,11 +1,28 @@
 package com.zeek.test.spring.learn.utils;
 
+import org.apache.http.Header;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.CookieStore;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.conn.socket.LayeredConnectionSocketFactory;
+import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
+import org.apache.http.impl.client.BasicCookieStore;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
 import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.security.cert.X509Certificate;
+import java.util.Arrays;
 
 /**
  * @author: weibo_li
@@ -98,8 +115,83 @@ public class CasServerUtil {
 
     }
 
-
     static void closeConn(HttpsURLConnection c) {
         c.disconnect();
+    }
+
+    /**
+     * 解析html，得到execution
+     * @param redirectUrl
+     * @return
+     * @throws Exception
+     */
+    public static String getExecution(String redirectUrl) throws Exception {
+        CookieStore httpCookieStore = new BasicCookieStore();
+        CloseableHttpClient client = createHttpClientWithNoSsl(httpCookieStore);
+
+        /* 第一次请求[GET] 拉取流水号信息 */
+        HttpGet request = new HttpGet("https://cas.server.com:8443/cas/login" + "?service=" + redirectUrl);
+        HttpResponse response = client.execute(request);
+
+        System.out.println("第一次请求[GET] 拉取流水号信息，Header响应");
+        Header[] allHeaders = response.getAllHeaders();
+        for (int i = 0; i < allHeaders.length; i++) {
+            System.out.println("Key：" + allHeaders[i].getName() + "，Value：" + allHeaders[i].getValue() + "，Elements:" + Arrays.toString(allHeaders[i].getElements()));
+        }
+
+        Document htmlPage = Jsoup.parse(readResponse(response));
+//        Element form = htmlPage.select("#fm1").first();
+//        String execution = form.select("[name=execution]").first().val();
+
+        String execution = htmlPage.select("[name=execution]").first().val();
+        System.out.println("execution：" + execution);
+
+        return execution;
+    }
+
+    /**
+     * 创建模拟客户端（针对 https 客户端禁用 SSL 验证）
+     *
+     * @param cookieStore 缓存的 Cookies 信息
+     * @return
+     * @throws Exception
+     */
+    private static CloseableHttpClient createHttpClientWithNoSsl(CookieStore cookieStore) throws Exception {
+        // Create a trust manager that does not validate certificate chains
+        TrustManager[] trustAllCerts = new TrustManager[]{
+                new X509TrustManager() {
+                    public X509Certificate[] getAcceptedIssuers() {
+                        return null;
+                    }
+
+                    public void checkClientTrusted(X509Certificate[] certs, String authType) {
+                        // don't check
+                    }
+
+                    public void checkServerTrusted(X509Certificate[] certs, String authType) {
+                        // don't check
+                    }
+                }
+        };
+
+        SSLContext ctx = SSLContext.getInstance("TLS");
+        ctx.init(null, trustAllCerts, null);
+        LayeredConnectionSocketFactory sslSocketFactory = new SSLConnectionSocketFactory(ctx);
+        return HttpClients.custom()
+                .setSSLSocketFactory(sslSocketFactory)
+                .setDefaultCookieStore(cookieStore == null ? new BasicCookieStore() : cookieStore)
+                .build();
+    }
+
+    /* 读取 response body 内容为字符串 */
+    private static String readResponse(HttpResponse response) throws IOException {
+        BufferedReader in = new BufferedReader(
+                new InputStreamReader(response.getEntity().getContent()));
+        String result = new String();
+        String line;
+        while ((line = in.readLine()) != null) {
+            result += line;
+        }
+        return result;
     }
 }
