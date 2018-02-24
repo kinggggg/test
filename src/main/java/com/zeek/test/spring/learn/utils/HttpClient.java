@@ -95,7 +95,7 @@ public class HttpClient {
         //return  "success" ;
     }
 
-    public static Cookie httpRequest2(String requestUrl, CasLoginData casLoginData, HttpMethod httpMethod) throws Exception {
+    public static Cookie getCasServerCookieByHttpClientCall(String requestUrl, CasLoginData casLoginData, HttpMethod httpMethod) throws Exception {
 
         CookieStore cookieStore = new BasicCookieStore();
         //核心应用类
