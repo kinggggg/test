@@ -46,9 +46,11 @@ public class TestController {
 
     @RequestMapping(value = "/execution", method = RequestMethod.GET)
     @ResponseBody
-    public Object getExecution(HttpServletResponse httpServletResponse) throws Exception {
+    public Object getExecution(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
 
-        String execution = CasServerUtil.getExecution(APP_URL);
+        String service = httpServletRequest.getParameter("service");
+
+        String execution = CasServerUtil.getExecution(service);
 
         ExecutionData executionData = new ExecutionData();
         executionData.setExecution(execution);
