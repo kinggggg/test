@@ -53,7 +53,7 @@ public class CasServerUtil {
 
     private static final String CAS_SERVER_PASSWORD = "Mellon" ;
 
-    private static final String CAS_SERVER__EVENTID_KEY = "_eventid" ;
+    private static final String CAS_SERVER__EVENTID_KEY = "_eventId" ;
 
     private static final String CAS_SERVER__EVENTID_VALUE = "submit" ;
 
