@@ -69,6 +69,10 @@
             <param-name>serverName</param-name>
             <param-value>http://cas.client1.com:8383</param-value>
         </init-param>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>utf-8</param-value>
+        </init-param>
     </filter>
     <filter-mapping>
         <filter-name>CAS Validation Filter</filter-name>
