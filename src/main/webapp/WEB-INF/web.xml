@@ -41,7 +41,8 @@
         </init-param>
         <init-param>
             <param-name>serverName</param-name>
-            <param-value>http://cas.client1.com:8383</param-value>
+            <!--<param-value>http://cas.client1.com:8383</param-value>-->
+            <param-value>http://sso.frontend1.com:3000</param-value>
         </init-param>
         <!--<init-param>-->
             <!--<param-name>gateway</param-name>-->
@@ -68,6 +69,7 @@
         <init-param>
             <param-name>serverName</param-name>
             <param-value>http://cas.client1.com:8383</param-value>
+            <!--<param-value>http://sso.frontend1.com:3000</param-value>-->
         </init-param>
         <init-param>
             <param-name>encoding</param-name>

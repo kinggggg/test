@@ -49,6 +49,7 @@ public class TestController {
     public Object getExecution(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
 
         String service = httpServletRequest.getParameter("service");
+//        service = "http://cas.client1.com:8383/success" ;
 
         String execution = CasServerUtil.getExecution(service);
 
@@ -67,6 +68,17 @@ public class TestController {
         model.addAttribute("execution", execution);
 
         return "login/login" ;
+
+    }
+
+    @RequestMapping(value = "/success", method = RequestMethod.GET)
+    public String loginSuccess(Model model) throws Exception {
+
+        String execution = CasServerUtil.getExecution(APP_URL);
+
+        model.addAttribute("execution", execution);
+
+        return "success/success" ;
 
     }
 
