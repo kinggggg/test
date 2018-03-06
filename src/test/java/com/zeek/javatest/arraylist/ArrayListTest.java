@@ -11,6 +11,31 @@ import java.util.*;
 public class ArrayListTest {
 
     @Test
+    public void test6() throws Exception {
+
+        //静态初始化数组
+        String[] array1 = new String[] {
+                "a",
+                "b"
+        };
+        printArray(array1);
+
+        //动态初始化数组
+        String[] array2 = new String[2];
+        printArray(array2);
+
+        String[] array3;
+//        System.out.println(array3);
+
+        //静态初始化与动态初始化不能混合使用
+//        String[] array3 = new String[5] {
+//
+//        };
+
+
+    }
+
+    @Test
     public void test5() {
         String[] arrays = new String[] { "1", "2", "3" };
         List<String> list = Arrays.asList(arrays);
@@ -102,5 +127,15 @@ public class ArrayListTest {
         strings.add(3, "3");
 
         System.out.println(strings);
+    }
+
+    private void printArray(String[] array) {
+        if (array == null) {
+            System.out.println("array is null");
+        }else {
+            Arrays.stream(array).forEach(element -> {
+                System.out.println(element);
+            });
+        }
     }
 }
