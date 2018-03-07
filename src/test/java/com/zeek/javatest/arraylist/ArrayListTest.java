@@ -32,6 +32,15 @@ public class ArrayListTest {
 //
 //        };
 
+        Integer i;
+        // FIXME: 2018/3/7 编译错误，i没有初始化；通过Person对象的方式不用显示初始化，为什么？
+//        System.out.println(i);
+
+        Person person = new Person();
+        System.out.println(person.age);
+
+
+
 
     }
 
