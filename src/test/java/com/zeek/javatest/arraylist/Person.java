@@ -6,10 +6,20 @@ package com.zeek.javatest.arraylist;
  */
 public class Person {
 
+    static {
+        System.out.println("静态代码块");
+    }
 
     Person() {
+        System.out.println("构造函数");
         System.out.println(age);
     }
+
+    {
+        System.out.println("非静态代码块");
+    }
+
+
 
     Integer age;
 }
