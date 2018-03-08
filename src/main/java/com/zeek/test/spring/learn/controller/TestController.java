@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -81,6 +82,42 @@ public class TestController {
         return "success/success" ;
 
     }
+
+    @RequestMapping(value = "/api/loginSuccess", method = RequestMethod.GET)
+    public String loginApiSuccess(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        String new_url = "http://sso.frontend1.com:3000" ;
+
+        Cookie[] cookies = request.getCookies();
+
+        return "redirect:http://sso.frontend1.com:3000?cookie=" +  cookies[0].getValue();
+
+    }
+
+//    @RequestMapping(value = "/api/loginSuccess", method = RequestMethod.GET)
+//    public ModelAndView loginApiSuccess(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+//
+//        String new_url = "http://sso.frontend1.com:3000" ;
+//
+//        Cookie[] cookies = request.getCookies();
+//        Cookie cookie = new Cookie(cookies[0].getName(), cookies[0].getValue());
+//        cookie.setMaxAge(3600);
+//        cookie.setDomain("sso.frontend1.com");
+//        response.addCookie(cookie);
+//
+//        String html = "<script type='text/javascript'>location.href='"+new_url+"';</script>";
+//        response.getWriter().print(html);
+//
+//        return null;
+//
+//    }
+
+//    @RequestMapping(value = "/api/loginSuccess", method = RequestMethod.GET)
+//    public String loginApiSuccess(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+//
+//        return "redirect:http://sso.frontend1.com:3000";
+//
+//    }
 
     @RequestMapping(value = "/redirect", method = RequestMethod.POST)
     public String redirect(@RequestBody(required = false) LoginData loginData) throws Exception {
