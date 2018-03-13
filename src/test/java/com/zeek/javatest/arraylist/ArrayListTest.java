@@ -11,6 +11,12 @@ import java.util.*;
 public class ArrayListTest {
 
     @Test
+    public void test7() throws Exception {
+
+        double f = 2.0;
+    }
+
+    @Test
     public void test6() throws Exception {
 
         //静态初始化数组
