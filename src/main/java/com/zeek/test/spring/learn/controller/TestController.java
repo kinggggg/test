@@ -2,6 +2,7 @@ package com.zeek.test.spring.learn.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.zeek.test.spring.learn.domain.Book;
 import com.zeek.test.spring.learn.domain.User;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.client.fluent.Request;
@@ -39,6 +40,22 @@ public class TestController {
         model.addAttribute("users", users);
 
         return "api/list";
+
+    }
+
+    @RequestMapping(value = "/api/books", method = RequestMethod.GET)
+    public String apiBooks(HttpServletRequest httpRequest, Model model) throws Exception {
+
+        String st = httpRequest.getParameter("ticket");
+        Request request = Request.Get(CAS_CLIENT1_BASE_URL + "api/books");
+
+        String resultJson = request.execute().returnContent().asString();
+        List<Book> books = new Gson().fromJson(resultJson, new TypeToken<List<Book>>() {
+        }.getType());
+
+        model.addAttribute("books", books);
+
+        return "api/books";
 
     }
 
