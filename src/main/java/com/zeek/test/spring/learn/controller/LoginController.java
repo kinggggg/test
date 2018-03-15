@@ -43,8 +43,8 @@ public class LoginController {
 
     }
 
-    private final static String CAS_LOGIN_URL = "https://yellowcong.com:8443/cas/login";
-    private final static String APP_URL = "http:///hello1.com:8383/hello1/world1";
+    private final static String CAS_LOGIN_URL = "https://cas.server.com:8443/cas/login";
+    private final static String APP_URL = "http:///cas.client1.com:8383/api/list";
 
     @RequestMapping(value="/restLogin", method = RequestMethod.POST)
     public void restLogin(HttpServletRequest request, HttpServletResponse response) {
