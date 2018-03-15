@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -20,9 +21,11 @@ public class TestController {
     private final String CAS_CLIENT1_BASE_URL = "http://cas.client1.com:8888/" ;
 
     @RequestMapping(value = "/api/list", method = RequestMethod.GET)
-    public String jsonData() throws Exception {
+    public String jsonData(HttpServletRequest httpRequest) throws Exception {
 
-        Request request = Request.Get(CAS_CLIENT1_BASE_URL + "api/list?ticket=" + "ST-5-niZUPKHppxaXYTtwnEuUd9NZ--8-weibo-lisMacBook");
+        String st = httpRequest.getParameter("ticket");
+
+        Request request = Request.Get(CAS_CLIENT1_BASE_URL + "api/list?ticket=" + st);
         String resultJson = request.execute().returnContent().asString();
         List<User> users = new Gson().fromJson(resultJson, new TypeToken<List<User>>() {
         }.getType());
