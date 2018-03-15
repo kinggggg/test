@@ -11,10 +11,10 @@
     <title>登录页面1</title>
 </head>
 <body>
-<form action="http://sso.server.com:" method="GET">
-    站点名: <input type="text" name="name">
+<form action="http://sso.server.com:10000/login" method="POST" enctype="application/x-www-form-urlencoded">
+    用户名: <input type="text" name="username">
     <br />
-    网址: <input type="text" name="url" />
+    密码: <input type="password" name="password" />
     <input type="submit" value="提交" />
 </form>
 </body>
