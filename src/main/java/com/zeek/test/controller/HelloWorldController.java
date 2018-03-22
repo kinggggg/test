@@ -1,4 +1,4 @@
-package com.zeek.test.spring.learn.controller;
+package com.zeek.test.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
