@@ -29,7 +29,7 @@
             },
             dataType:'jsonp',
             jsonp: "jsonpCallback",
-            url: "http://sso.server.com:10000/cookie?backendApiUrl=http://cas.client1.com:8888/api/list&redirectLocation=http://cas.frontend1.com:8383/api/list",
+            url: "http://sso.server.com:10000/cookie?backendApiUrl=http://cas.client1.com:9090/api/list&redirectLocation=http://cas.frontend1.com:8383/api/list",
             success: function(data){
                 window.location.href = data.key;
                 console.log(data);

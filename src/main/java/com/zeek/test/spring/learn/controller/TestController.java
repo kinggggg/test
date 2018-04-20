@@ -21,7 +21,7 @@ import java.util.List;
 @RequestMapping(value = "/")
 public class TestController {
 
-    private final String CAS_CLIENT1_BASE_URL = "http://cas.client1.com:8888/" ;
+    private final String CAS_CLIENT1_BASE_URL = "http://cas.client1.com:9090/" ;
 
     @RequestMapping(value = "/api/list", method = RequestMethod.GET)
     public String jsonData(HttpServletRequest httpRequest, Model model) throws Exception {
