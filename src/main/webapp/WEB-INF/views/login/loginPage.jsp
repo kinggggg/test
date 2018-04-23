@@ -16,6 +16,11 @@
     用户名: <input type="text" name="username">
     <br />
     密码: <input type="password" name="password" />
+    <%--验证ST的node端接口地址--%>
+    <input type="hidden" name="stVerificationFrontendUrl" value="http://cas.frontend1.com:8383/api/list"/>
+    <%--验证ST的后端接口地址--%>
+    <input type="hidden" name="stVerificationBackendUrl" value="http://cas.client1.com:9090/api/list"/>
+    <input type="hidden" name="loginPageUrl" value="http://cas.frontend1.com:8383/loginPage"/>
     <input type="submit" value="提交" />
 </form>
 </body>
