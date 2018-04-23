@@ -26,6 +26,12 @@
 </body>
 <script type="text/javascript">
 
+    //sso server根据此url生成相应的ST
+    var backendApiUrl = "http://cas.client1.com:9090/api/list" ;
+    //sso server根据backendApiUrl生成ST后，需要重定向到node端一个地址，此地址用于接受生成的ST，并通过redirectLocation调用backendApiUrl（带上生成的ST）。这一步的操作有两个目的
+    //两个目的：第一个目的：验证ST；第二个目的：建立局部回话
+    var redirectLocation = "http://cas.frontend1.com:8383/api/list" ;
+
     $(document).ready(function(){
         $.ajax({
             type: "GET",
@@ -34,7 +40,7 @@
             },
             dataType:'jsonp',
             jsonp: "jsonpCallback",
-            url: "http://sso.server.com:10000/cookie?backendApiUrl=http://cas.client1.com:9090/api/list&redirectLocation=http://cas.frontend1.com:8383/api/list",
+            url: "http://sso.server.com:10000/cookie?backendApiUrl="+ backendApiUrl +"&redirectLocation=" + redirectLocation,
             success: function(data){
                 window.location.href = data.key;
                 console.log(data);
