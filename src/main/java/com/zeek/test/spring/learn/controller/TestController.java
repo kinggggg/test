@@ -23,6 +23,16 @@ public class TestController {
 
     private final String CAS_CLIENT1_BASE_URL = "http://cas.client1.com:9090/" ;
 
+    @RequestMapping(value = "/cookieRemove", method = RequestMethod.GET)
+    public void cookieRemove(HttpServletRequest httpRequest, Model model) throws Exception {
+
+        Request request;
+        request = Request.Get(CAS_CLIENT1_BASE_URL + "api/cookieRemove");
+
+        request.execute().returnContent().asString();
+
+    }
+
     @RequestMapping(value = "/api/list", method = RequestMethod.GET)
     public String jsonData(HttpServletRequest httpRequest, Model model) throws Exception {
 
