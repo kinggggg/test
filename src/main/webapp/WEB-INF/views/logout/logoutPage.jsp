@@ -15,5 +15,7 @@
     <a href="http://cas.client1.com:9090/logout/logout1">这个是直接退出，走的是默认退出方式</a>
     <hr/>
     <a href="http://cas.client1.com:9090/logout/logout2">退出登录后，跳转到退成成功的页面，不走默认页面</a>
+    <br>
+    <a href="http://cas.client1.com:9090/logout/logout3">一个登出，全部登出</a>
 </body>
 </html>
