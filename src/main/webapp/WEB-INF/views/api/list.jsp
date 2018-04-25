@@ -14,8 +14,14 @@
 <body>
     list页面, user列表
 <br>
-    <c:forEach items="${users}" var="user">
-        <c:out value="${user.username}"/>, <c:out value="${user.age}"/>, <br>
-    </c:forEach>
+    <c:if test="${users != null && users.size() > 0}">
+        <c:forEach items="${users}" var="user">
+            <c:out value="${user.username}"/>, <c:out value="${user.age}"/>, <br>
+        </c:forEach>
+    </c:if>
+    <c:if test="${users == null || users.size() == 0}">
+        <h1 style="color: red">你已经退出，请重新登录</h1>
+    </c:if>
+
 </body>
 </html>

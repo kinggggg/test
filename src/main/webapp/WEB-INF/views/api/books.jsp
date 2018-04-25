@@ -14,8 +14,14 @@
 <body>
     books页面, book列表
 <br>
-    <c:forEach items="${books}" var="book">
-        <c:out value="${book.name}"/>, <c:out value="${book.price}"/>, <br>
-    </c:forEach>
+    <c:if test="${books != null && books.size() > 0}">
+        <c:forEach items="${books}" var="book">
+            <c:out value="${book.name}"/>, <c:out value="${book.price}"/>, <br>
+        </c:forEach>
+    </c:if>
+
+    <c:if test="${books == null || books.size() == 0}">
+        <h1 style="color: red">你已经退出，请重新登录</h1>
+    </c:if>
 </body>
 </html>
