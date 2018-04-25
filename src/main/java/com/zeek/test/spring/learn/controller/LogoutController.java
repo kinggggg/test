@@ -40,4 +40,13 @@ public class LogoutController {
 
         return "logout/logoutSuccessPage";
     }
+
+    /**
+     * 退出成功的界面
+     */
+    @RequestMapping("/logoutSuccess2")
+    public String logoutSuccess2(HttpServletRequest httpRequest) throws Exception{
+
+        return "logout/logoutSuccessPage";
+    }
 }
