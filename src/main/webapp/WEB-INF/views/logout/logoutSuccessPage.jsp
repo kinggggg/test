@@ -14,4 +14,22 @@
 <body>
     <h1>退出成功</h1>
 </body>
+<script type="text/javascript">
+
+    $(document).ready(function(){
+        $.ajax({
+            type: "GET",
+            xhrFields: {
+                withCredentials: true
+            },
+            dataType:'jsonp',
+            jsonp: "jsonpCallback",
+            url: "http://sso.server.com:10000/logout/invalidCookie",
+            success: function(data){
+//                window.location.href = data.key;
+//                console.log(data);
+            }
+        });
+    });
+</script>
 </html>
