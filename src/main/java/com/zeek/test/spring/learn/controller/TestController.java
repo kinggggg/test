@@ -3,6 +3,7 @@ package com.zeek.test.spring.learn.controller;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
+import com.zeek.test.spring.learn.common.FailureResponse;
 import com.zeek.test.spring.learn.domain.Book;
 import com.zeek.test.spring.learn.domain.User;
 import org.apache.commons.lang3.StringUtils;
@@ -43,12 +44,17 @@ public class TestController {
         } else {
             request = Request.Get(CAS_CLIENT1_BASE_URL + "api/list?ticket=" + st);
         }
-        String resultJson = request.execute().returnContent().asString();
+
+        String resultJson = "" ;
         List<User> users = new ArrayList<>();
         try {
+            resultJson = request.execute().returnContent().asString();
             users = new Gson().fromJson(resultJson, new TypeToken<List<User>>() {
             }.getType());
-        } catch (JsonSyntaxException e) {
+        } catch (Exception e) {
+            FailureResponse failureResponse = new Gson().fromJson(resultJson, new TypeToken<FailureResponse>() {
+            }.getType());
+
             // FIXME: 2018/4/25 局部回话删除后，调用client1接口时出现异常
             e.printStackTrace();
         }
