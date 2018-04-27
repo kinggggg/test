@@ -28,14 +28,7 @@ public class DataController {
 
     @RequestMapping(value = "/api/list", method = RequestMethod.GET)
     public String jsonData(HttpServletRequest httpRequest, Model model) throws Exception {
-
-        String st = httpRequest.getParameter("ticket");
-        Request request;
-        if (StringUtils.isBlank(st)) {
-            request = Request.Get(CAS_CLIENT1_BASE_URL + "api/list");
-        } else {
-            request = Request.Get(CAS_CLIENT1_BASE_URL + "api/list?ticket=" + st);
-        }
+        Request request = Request.Get(CAS_CLIENT1_BASE_URL + "api/list");
 
         String resultJson = "" ;
         List<User> users = new ArrayList<>();
@@ -44,14 +37,6 @@ public class DataController {
             users = new Gson().fromJson(resultJson, new TypeToken<List<User>>() {
             }.getType());
         } catch (Exception e) {
-            try {
-                FailureResponse failureResponse = new Gson().fromJson(resultJson, new TypeToken<FailureResponse>() {
-                }.getType());
-            }catch (Exception e1) {
-                e.printStackTrace();
-            }
-
-            // FIXME: 2018/4/25 局部回话删除后，调用client1接口时出现异常
             e.printStackTrace();
         }
 
@@ -74,13 +59,6 @@ public class DataController {
         model.addAttribute("books", books);
 
         return "api/books";
-
-    }
-
-    @RequestMapping(value = "/loginPage", method = RequestMethod.GET)
-    public String loginPage() throws Exception {
-
-        return "login/loginPage";
 
     }
 
