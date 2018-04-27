@@ -22,17 +22,9 @@ import java.util.List;
  */
 @Controller
 @RequestMapping(value = "/")
-public class TestController {
+public class DataController {
 
     private final String CAS_CLIENT1_BASE_URL = "http://cas.client1.com:9090/";
-
-    @RequestMapping(value = "/cookieRemove", method = RequestMethod.GET)
-    public void cookieRemove(HttpServletRequest httpRequest, Model model) throws Exception {
-        Request request;
-        request = Request.Get(CAS_CLIENT1_BASE_URL + "api/cookieRemove");
-        request.execute().returnContent().asString();
-    }
-
 
     @RequestMapping(value = "/api/list", method = RequestMethod.GET)
     public String jsonData(HttpServletRequest httpRequest, Model model) throws Exception {
@@ -52,8 +44,12 @@ public class TestController {
             users = new Gson().fromJson(resultJson, new TypeToken<List<User>>() {
             }.getType());
         } catch (Exception e) {
-            FailureResponse failureResponse = new Gson().fromJson(resultJson, new TypeToken<FailureResponse>() {
-            }.getType());
+            try {
+                FailureResponse failureResponse = new Gson().fromJson(resultJson, new TypeToken<FailureResponse>() {
+                }.getType());
+            }catch (Exception e1) {
+                e.printStackTrace();
+            }
 
             // FIXME: 2018/4/25 局部回话删除后，调用client1接口时出现异常
             e.printStackTrace();

@@ -30,7 +30,7 @@ public class LogoutController {
      */
     @RequestMapping("/logoutSuccess")
     public String logoutSuccess(HttpServletRequest httpRequest) throws Exception{
-        Request request = Request.Get(CAS_CLIENT1_BASE_URL + "api/cookieRemove");
+        Request request = Request.Get(CAS_CLIENT1_BASE_URL + "cookie/cookieRemove");
         Response response = request.execute();
         try {
             response.discardContent();
