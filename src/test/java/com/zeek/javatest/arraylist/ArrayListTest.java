@@ -44,7 +44,7 @@ public class ArrayListTest {
 
         System.out.println("------------------");
         Person person = new Person();
-        System.out.println(person.age);
+//        System.out.println(person.age);
 
 
 
