@@ -12,5 +12,7 @@ class Task implements Callable<Integer> {
             sum += i;
         return sum;
 
+
+
     }
 }
