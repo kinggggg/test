@@ -11,5 +11,6 @@ class Task implements Callable<Integer> {
         for(int i=0;i<100;i++)
             sum += i;
         return sum;
+
     }
 }
