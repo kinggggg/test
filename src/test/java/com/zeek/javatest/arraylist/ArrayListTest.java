@@ -14,6 +14,11 @@ public class ArrayListTest {
     public void test7() throws Exception {
 
         double f = 2.0;
+
+        Map<String, String> map = new HashMap<>();
+        System.out.println(map.put("k1", "v1"));
+        System.out.println(map.put("k1", "v1"));
+
     }
 
     @Test
