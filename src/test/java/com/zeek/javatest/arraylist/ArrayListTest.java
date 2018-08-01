@@ -11,6 +11,14 @@ import java.util.*;
 public class ArrayListTest {
 
     @Test
+    public void test8() throws Exception {
+
+        String ip = "127.0.0.1" ;
+        System.out.println(ip.hashCode());
+
+    }
+
+    @Test
     public void test7() throws Exception {
 
         double f = 2.0;
