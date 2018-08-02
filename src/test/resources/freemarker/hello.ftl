@@ -25,4 +25,17 @@ ${true?string('1', '5')}
 ---------------------------------------
 ${(person1.name)!"person1不存在"}
 ${(person1.student)!"student不存在"}
+<#assign v1 = (person1.name)!"临时姓名">
+${v1!}
+---------------------------------------
+<#if (person1.name)!"" == "lisi">
+    1
+    <#else>
+    0
+</#if>
+<#if "lisi" == "lisi">
+    1
+<#else>
+    0
+</#if>
 <#--${person.student.address}-->

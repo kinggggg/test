@@ -43,8 +43,8 @@ public class FreemarkerTest {
         root.put("person", person);
 
         FreemarkerPerson person1 = new FreemarkerPerson("lisi", 20);
-        person.setStudent(student);
-//        root.put("person1", person1);
+        person1.setStudent(student);
+        root.put("person1", person1);
 
         Template temp = cfg.getTemplate("hello.ftl");
 
