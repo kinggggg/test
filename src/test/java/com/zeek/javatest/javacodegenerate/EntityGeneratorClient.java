@@ -72,11 +72,11 @@ public class EntityGeneratorClient {
      */
     private static Map<String, Object> createDataModel() {
         Map<String, Object> root = new HashMap<String, Object>();
-        Entity user = new Entity();
-        user.setJavaPackage("com.study.entity"); // 创建包名
-        user.setClassName("Person");  // 创建类名
-        user.setConstructors(true); // 是否创建构造函数
-        // user.setSuperclass("person");
+        Entity entity = new Entity();
+        entity.setJavaPackage("com.study.entity"); // 创建包名
+        entity.setClassName("Person");  // 创建类名
+        entity.setConstructors(true); // 是否创建构造函数
+        // entity.setSuperclass("person");
 
         List<Property> propertyList = new ArrayList<Property>();
 
@@ -94,15 +94,16 @@ public class EntityGeneratorClient {
 
         // 创建实体属性三
         Property attribute3 = new Property();
-        attribute2.setJavaType("Date");
-        attribute2.setPropertyName("age");
-        attribute2.setPropertyType(PropertyType.Date);
+        attribute3.setJavaType("Date");
+        attribute3.setPropertyName("date");
+        attribute3.setPropertyType(PropertyType.Date);
 
         propertyList.add(attribute1);
         propertyList.add(attribute2);
+        propertyList.add(attribute3);
 
         // 将属性集合添加到实体对象中
-        user.setProperties(propertyList);
+        entity.setProperties(propertyList);
 
         // 创建.java类文件
         File outDirFile = new File("./src-template");
@@ -110,9 +111,9 @@ public class EntityGeneratorClient {
             outDirFile.mkdir();
         }
 
-        javaFile = toJavaFilename(outDirFile, user.getJavaPackage(), user.getClassName());
+        javaFile = toJavaFilename(outDirFile, entity.getJavaPackage(), entity.getClassName());
 
-        root.put("entity", user);
+        root.put("entity", entity);
         return root;
     }
 
@@ -134,5 +135,6 @@ public class EntityGeneratorClient {
         }
         return file;
     }
+
 
 }
