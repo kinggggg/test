@@ -3,12 +3,20 @@ package com.zeek.javatest.date;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.*;
 
 /**
  * Created by weibo_li on 2017/4/25.
  */
 public class DateTest {
+
+    @Test
+    public void test4() {
+
+        System.out.println(LocalDateTime.now());
+
+    }
 
     @Test
     public void test3() {
