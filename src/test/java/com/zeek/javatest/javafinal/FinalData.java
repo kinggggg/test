@@ -6,7 +6,9 @@ public class FinalData {
 
     public char charType;
 
-    public final int shortType = 1;
+    public final int shortTypeInit = 1;
+
+    public int shortType;
 
     public int intType;
 
