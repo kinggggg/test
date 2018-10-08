@@ -6,10 +6,34 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Created by weibo_li on 2017/3/22.
- */
+ * @ClassName RegexTest
+ * @Description:
+ * @Author: liweibo
+ * @Date: 2018/10/8 上午9:30
+ * @Version: v1.0
+ **/
 public class RegexTest {
 
+    @Test
+    public void regexTest4() {
+        String regExEn = "^192\\.168.*";
+
+        String str = "292.168.1.1" ;
+
+        Pattern pattern = Pattern.compile(regExEn);
+        Matcher matcher = pattern.matcher(str);
+
+        System.out.println(matcher.matches());
+    }
+
+    /**
+     * @Description:
+     * @Author: liweibo
+     * @Date: 2018/10/8 上午9:31
+     * @Version: v1.0
+     *
+     * @Return: void
+     **/
     @Test
     public void regexTest3() {
         String regExEn = "^.*:$";
