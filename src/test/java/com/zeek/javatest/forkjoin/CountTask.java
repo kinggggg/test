@@ -1,4 +1,4 @@
-package com.zeek.forkjoin;
+package com.zeek.javatest.forkjoin;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ForkJoinPool;

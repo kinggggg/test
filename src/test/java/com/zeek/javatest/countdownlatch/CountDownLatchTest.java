@@ -1,4 +1,4 @@
-package com.zeek.countdownlatch;
+package com.zeek.javatest.countdownlatch;
 
 import org.junit.Test;
 

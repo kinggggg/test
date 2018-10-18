@@ -1,4 +1,4 @@
-package com.zeek.future;
+package com.zeek.javatest.future;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.zeek.calendar;
+package com.zeek.javatest.calendar;
 
 import org.junit.Test;
 
