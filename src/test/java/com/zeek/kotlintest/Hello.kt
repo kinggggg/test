@@ -57,6 +57,19 @@ fun main(args: Array<String>) {
     """.trimIndent()
     println(str3) //\n字符原样输出
 
+    println("========================运算符和表达式")
+
+    var str4 = "abc.org" ;
+    println(str4.contains("abc"))
+    println("abc" in str4)
+    println(!str4.contains("abc"));
+
+    var list = java.util.ArrayList<String>()
+    list.add("a")
+    list.add("b")
+    println(list.get(0)) //方法获取元素
+    println(list[0]) //下标获取元素
+
 
 
 
