@@ -1,5 +1,7 @@
 package com.zeek.kotlintest
 
+import java.util.*
+
 fun main(args: Array<String>) {
     println("Hello World!")
 
@@ -69,6 +71,30 @@ fun main(args: Array<String>) {
     list.add("b")
     println(list.get(0)) //方法获取元素
     println(list[0]) //下标获取元素
+
+    println("========================区间运算符")
+    var rang1 = 2..6 //包含边界
+    for(num in rang1) {
+        println(num)
+    }
+
+    var ifTest : Int = 30;
+    if(ifTest > 10) {
+        println("if")
+    }else {
+        println("else")
+    }
+
+    if(ifTest < 10) {
+        println("if")
+    }else if(ifTest >= 10 && ifTest < 20) {
+        println("else if")
+    }else {
+        println("else")
+    }
+
+
+
 
 
 
