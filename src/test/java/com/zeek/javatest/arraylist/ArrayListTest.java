@@ -10,6 +10,24 @@ import java.util.*;
  */
 public class ArrayListTest {
 
+    /**
+     * @Description: ArrayList面试
+     * @Author: liweibo
+     * @Date: 2018/11/2 下午1:57
+     * @Version: v1.0
+     *
+     * @Param
+     *
+     * @Return: void
+     **/
+    @Test
+    public void test9() throws Exception {
+
+        List<String> list = new ArrayList<>();
+        list.add("a");
+
+    }
+
     @Test
     public void test8() throws Exception {
 
