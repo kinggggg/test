@@ -14,6 +14,22 @@ import java.nio.channels.Pipe;
  */
 public class NIOTest {
 
+
+    @Test
+    public void directBufferTest() {
+
+        //分配100MB的直接字节缓冲区（或者称之为离堆，或者称之为非堆）
+        ByteBuffer byteBuffer = ByteBuffer.allocateDirect(1024 * 1024 * 100); //虽然分配了100MB，但是此空间不是占用的JVM的堆空间，而是直接从机器的内存中分配的
+
+        System.gc();// 由于离堆占用的内存是机器的内存，而不是JVM的堆空间，因此JVM的垃圾回收线程无法回收这块空间
+
+        byteBuffer = null;
+        System.gc();// 即使将其置为null，JVM的垃圾回收线程也无法对此区域的内存进行回收，因为这块内存空间根本不受JVM管理
+
+
+
+    }
+
     @Test
     public void nioCopy() throws Exception {
 
