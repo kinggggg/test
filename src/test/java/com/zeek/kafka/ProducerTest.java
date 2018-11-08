@@ -1,6 +1,7 @@
 package com.zeek.kafka;
 
 import org.apache.kafka.clients.producer.*;
+import org.junit.Test;
 
 import java.util.Properties;
 
@@ -13,7 +14,8 @@ import java.util.Properties;
  **/
 public class ProducerTest {
 
-    public static void main(String[] args) throws Exception {
+    @Test
+    public void test01() throws Exception {
 
         Properties props = new Properties();
         props.put("bootstrap.servers", "localhost:9092"); //必须指定
