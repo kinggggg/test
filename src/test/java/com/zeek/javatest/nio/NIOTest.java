@@ -14,6 +14,33 @@ import java.nio.channels.Pipe;
 public class NIOTest {
 
     @Test
+    public void test3() {
+
+
+        ByteBuffer byteBuffer = ByteBuffer.allocate(10);
+        System.out.println("mark: " + byteBuffer.mark());
+        System.out.println("position: " + byteBuffer.position());
+        System.out.println("limit:" + byteBuffer.limit());
+        System.out.println("capatity" + byteBuffer.capacity());
+
+        byteBuffer.put((byte) 1);
+        byteBuffer.put((byte) 2);
+        byteBuffer.put((byte) 3);
+        byteBuffer.put((byte) 4);
+
+        byteBuffer.flip();
+        System.out.println(byteBuffer.get(0));
+        System.out.println(byteBuffer.get(1));
+        System.out.println(byteBuffer.get(2));
+        System.out.println(byteBuffer.get(3));
+
+        //当调用clear方法后，position为0，limit=capacity=10
+        byteBuffer.clear();
+
+
+    }
+
+    @Test
     public void test2() throws Exception{
         RandomAccessFile aFile = new RandomAccessFile("/Users/weibo_li/Documents/code/Test/src/test/java/1.txt", "rw");
         FileChannel inChannel = aFile.getChannel();
