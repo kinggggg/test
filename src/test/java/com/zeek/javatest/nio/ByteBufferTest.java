@@ -1,4 +1,4 @@
-package com.zeek.javatest.ByteBuffer;
+package com.zeek.javatest.nio;
 
 import org.junit.Test;
 
