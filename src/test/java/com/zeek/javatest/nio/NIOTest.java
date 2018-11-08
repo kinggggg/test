@@ -2,6 +2,7 @@ package com.zeek.javatest.nio;
 
 import org.junit.Test;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
@@ -12,6 +13,43 @@ import java.nio.channels.Pipe;
  * Created by weibo_li on 2017/3/1.
  */
 public class NIOTest {
+
+    @Test
+    public void nioCopy() throws Exception {
+
+        long start = System.currentTimeMillis();
+
+        //源文件
+        RandomAccessFile srcRaf = new RandomAccessFile("/Users/weibo_li/Documents/code/Test/src/test/java/com/zeek/javatest/nio/src/tcp-ip.png", "r");
+        FileChannel srcRafChannel = srcRaf.getChannel();
+
+        //缓冲区 1M
+        ByteBuffer buffer = ByteBuffer.allocate(1024);
+
+        //目标文件
+        RandomAccessFile descRaf = new RandomAccessFile("/Users/weibo_li/Documents/code/Test/src/test/java/com/zeek/javatest/nio/des/tcp-ip.png", "rw");
+        //目标文件通道
+        FileChannel descRafChannel = descRaf.getChannel();
+
+        while(srcRafChannel.read(buffer) != -1) {
+            //拍板
+            buffer.flip();
+            //将缓冲区数据写入到channel中
+            descRafChannel.write(buffer);
+            //清除缓冲区
+            buffer.clear();
+        }
+
+        System.out.println("总共耗时 ：" + (System.currentTimeMillis() -  start) / 1000 + "秒");
+
+        //释放资源
+        srcRafChannel.close();
+        srcRaf.close();
+        descRafChannel.close();
+        descRaf.close();
+
+
+    }
 
     @Test
     public void test3() {
