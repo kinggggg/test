@@ -167,6 +167,36 @@ fun main(args: Array<String>) {
     }
     println(inStr)
 
+    println("========================循环机结构========================" +
+            "while循环结构")
+    var count = 0;
+    while (count < 10) {
+        println("count : ${count}")
+        count++
+    }
+    println("while循环结束")
+
+    println("========================循环机结构========================" +
+            "do-while循环结构")
+    var doWhileCount = 0;
+    do {
+        println("count : ${count}")
+        doWhileCount++;
+    }while (doWhileCount < 10)
+
+    println("doWhile循环结束")
+
+    println("========================循环机结构========================" +
+            "for-in循环结构")
+    var max = 7
+    var result = 1
+    for (num in 1..max) {
+        result *= num
+    }
+    println(result)
+    println("for-in循环结束")
+
+
 }
 
 /**
