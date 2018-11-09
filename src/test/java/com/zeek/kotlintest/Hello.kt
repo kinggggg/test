@@ -231,6 +231,31 @@ fun main(args: Array<String>) {
     }
     println("带标号的break可以跳出外层循环")
 
+    println("========================控制循环结构========================" +
+            "break控制")
+
+    println("continue跳过本次循环继续进行下一次循环")
+    for(i in 0..5) {
+        println("i : ${i}")
+        if(i == 2) {
+            continue;
+        }
+        println("continue : ${i}")
+    }
+
+    println("continue跳过本次循环继续进行下一次循环")
+    outer@ for(j in 1..5) {
+        println("j : ${j}")
+
+        for(i in 5..6) {
+            println("i : ${i}")
+            if(i == 6) {
+                continue@outer;
+            }
+            println("continue : ${i}")
+        }
+    }
+
 
 }
 
