@@ -102,6 +102,46 @@ fun main(args: Array<String>) {
     }
     println(res);
 
+    println("========================when分支结构========================" +
+            "when分支结构代替了java中的switch语句")
+    var score = 'B'
+    when (score) {
+        'A' -> println("优秀")
+        'B' -> println("良好")
+        'C' -> println("中")
+        'D' -> println("及格")
+        else -> println("不及格")
+    }
+
+    println("========================when分支结构========================" +
+            "when分支可以作为表达式的一部分")
+    var whenStr = when(score) {
+        'A' -> {
+            println("优秀")
+            "优秀"
+        }
+        'B' -> {
+            println("良好")
+            "良好"
+        }
+        'C' -> {
+            println("中")
+            "中"
+        }
+        'D' -> {
+            println("及格")
+            "及格"
+        }
+        else -> {
+            println("不及格")
+            "不及格"
+        }
+    }
+    println(whenStr)
+
+
+
+
 
 
 
