@@ -7,6 +7,23 @@ import org.junit.*;
  */
 public class ForLoopTest {
 
+    // java当中也有带标号的continue
+    @Test
+    public void test02() {
+        aa: for(int i = 0; i < 5 ; i++) {
+            System.out.format("i = %d \n", i);
+
+            for(int j = 5; i < 10 ; j++) {
+                System.out.format("j = %d \n", j);
+
+                if(j == 5) {
+                    continue aa;
+                }
+                System.out.println("内层循环");
+            }
+        }
+    }
+
     // return无论位于嵌套循环中的多么深的层中，只有遇到return，马上退出所有的循环
     @Test
     public void test01() {
