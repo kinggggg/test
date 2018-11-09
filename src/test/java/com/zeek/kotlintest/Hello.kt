@@ -78,6 +78,7 @@ fun main(args: Array<String>) {
         println(num)
     }
 
+    println("========================if分支结构")
     var ifTest : Int = 30;
     if(ifTest > 10) {
         println("if")
@@ -92,6 +93,14 @@ fun main(args: Array<String>) {
     }else {
         println("else")
     }
+
+    println("========================if语句可以作为表达式")
+    var res = if(ifTest > 20) {
+        "ifTest 大于20"
+    }else {
+        "ifTest 小于20"
+    }
+    println(res);
 
 
 
