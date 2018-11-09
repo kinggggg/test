@@ -321,6 +321,31 @@ fun main(args: Array<String>) {
         println("索引为${index}, 元素是${value}")
     }
 
+    println("===========================5.1.5 数组常用方法==========================")
+    var intArray3 = arrayOf(1, 2, 3)
+    println(intArray3.any({it > 1}))
+
+    var nullVal : String? = "abc";
+    println(nullVal?.length) //?.表明若nullVal的值为null的话，直接返回null，否则返回nullVal的length属性的值
+    nullVal!!.length //无论nullVal的是否为null，均调用其length属性，这有可能产生NPE
+
+    println("===========================多维数组==========================")
+    var a = arrayOfNulls<Array<Int>>(4)
+    for (i in a.indices) {
+        println(Arrays.toString(a[i]))
+    }
+    println("初始化a数组的第一个元素")
+    a[0] = arrayOf(2, 5)
+    a[0]?.set(1, 6)
+    for (i in a.indices) {
+        println(Arrays.toString(a[i]))
+    }
+    println("a数组的第一个元素时一个一维数组，遍历这个一维数组")
+    for (i in a[0]!!.indices) {
+        println(a[0]?.get(i))
+    }
+
+
 
 
 }
