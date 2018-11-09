@@ -145,8 +145,8 @@ fun main(args: Array<String>) {
     println(age)
     var inStr = when(age) {
         in 10..25 -> "当时年少青衫薄"
-        in 16..50 -> "风景依稀似去年"
-        in 16..50 -> "醉听清吟胜管弦"
+        in 26..50 -> "风景依稀似去年"
+        in 51..100 -> "醉听清吟胜管弦"
         else -> "其他"
     }
     println(inStr)
@@ -155,6 +155,17 @@ fun main(args: Array<String>) {
             "when分支处理类型")
     var inputPrice = 26
     println(realPrice(inputPrice))
+
+    println("========================when分支结构========================" +
+            "when分支可以替代if分支")
+    println(age)
+    var whenIf = when {
+        age < 25 -> "当时年少青衫薄"
+        age >= 25 && age < 50 -> "风景依稀似去年"
+        age >= 51 -> "醉听清吟胜管弦"
+        else -> "其他"
+    }
+    println(inStr)
 
 }
 
