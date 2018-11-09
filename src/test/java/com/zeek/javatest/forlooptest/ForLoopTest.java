@@ -1,4 +1,4 @@
-package com.zeek.javatest;
+package com.zeek.javatest.forlooptest;
 
 import org.junit.*;
 
@@ -6,6 +6,22 @@ import org.junit.*;
  * Created by weibo_li on 2016/12/28.
  */
 public class ForLoopTest {
+
+    // return无论位于嵌套循环中的多么深的层中，只有遇到return，马上退出所有的循环
+    @Test
+    public void test01() {
+        for(int i = 0; i < 5 ; i++) {
+            System.out.format("i = %d \n", i);
+
+            for(int j = 5; i < 10 ; j++) {
+                System.out.format("j = %d \n", j);
+
+                if(j == 5) {
+                    return;
+                }
+            }
+        }
+    }
 
 
     @Test
