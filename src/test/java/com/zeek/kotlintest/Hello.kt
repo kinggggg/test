@@ -167,7 +167,7 @@ fun main(args: Array<String>) {
     }
     println(inStr)
 
-    println("========================循环机结构========================" +
+    println("========================循环结构========================" +
             "while循环结构")
     var count = 0;
     while (count < 10) {
@@ -176,7 +176,7 @@ fun main(args: Array<String>) {
     }
     println("while循环结束")
 
-    println("========================循环机结构========================" +
+    println("========================循环结构========================" +
             "do-while循环结构")
     var doWhileCount = 0;
     do {
@@ -186,7 +186,7 @@ fun main(args: Array<String>) {
 
     println("doWhile循环结束")
 
-    println("========================循环机结构========================" +
+    println("========================循环结构========================" +
             "for-in循环结构")
     var max = 7
     var result = 1
@@ -195,6 +195,29 @@ fun main(args: Array<String>) {
     }
     println(result)
     println("for-in循环结束")
+
+    println("========================控制循环结构========================" +
+            "break控制")
+
+    for(i in 0..10) {
+        println("i : ${i}")
+        if(i == 2) {
+            break; //遇到break立即跳出循环结构
+        }
+    }
+    println("遇到break立即跳出循环")
+
+    for(j in 5..10) {
+        println("j : ${j}")
+
+        for(i in 0..10) {
+            println("i : ${i}")
+            if(i == 2) {
+                break; //遇到break立即跳出循环结构，只能跳出当前循环，不能跳出外层循环
+            }
+        }
+    }
+    println("遇到break立即跳出循环结构，只能跳出当前循环，不能跳出外层循环")
 
 
 }
