@@ -257,6 +257,26 @@ fun main(args: Array<String>) {
     }
 
 
+    println("========================控制循环结构========================" +
+            "return控制")
+    returnTest();
+    println("遇到return 直接结束整个函数或方法，而不管return处于多少层循环之内")
+
+
+}
+
+fun returnTest() {
+
+    for(j in 0..5) {
+        println("j : ${j}")
+
+        for(i in 5..10) {
+            println("i : ${i}")
+            if(i == 5) {
+                return; //遇到return 直接结束整个函数或方法，而不管return处于多少层循环之内
+            }
+        }
+    }
 }
 
 /**
