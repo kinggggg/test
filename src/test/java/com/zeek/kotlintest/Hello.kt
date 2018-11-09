@@ -151,15 +151,20 @@ fun main(args: Array<String>) {
     }
     println(inStr)
 
+    println("========================when分支结构========================" +
+            "when分支处理类型")
+    var inputPrice = 26
+    println(realPrice(inputPrice))
 
+}
 
-
-
-
-
-
-
-
-
+/**
+ * when分支判断类型
+ */
+fun realPrice(inputPrice : Any) = when (inputPrice) {
+    is String -> inputPrice.toDouble()
+    is Int -> inputPrice.toDouble()
+    is Double -> inputPrice.toDouble()
+    else -> 0.0
 }
 
