@@ -262,9 +262,73 @@ fun main(args: Array<String>) {
     returnTest();
     println("遇到return 直接结束整个函数或方法，而不管return处于多少层循环之内")
 
+    println("=============================================================")
+    println("========================第5章 数组和集合========================")
+    println("=============================================================")
+
+    println("===========================5.1 数组===========================")
+    println("===========================5.1.1 创建数组==========================")
+
+    println("创建包含指定元素的数组，相当于java数组的静态初始化")
+    var arr1 = arrayOf("Java", "Kotlin") //kotlin自动推断出类型
+    println(arr1)
+    //创建指定长度，元素为null的数组
+    var arr2 = arrayOfNulls<Double>(5) //必须指定类型
+    for(e in arr2) {
+        println(e)
+    }
+    //创建长度为0的空数组
+    var arr3 = emptyArray<String>() //需要指定类型
+
+    //创建指定长度，但是用lambda表达式初始化的数组
+    var arr4 = Array(5, {(it * 2 + 97).toChar()}); //it 代表lambda表达式的形参，初始值在这里为0 貌似是数组元素的index
+    for(e in arr4) {
+        println(e)
+    }
+    var arr5 = Array(5, {it + 0.1}); //it 代表lambda表达式的形参，初始值在这里为0
+    for(e in arr5) {
+        println(e)
+    }
+
+    println("创建IntArray")
+    val intArrayOf = intArrayOf(1, 2, 3)
+    println(Arrays.toString(intArrayOf))
+
+    var intArray2 = IntArray(5, {it * it})
+    println(Arrays.toString(intArray2))
+    println("kotlin中数组元素的下标从0开始")
+    println(intArray2[0]) //取值
+    println(intArray2.get(1)) //取值
+    intArray2[3] = 100; //设置值
+    intArray2.set(4, 200) //设置值
+    println(Arrays.toString(intArray2))
+
+    println("通过Array的size属性遍历数组，其实是Array的下标")
+    for (i in 0 until intArray2.size) {
+        println("${i} : " + "${intArray2[i]}")
+    }
+    println("使用Array提供的indices获得索引区间")
+    for (i in intArray2.indices) {
+        println(intArray2[i])
+    }
+    println("直接通过for-in循环遍历数组")
+    for(i in intArray2) {
+        println(i)
+    }
+
+    println("通过IndexedValue访问数组的下标和元素值")
+    for ((index, value) in intArray2.withIndex()) {
+        println("索引为${index}, 元素是${value}")
+    }
+
+
 
 }
 
+
+/**
+ * 测试 return
+ */
 fun returnTest() {
 
     for(j in 0..5) {
