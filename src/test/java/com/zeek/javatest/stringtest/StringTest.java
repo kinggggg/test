@@ -1,4 +1,4 @@
-package com.zeek.javatest.String;
+package com.zeek.javatest.stringtest;
 
 import com.zeek.javatest.parent.Parent;
 import org.apache.commons.lang3.StringUtils;

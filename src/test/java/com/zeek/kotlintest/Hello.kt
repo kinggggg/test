@@ -139,6 +139,18 @@ fun main(args: Array<String>) {
     }
     println(whenStr)
 
+    println("========================when分支结构========================" +
+            "when分支结合in,!in使用")
+    val age = java.util.Random().nextInt(100);
+    println(age)
+    var inStr = when(age) {
+        in 10..25 -> "当时年少青衫薄"
+        in 16..50 -> "风景依稀似去年"
+        in 16..50 -> "醉听清吟胜管弦"
+        else -> "其他"
+    }
+    println(inStr)
+
 
 
 
