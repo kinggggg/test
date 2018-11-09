@@ -219,6 +219,18 @@ fun main(args: Array<String>) {
     }
     println("遇到break立即跳出循环结构，只能跳出当前循环，不能跳出外层循环")
 
+    outer@ for(j in 5..10) {
+        println("j : ${j}")
+
+        for(i in 0..10) {
+            println("i : ${i}")
+            if(i == 2) {
+                break@outer; //带标号的break可以跳出外层循环
+            }
+        }
+    }
+    println("带标号的break可以跳出外层循环")
+
 
 }
 
