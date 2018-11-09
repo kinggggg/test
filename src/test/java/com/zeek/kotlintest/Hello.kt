@@ -345,6 +345,9 @@ fun main(args: Array<String>) {
         println(a[0]?.get(i))
     }
 
+    println("===========================5.2 Kotlin集合概述==========================")
+
+
 
 
 
