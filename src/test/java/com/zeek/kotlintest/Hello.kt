@@ -388,8 +388,61 @@ fun main(args: Array<String>) {
     println("使用forEach遍历集合")
     set2.forEach { println(it) }
 
+    println("===========================5.4 List集合==========================")
+    println("创建不可变的list集合")
+    var list1 = listOf("Java", "Kotlin", "Go")
+    println(list1)
+    var listOfNotNull = listOfNotNull("Java", "Kotlin", "Go", null)
+    println(listOfNotNull)
+    println("创建可变的list集合")
+    var mutableList = mutableListOf("Java", "Kotlin", "Go")
+    println(mutableList)
+    println("创建ArrayList")
+    var arrayList1 = arrayListOf("Java", "Kotlin", "Go")
+    println(arrayList1)
 
+    println("listOf创建的集合实际类型为:${list1.javaClass}") //java.util.Arrays$ArrayList
+    println("listOfNotNull创建的集合实际类型为:${listOfNotNull.javaClass}") //java.util.ArrayList
+    println("mutableListOf创建的集合实际类型为:${mutableList.javaClass}") //java.util.ArrayList
 
+    println("===========================5.5 Map集合==========================")
+    println("创建不可变map")
+    var map1 = mapOf("Java" to 86, "Kotlin" to 92, "Go" to 93)
+    println(map1)
+    var mutableMap = mutableMapOf("Java" to 86, "Kotlin" to 92, "Go" to 93)
+    println(mutableMap)
+    println("mapOf创建的集合实际类型为:${map1.javaClass}") //java.util.LinkedHashMap
+    println("mutableMapOf创建的集合实际类型为:${mutableMap.javaClass}") //java.util.LinkedHashMap
+
+    println("创建HashMap")
+    println("不保证顺序")
+    var hashMap = hashMapOf("Java" to 86, "Kotlin" to 92, "Go" to 93)
+    println(hashMap)
+    println("创建LinkedHashMap")
+    println("保证顺序")
+    var linkedHashMap = linkedMapOf("Java" to 86, "Kotlin" to 92, "Go" to 93)
+    println(linkedHashMap)
+    println("创建TreeMap")
+    println("保证顺序,key由小到大排列")
+    var treeMap = sortedMapOf("Java" to 86, "Kotlin" to 92, "Go" to 93)
+    println(treeMap)
+
+    println("===========================遍历map==========================")
+    var map2 = mapOf("Java" to 86, "Kotlin" to 92, "Go" to 93)
+    println("通过entry进行遍历")
+    for (en in map2.entries) {
+        println("${en.key} -> ${en.value}")
+    }
+    println("通过key进行遍历")
+    for (key in map2.keys) {
+        println("${key} -> ${map2[key]}")
+    }
+    println("for-in遍历")
+    for ((key, value) in map2) {
+        println("${key} -> ${value}")
+    }
+    println("用lambda遍历")
+    map2.forEach { println("${it.key} -> ${it.value}") }
 
 }
 
