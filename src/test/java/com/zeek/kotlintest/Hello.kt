@@ -346,7 +346,47 @@ fun main(args: Array<String>) {
     }
 
     println("===========================5.2 Kotlin集合概述==========================")
+    println("===========================kotlin只提供了HashSet，HashMap, LinkedHashSet, LinkedHashMap，ArrayList" +
+            "并且这些集合也并不是kotlin实现的，只是java中这些集合的一个别名而已" +
+            "若需要用其他的集合类可以直接使用java提供的==========================")
 
+
+    println("创建不可变集合")
+    var set = setOf("Java", "Kotlin", "Go");
+    println("集合元素按照添加顺序")
+    println(set)
+
+    println("创建可变集合")
+    var mutableSet = mutableSetOf("Java", "Go");
+    println("集合元素按照添加顺序")
+    println(mutableSet)
+
+    println("setOf创建的集合实际类型为:${set.javaClass}") //LinkedHashSet
+    println("mutableSetOf创建的集合实际类型为:${mutableSet.javaClass}") //LinkedHashSet
+
+    var hashSet = hashSetOf("Java", "Kotlin", "Go")
+    println("不保证元素的顺序")
+    println(hashSet)
+
+    var linkedHashSet = linkedSetOf("Java", "Kotlin", "Go")
+    println("集合元素按照添加顺序")
+    println(linkedHashSet)
+
+    var treeSet = sortedSetOf("Java", "Kotlin", "Go")
+    println("创建TreeSet")
+    println(treeSet)
+
+    println("===========================5.3.2 使用Set的方法==========================")
+    var set2 = setOf("Java", "Kotlin", "Go")
+    println("Set转换成Map")
+    var map = set.associateBy { "疯狂" + it + "讲义" }
+    println(map)
+    println("使用for-in遍历集合")
+    for (lan in set2) {
+        println(lan)
+    }
+    println("使用forEach遍历集合")
+    set2.forEach { println(it) }
 
 
 
