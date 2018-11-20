@@ -444,8 +444,95 @@ fun main(args: Array<String>) {
     println("用lambda遍历")
     map2.forEach { println("${it.key} -> ${it.value}") }
 
+    println("=============================================================")
+    println("========================第6章 函数和Lambda表达式=================")
+    println("=============================================================")
+
+    println("===========================6.1 函数入门==========================")
+    var res1 = com.zeek.kotlintest.max(1, 2)
+    println("res : ${res1}")
+
+    foo()
+    say()
+
+    println("===========================单表达式函数==========================")
+    var area = area(03.0, 4.0);
+    println("面积为 : ${area}")
+    println("面积为 : ${area(5.0, 6.0)}")
+
+    println("===========================命名参数==========================")
+    println(girth(3, 4))
+    println(girth(width = 3, height = 4))
+    println(girth(height = 4, width = 3))
+    println(girth(3, height = 4))
+
+    println("===========================形参默认值==========================")
+    sayHi()
+    sayHi("张三", "早上好")
+    sayHi("张三")
+    sayHi(message = "下午好")
+
+    println("===========================个数可变形参：vararg修饰==========================")
+    test(2, "疯狂Kotlin", "Go语言")
+
+
 }
 
+/**
+ * 个数可变形参
+ */
+fun test(a : Int, vararg books : String) {
+    for (b in books) {
+        println(b)
+    }
+
+    println(a)
+}
+
+/**
+ * 形参默认值
+ */
+fun sayHi(name : String = "李四", message : String = "你好") {
+    println("${name} ${message}")
+}
+
+/**
+ * 命名参数
+ */
+fun girth(width : Int, height : Int) : Int {
+    return 2 * (width + height);
+}
+
+/**
+ * 单表达式函数
+ */
+fun area(x : Double, y : Double) : Double = x * y;
+
+/**
+ * 无返回值形式2
+ */
+fun say() : Unit {
+    println("无返回值形式2")
+}
+
+/**
+ * 无返回值形式1
+ */
+fun foo() {
+    println("无返回值")
+}
+
+/**
+ * 比较大小，返回大值
+ */
+fun max(x : Int, y : Int) : Int {
+
+    if(x > y) {
+        return x;
+    }else {
+        return y;
+    }
+}
 
 /**
  * 测试 return
