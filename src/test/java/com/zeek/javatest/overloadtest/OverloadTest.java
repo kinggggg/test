@@ -1,4 +1,4 @@
-package com.zeek.javatest;
+package com.zeek.javatest.overloadtest;
 
 /**
  * @author: weibo_li
@@ -15,6 +15,11 @@ public class OverloadTest {
     int test1(int i) {
         return i;
     }
+
+    //仅仅返回值类型不同不能构成函数的重载
+    /*long test1(int i) {
+        return i;
+    }*/
 
     long test1(long i) {
         return i;
