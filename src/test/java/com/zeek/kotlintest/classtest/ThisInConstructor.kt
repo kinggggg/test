@@ -20,8 +20,26 @@ class ThisInConstructor {
     }
 }
 
+/**
+ * 返回this
+ */
+class ReturnThis {
+    var age : Int = 0
+
+    fun grow() : ReturnThis{
+        age++
+        return this;
+    }
+}
+
 
 
 fun main(args: Array<String>) {
     println(ThisInConstructor().foo)
+
+    var rt : ReturnThis = ReturnThis()
+    rt.grow()
+            .grow()
+            .grow()
+    println(rt.age)
 }
