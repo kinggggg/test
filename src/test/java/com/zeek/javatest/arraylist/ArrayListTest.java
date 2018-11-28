@@ -26,6 +26,15 @@ public class ArrayListTest {
         List<String> list = new ArrayList<>();
         list.add("a");
 
+        list.forEach(e -> {
+            System.out.println(e);
+        });
+
+        list.remove(0);
+
+        List<String> strings = Collections.synchronizedList(list);
+
+
     }
 
     @Test
