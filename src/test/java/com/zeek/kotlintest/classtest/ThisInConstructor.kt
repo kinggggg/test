@@ -74,6 +74,29 @@ class Apple(weight: Double) {
 
 }
 
+/**
+ * componentN()方法与解构
+ */
+class User3(name : String, pass : String, age : Int) {
+    var name = name;
+
+    var pass = pass;
+
+    var age = age;
+
+    operator fun component1() : String {
+        return this.name
+    }
+
+    operator fun component2() : String {
+        return this.pass
+    }
+
+    operator fun component3() : Int {
+        return this.age
+    }
+}
+
 
 
 fun main(args: Array<String>) {
@@ -95,5 +118,15 @@ fun main(args: Array<String>) {
     var apple2 = Apple(20.0)
     println(apple1 add apple2)
     println(apple1 drop apple2)
+
+    var user3 : User3
+    user3 = User3("zhangsan", "111111", 18)
+    // 全部解构
+    var (name, pass, age) = user3
+    println("name : ${name}, pass : ${pass}, age : ${age}")
+    // fixme 部分解构 编译报错
+    /*var (_, pass2, age2) = user3
+    println("pass2 : ${pass2}, age : ${age2}")*/
+
 
 }
