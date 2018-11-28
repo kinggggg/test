@@ -97,7 +97,18 @@ class User3(name : String, pass : String, age : Int) {
     }
 }
 
+// 定义一个数据类
+data class Result(val result : Int, val status : String)
 
+fun factorial(n : Int) : Result {
+    if(n == 1) {
+        return Result(1, "成功")
+    }else if( n > 1) {
+        return Result(factorial(n - 1).result * n, "成功")
+    }else {
+        return Result(-1, "参数必须大于0")
+    }
+}
 
 fun main(args: Array<String>) {
     println(ThisInConstructor().foo)
@@ -127,6 +138,9 @@ fun main(args: Array<String>) {
     // fixme 部分解构 编译报错
     /*var (_, pass2, age2) = user3
     println("pass2 : ${pass2}, age : ${age2}")*/
+
+    var (rt1, status) = factorial(6)
+    println("rt : ${rt1}, status : ${status}")
 
 
 }
