@@ -1,6 +1,6 @@
 package com.zeek.javatest.serializable;
 
-import com.zeek.javatest.arraylist.Person;
+import com.zeek.javatest.collection.arraylist.Person;
 
 import java.io.BufferedInputStream;
 import java.io.DataInputStream;

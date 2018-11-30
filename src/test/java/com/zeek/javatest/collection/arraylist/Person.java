@@ -1,4 +1,4 @@
-package com.zeek.javatest.arraylist;
+package com.zeek.javatest.collection.arraylist;
 
 /**
  * @author: weibo_li
