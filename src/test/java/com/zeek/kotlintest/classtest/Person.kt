@@ -20,3 +20,10 @@ class Person {
 
 }
 
+fun main(args: Array<String>) {
+    var p : Person = Person()
+
+    //在Java代码中可以访问kotlin自动为Person生成的getter和setter方法，但是在kotlin程序中不能调用getter和setter方法
+
+}
+
