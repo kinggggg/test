@@ -8,7 +8,9 @@ package com.zeek.kotlintest.classtest
 class Person {
 
     //定义两个属性
+    //var 属性自动生成getter和setter
     var name : String = ""
+    //val 属性只生成getter
     val age : Int = 0
 
     //定义一个方法
