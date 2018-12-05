@@ -1,5 +1,9 @@
 package com.zeek.kotlintest.classtest;
 
+import com.zeek.kotlintest.classtest.lee.DataClass;
+import com.zeek.kotlintest.classtest.lee.Foo;
+import com.zeek.kotlintest.classtest.lee.HelloKt;
+
 /**
  * @ClassName JavaKotlinApp
  * @Description
@@ -14,6 +18,10 @@ public class JavaKotlinApp {
         Person person = new Person();
         person.getAge();
 
+        Foo foo = new Foo("张三");
+
+        DataClass dataClass = new DataClass("张三", 18);
+        dataClass.getName();
 
     }
 }
