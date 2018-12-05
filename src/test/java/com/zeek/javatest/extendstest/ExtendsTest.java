@@ -14,5 +14,6 @@ public class ExtendsTest {
 //        Person person = new Person();
 
         Student student = new Student("zhangsan", 18);
+        System.out.println(student);
     }
 }

@@ -7,10 +7,19 @@ package com.zeek.javatest.extendstest;
 public class Person {
 
     Person(String name, Integer age) {
-
+        this.name = name;
+        this.age = age;
     }
 
     String name;
 
     Integer age;
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
 }
