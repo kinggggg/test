@@ -5,7 +5,9 @@ import org.junit.Test;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.lang.reflect.Method;
 import java.nio.ByteBuffer;
+import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.channels.Pipe;
 
@@ -13,6 +15,86 @@ import java.nio.channels.Pipe;
  * Created by weibo_li on 2017/3/1.
  */
 public class NIOTest {
+
+    /**
+     * @Description: 对映射内存缓冲区进行修改，同步到文件中
+     * @Author: liweibo
+     * @Date: 2018/12/20 下午10:58
+     * @Version: v1.0
+     *
+     * @Param
+     *
+     * @Return: void
+     **/
+    @Test
+    public void writeMemoryMapperTest() throws Exception {
+
+        // 随机访问文件
+        RandomAccessFile raf = new RandomAccessFile("/Users/weibo_li/Documents/code/Test/src/test/java/com/zeek/javatest/nio/des/tcp-ip.png", "rw");
+        // 得到文件通道
+        FileChannel fc = raf.getChannel();
+
+        // 创建与file相对应的内存字节缓冲区
+        MappedByteBuffer buffer = fc.map(FileChannel.MapMode.READ_WRITE, 0, raf.length());
+
+        for (int i = 500; i < 350000; i++) {
+            buffer.put(i, (byte)0);
+        }
+
+        fc.close();
+        raf.close();
+    }
+
+    /**
+     * @Description: 读取映射的字节缓冲区
+     * @Author: liweibo
+     * @Date: 2018/12/20 下午10:58
+     * @Version: v1.0
+     *
+     * @Param
+     *
+     * @Return: void
+     **/
+    @Test
+    public void readMemoryMapperTest() throws Exception {
+
+        // 随机访问文件
+        RandomAccessFile raf = new RandomAccessFile("/Users/weibo_li/Documents/code/Test/src/test/java/com/zeek/javatest/nio/src/tcp-ip.png", "rw");
+        // 得到文件通道
+        FileChannel fc = raf.getChannel();
+
+        System.out.println("fileLength : " + raf.length());
+
+        // 创建与file相对应的内存字节缓冲区
+        MappedByteBuffer buffer = fc.map(FileChannel.MapMode.READ_ONLY, 0, raf.length());
+        int cap = buffer.capacity();
+        System.out.println("buffer cap : " + cap);
+
+        FileChannel fcout = new RandomAccessFile("/Users/weibo_li/Documents/code/Test/src/test/java/com/zeek/javatest/nio/des/tcp-ip.png", "rw").getChannel();
+        fcout.write(buffer);
+        fcout.close();
+
+        fc.close();
+        raf.close();
+    }
+
+    @Test
+    public void directBufferTest2() throws Exception {
+
+        //分配100MB的直接字节缓冲区（或者称之为离堆，或者称之为非堆）
+        ByteBuffer byteBuffer = ByteBuffer.allocateDirect(1024 * 1024 * 1024); //虽然分配了100MB，但是此空间不是占用的JVM的堆空间，而是直接从机器的内存中分配的
+
+        Class clazz = Class.forName("java.nio.DirectByteBuffer");
+        Method m = clazz.getDeclaredMethod("cleaner");
+        m.setAccessible(true);
+        Object cleaner = m.invoke(byteBuffer);
+
+        clazz = Class.forName("sun.misc.Cleaner");
+        m = clazz.getDeclaredMethod("clean");
+        m.setAccessible(true);
+        m.invoke(cleaner);
+
+    }
 
 
     @Test
