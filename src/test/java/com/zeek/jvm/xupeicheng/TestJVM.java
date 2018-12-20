@@ -27,7 +27,7 @@ public class TestJVM {
     }
 
     /**
-     * @Description: 测试Eden区
+     * @Description: 测试Eden区jv
      * @Author: liweibo
      **/
     @Test
