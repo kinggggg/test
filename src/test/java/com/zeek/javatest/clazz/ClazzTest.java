@@ -11,6 +11,20 @@ import org.junit.Test;
  **/
 public class ClazzTest {
 
+
+
+    @Test
+    public void test02() {
+
+        String jsonStr = "{name:\"zhangsan\", \nage: \"12\"}" ;
+
+//        JSON.parseObject(result.toString().trim(), FraudApiResponse.class);
+
+        System.out.println(jsonStr);
+
+
+    }
+
     @Test
     public void test01() {
 
