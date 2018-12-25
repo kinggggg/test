@@ -25,9 +25,6 @@ public class MySocketChannel {
     @Test
     public void client() throws Exception {
 
-        // 打开一个挑选器
-        Selector selector = Selector.open();
-
         //开启SocketChannel
         SocketChannel sc = SocketChannel.open();
         //创建连接地址
@@ -39,42 +36,24 @@ public class MySocketChannel {
         boolean b = sc.connect(addr);
         System.out.println("connect() : " + b); //判断连接是否完成
 
-//        while(sc.finishConnect() == false) {
-//            System.out.println("继续等待连接完成");
-//        }
-
-        sc.register(selector, SelectionKey.OP_CONNECT | SelectionKey.OP_READ | SelectionKey.OP_WRITE);
-
-
-        ByteBuffer buffer = ByteBuffer.allocate(1024);
-
-        while(true) {
-            // 让挑选器进行挑选，该方法是阻塞的，起码至少有一个被挑选出来
-            selector.select();
-            // 获得挑选的key集合
-            Set<SelectionKey> selectionKeys = selector.selectedKeys();
-
-            Iterator<SelectionKey> it = selectionKeys.iterator();
-            while(it.hasNext()) {
-                SelectionKey key = it.next();
-                // 判断可连接
-                if(key.isConnectable()) {
-                    System.out.println("client : connectable");
-                }
-                // 可读
-                if(key.isReadable()) {
-                    System.out.println("receive server info : " + readStringFromChannel(sc));
-
-                }
-                // 可写
-                if(key.isWritable()) {
-                    writeMessageToServer(sc, "hi, i am client");
-                }
-            }
-
+        while(sc.finishConnect() == false) {
+            // continue
         }
 
-        //System.out.println("连接完成");
+        ByteBuffer buffer = ByteBuffer.allocate(1024);
+        int i = 1;
+        while(true) {
+            String str = i + "" ;
+            System.out.println("client : " + str);
+            buffer.clear();
+            buffer.put(str.getBytes());
+            buffer.flip();
+            sc.write(buffer);
+            buffer.clear();
+            i++;
+
+            Thread.sleep(500);
+        }
 
     }
 

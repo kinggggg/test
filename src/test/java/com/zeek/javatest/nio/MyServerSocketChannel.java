@@ -56,6 +56,8 @@ public class MyServerSocketChannel {
                     ServerSocketChannel ch = (ServerSocketChannel)key.channel();
                     // 接受连接
                     schTmp = ch.accept();
+                    //配置非阻塞模式
+                    schTmp.configureBlocking(false);
                     schTmp.register(selector, SelectionKey.OP_CONNECT | SelectionKey.OP_READ | SelectionKey.OP_WRITE);
                 }
 
@@ -67,14 +69,18 @@ public class MyServerSocketChannel {
                 // 3.可读
                 if(key.isReadable()) {
                     schTmp = (SocketChannel)key.channel();
-                    while (schTmp.read(buffer) != -1) {
+
+                    int len = schTmp.read(buffer);
+                    if ( len == -1) {
+                        key.channel();
+                    }else if(len > 0) {
+                        System.out.println("len : " + len);
                         buffer.flip();
                         byte[] array = buffer.array();
                         String str = new String(array, 0, buffer.limit());
                         System.out.println("from Client : " + schTmp + " : " + str);
 
                         buffer.clear();
-
                     }
                 }
                 // 3.可写
@@ -85,7 +91,11 @@ public class MyServerSocketChannel {
                     buffer.flip();
                     schTmp.write(buffer);
                     System.out.println(schTmp + " : ");
+                    buffer.clear();
                 }
+
+                //删除当前的元素
+                it.remove();
             }
         }
 
