@@ -25,34 +25,46 @@ public class MySocketChannel {
     @Test
     public void client() throws Exception {
 
+        Selector selector = Selector.open();
+
         //开启SocketChannel
-        SocketChannel sc = SocketChannel.open();
-        //创建连接地址
-        SocketAddress addr = new InetSocketAddress("localhost", 8888);
+        SocketChannel sc = SocketChannel.open(new InetSocketAddress("localhost", 8888));
 
         sc.configureBlocking(false);
 
-        //进行连接
-        boolean b = sc.connect(addr);
-        System.out.println("connect() : " + b); //判断连接是否完成
-
-        while(sc.finishConnect() == false) {
-            // continue
-        }
+        sc.register(selector, SelectionKey.OP_CONNECT | SelectionKey.OP_READ | SelectionKey.OP_WRITE);
 
         ByteBuffer buffer = ByteBuffer.allocate(1024);
-        int i = 1;
-        while(true) {
-            String str = i + "" ;
-            System.out.println("client : " + str);
-            buffer.clear();
-            buffer.put(str.getBytes());
-            buffer.flip();
-            sc.write(buffer);
-            buffer.clear();
-            i++;
 
-            Thread.sleep(500);
+        while(true) {
+            selector.select();
+
+            Set<SelectionKey> selectionKeys = selector.selectedKeys();
+
+            Iterator<SelectionKey> it = selectionKeys.iterator();
+            while(it.hasNext()) {
+                SelectionKey key = it.next();
+
+                // 1.判断可连接
+                if(key.isConnectable()) {
+                    System.out.println("client is connectable");
+                }
+                // 2.可读
+                if(key.isReadable()) {
+                    buffer.clear();
+                    sc.read(buffer);
+                    buffer.flip();
+                    System.out.println("client is isReadable receive : " + new String(buffer.array(), 0, buffer.limit()));
+                }
+                // 3.可写
+                if(key.isWritable()) {
+                    buffer.clear();
+                    buffer.put("hi, i am client".getBytes());
+                    buffer.flip();
+                    sc.write(buffer);
+                    System.out.println("client is isWritable send : hi, i am client" );
+                }
+            }
         }
 
     }
