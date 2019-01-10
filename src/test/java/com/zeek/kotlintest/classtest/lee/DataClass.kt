@@ -7,3 +7,8 @@ package com.zeek.kotlintest.classtest.lee
  * @since: 2018-12-05 下午5:25
  */
 data class DataClass(var name : String, val age : Int)
+
+fun main(args: Array<String>) {
+    var d1 : DataClass = DataClass("zhangsan", 18)
+
+}
