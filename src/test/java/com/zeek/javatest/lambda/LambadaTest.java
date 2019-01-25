@@ -33,4 +33,12 @@ public class LambadaTest {
         firstSquareDivisibleByThree.get();
 
     }
+
+    @Test
+    public void optionalTest() {
+
+        Optional<Object> empty = Optional.empty();
+        empty.ifPresent(value -> System.out.println(empty));
+
+    }
 }

@@ -1,4 +1,4 @@
-package com.zeek.anonymityclasstest;
+package com.zeek.javatest.anonymityclasstest;
 
 /**
  * @ClassName Anonymity
