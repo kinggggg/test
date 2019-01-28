@@ -1,4 +1,4 @@
-package com.zeek.javatest;
+package com.zeek.javatest.collection;
 
 import org.junit.Test;
 

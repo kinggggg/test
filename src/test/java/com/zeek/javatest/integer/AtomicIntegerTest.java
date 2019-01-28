@@ -1,4 +1,4 @@
-package com.zeek.javatest;
+package com.zeek.javatest.integer;
 
 import org.junit.Test;
 
