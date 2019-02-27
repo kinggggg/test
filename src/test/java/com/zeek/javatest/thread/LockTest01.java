@@ -1,14 +1,12 @@
 package com.zeek.javatest.thread;
 
-import javax.security.auth.login.Configuration;
 import java.util.ArrayList;
-import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @ClassName LockTest01
- * @Description
+ * @Description 学习Lock
  * @Author liweibo
  * @Date 2019/2/21 下午4:26
  * @Version v1.0
