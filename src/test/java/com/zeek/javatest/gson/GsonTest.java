@@ -1,6 +1,7 @@
 package com.zeek.javatest.gson;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import org.junit.Test;
 
@@ -8,11 +9,22 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Date;
+import java.util.Map;
 
 /**
  * Created by weibo_li on 2017/3/30.
  */
 public class GsonTest {
+
+    @Test
+    public void test4() {
+
+        String str = "RequestInfo{mapInfo={stringg=张三, intt=18, sign=55ee9e399950f8c2749cfc44367fd944, businessId=1234abcd, orderNum=1234abcd1552284078838, version=10, ts=1552284078838}, returnResult='null', orderNum='1234abcd1552284078838', ruleGroupId='415', businessManagerId='263', businessId='446', address='127.0.0.1', ruleGroupName='RuleGroupProductModel8655407AE5E347A9A1D2D907DD17588B', productModelPackge='null', productModelName='null'}" ;
+
+        String[] split = str.split("\\{");
+        System.out.println(split);
+
+    }
 
     @Test
     public void test3() throws ParseException {

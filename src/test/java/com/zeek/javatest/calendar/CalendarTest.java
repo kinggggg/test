@@ -2,7 +2,10 @@ package com.zeek.javatest.calendar;
 
 import org.junit.Test;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -49,7 +52,8 @@ public class CalendarTest {
 
     }
 
-    public static Date getFormerHour() throws Exception{
+    @Test
+    public void getFormerHour() throws Exception{
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Calendar cale = null;
         cale = Calendar.getInstance();
@@ -57,6 +61,28 @@ public class CalendarTest {
         int month = cale.get(Calendar.MONTH) + 1;
         int day = cale.get(Calendar.DATE);
         int hour = cale.get(Calendar.HOUR_OF_DAY)-1;
-        return format.parse(year+"-"+month+"-"+day+" "+hour+":00:00");
+        System.out.println(year + "-" + month + "-" + day + " " + hour + ":00:00");
+        Date parse = format.parse(year + "-" + month + "-" + day + " " + hour + ":00:00");
+        System.out.println(parse);
+    }
+
+    @Test
+    public void dateSubtractTest() throws ParseException {
+        Date date = new Date();
+        LocalDate localDate = LocalDate.of(date.getYear(), date.getMonth(), date.getDay());
+        System.out.println(localDate.toEpochDay() - LocalDate.now().toEpochDay() + "");
+        System.out.println(until(localDate));
+
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date1 = df.parse("2019-01-01 23:59:59");
+        Date date2 = df.parse("2019-01-03 00:00:00");
+
+        long diff = date1.getTime() - date2.getTime();//这样得到的差值是微秒级别
+        long days = diff / (1000 * 60 * 60 * 24);
+        System.out.println(days);
+    }
+
+    long until(LocalDate endDate){
+        return LocalDate.now().until(endDate, ChronoUnit.DAYS);
     }
 }
