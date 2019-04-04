@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: rc-realtime-ruleengine-web
+  profiles:
+    active: @profiles.active@
+
