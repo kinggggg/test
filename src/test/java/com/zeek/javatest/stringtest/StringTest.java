@@ -13,10 +13,42 @@ import java.util.List;
 public class StringTest {
 
     @Test
-    public void nullTest() {
-        Parent parent = new Parent();
+    public void test() {
 
-        System.out.println("test");
+        String str = "用户id,sessionid,自定义1,自定义2,昵称,注册省,注册市,最后登录时间,手机号,注册ip,登录ip,注册ip数,登录ip数,登录sessionid数,用户黑名单,sessionid黑名单,手机号黑名单,ip流量黑名单,手机号蚁盾评分,ip蚁盾评分,同盾手机号&ip评分" ;
+        int i = str.indexOf("sessionid,");
+        int j = str.indexOf("昵称,");
+        String[] split = str.split(",");
+        int m = 0;
+        int n = 0;
+        for (int k = 0; k < split.length; k++) {
+            if(split[k].equals("sessionid")) {
+                m = k;
+            }
+            if(split[k].equals("昵称")) {
+                n = k;
+            }
+        }
+        System.out.println(m);
+        System.out.println(n);
+
+
+
+        List<String> strings = Arrays.asList(split);
+        List<String> strings1 = strings.subList(m + 1, n);
+        System.out.println(strings1);
+
+        System.out.println(i);
+        System.out.println(j);
+        System.out.println(str.indexOf("昵称,"));
+        System.out.println(str.substring(i + "sessionid,".length(), j));
+    }
+
+    @Test
+    public void nullTest() {
+        String str = "26194708,,,,,,,,,,,,,,,,,,,," ;
+        String[] split = str.split(",", 50);
+        System.out.println(split);
     }
 
     @Test

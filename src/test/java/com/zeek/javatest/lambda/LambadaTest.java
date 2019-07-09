@@ -2,16 +2,73 @@ package com.zeek.javatest.lambda;
 
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
  * Created by weibo_li on 2017/5/26.
  */
 public class LambadaTest {
+
+    public static class Ele{
+
+
+        private int intType = 0 ;
+
+        private String stringType = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" ;
+
+        public int getIntType() {
+            return intType;
+        }
+
+        public void setIntType(int intType) {
+            this.intType = intType;
+        }
+
+        public String getStringType() {
+            return stringType;
+        }
+
+        public void setStringType(String stringType) {
+            this.stringType = stringType;
+        }
+    }
+
+
+    @Test
+    public void testForLoop() {
+
+        List<Ele> eleList = new ArrayList<>();
+        for(int i = 0; i < 1000000; i++) {
+            Ele ele = new Ele();
+            ele.setIntType(i);
+
+            eleList.add(ele);
+        }
+
+        long startTime = System.currentTimeMillis();
+        System.out.println("开始时间为: " + startTime);
+
+        long endTime = 0;
+
+        for(Ele ele : eleList) {
+            ele.setIntType(100);
+        }
+        endTime = System.currentTimeMillis();
+        System.out.println("for循环耗时: " + (endTime -  startTime));
+
+        eleList.parallelStream().forEach(ele -> {ele.setIntType(100);});
+
+        endTime = System.currentTimeMillis();
+        System.out.println("并行流耗时为: " + (endTime - startTime));
+
+        endTime = System.currentTimeMillis();
+        eleList.parallelStream().forEach(ele -> {ele.setIntType(100);});
+        System.out.println("流耗时为: " + (endTime - startTime));
+
+
+
+    }
 
     @Test
     public void testNull() {
