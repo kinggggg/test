@@ -12,13 +12,19 @@ public class AtomicIntegerTest {
 
     @Test
     public void forTest() {
-        AtomicInteger atomicInteger = new AtomicInteger(10);
+        AtomicInteger atomicInteger = new AtomicInteger(20);
 
-        int i = atomicInteger.addAndGet(5);
-        System.out.println(i);
+//        int i = atomicInteger.addAndGet(5);
+//        System.out.println(i);
+//
+//        int i1 = atomicInteger.accumulateAndGet(20, Integer::max);
+//        System.out.println(i1);
 
-        int i1 = atomicInteger.accumulateAndGet(20, Integer::max);
-        System.out.println(i1);
+
+        int andUpdate = atomicInteger.getAndUpdate(i -> {
+            return 30;
+        });
+        System.out.println(andUpdate);
+        System.out.println(atomicInteger);
     }
-
 }
