@@ -1,4 +1,4 @@
-package com.zeek.javatest.thread;
+package com.zeek.javatest.thread.scheduledexecutorservicetest02;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -41,11 +41,10 @@ public class ScheduledExecutorServiceTest {
         System.out.println("Task-2 is done : " + result2.isDone());
         System.out.println("Task-3 is done : " + result3.isDone());
 
-        System.out.println("***********Waiting for tasks to be complete*********");
+        executor.shutdownNow();
 
+        //Does not have any effect
         executor.awaitTermination(1, TimeUnit.HOURS);
-
-        System.out.println("***********All tasks are completed nows*********");
 
         System.out.println("Task-1 is done : " + result1.isDone());
         System.out.println("Task-2 is done : " + result2.isDone());
