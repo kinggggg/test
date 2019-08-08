@@ -1,5 +1,8 @@
 package com.zeek.javatest.thread;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 /**
  * @ClassName Test
  * @Description
@@ -36,7 +39,27 @@ public class Test {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        long calc = calc();
-        System.out.println(calc);
+        /*long calc = calc();
+        System.out.println(calc);*/
+
+        ExecutorService executorService = Executors.newFixedThreadPool(2);
+
+        executorService.submit(() -> {
+            System.out.println(Thread.currentThread().getName());
+        });
+
+        executorService.submit(() -> {
+            System.out.println(Thread.currentThread().getName());
+        });
+
+        executorService.submit(() -> {
+            System.out.println(Thread.currentThread().getName());
+        });
+
+        executorService.shutdown();
+
+
+
+
     }
 }
