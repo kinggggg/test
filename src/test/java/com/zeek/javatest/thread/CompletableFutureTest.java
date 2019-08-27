@@ -11,6 +11,19 @@ import java.util.concurrent.TimeUnit;
 public class CompletableFutureTest {
 
     @Test
+    public void test02() {
+
+        CompletableFuture<Integer>
+                f0 = CompletableFuture
+                .supplyAsync(()->7/0)
+                .thenApply(r->r*10)
+                .exceptionally(e->0);
+        f0.join();
+//        System.out.println(f0.join());
+
+    }
+
+    @Test
     public void test01() throws InterruptedException {
         CompletableFuture<Void> f1 =
         CompletableFuture.runAsync(()->{
