@@ -13,6 +13,81 @@ import java.util.stream.IntStream;
  **/
 public class ExecutorServiceTest {
 
+    @Test
+    public void test02() {
+
+
+        // 创建线程池
+        ExecutorService executor =
+                Executors.newFixedThreadPool(3);
+        // 异步向电商S1询价
+        Future<Integer> f1 =
+                executor.submit(
+                        () -> {
+                            Thread.sleep(5_000);
+                            System.out.println("S1询价");
+                            return 10;
+                        });
+        // 异步向电商S2询价
+        Future<Integer> f2 =
+                executor.submit(
+                        () -> {
+                            System.out.println("S2询价");
+                            return 20;
+                        });
+        // 异步向电商S3询价
+        Future<Integer> f3 =
+                executor.submit(
+                        () -> {
+                            System.out.println("S3询价");
+                            return 30;
+                        });
+        // 获取电商S1报价并异步保存
+        executor.execute(
+                () -> {
+                    try {
+                        f1.get();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println("S1报价并异步保存");
+                });
+        // 获取电商S2报价并异步保存
+        executor.execute(
+                () -> {
+                    try {
+                        f2.get();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println("S2报价并异步保存");
+                });
+        // 获取电商S3报价并异步保存
+        executor.execute(
+                () -> {
+                    try {
+                        f3.get();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println("S3报价并异步保存");
+                });
+
+        try {
+            Thread.sleep(50_000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
     // 测试ExecutorService中submit和execute方法不同
     @Test
     public void test01() throws ExecutionException, InterruptedException {
@@ -50,7 +125,6 @@ public class ExecutorServiceTest {
         });
 
 
-
         // 通过execute提交的任务，若果任务在执行的过程中出现异常的话，异常的信息将直接被打印出
         executorService.execute(() -> {
             System.out.println("execute提交抛出异常的任务");
@@ -72,7 +146,6 @@ public class ExecutorServiceTest {
                 }
             });
         });
-
 
 
     }
