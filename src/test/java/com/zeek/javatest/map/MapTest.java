@@ -2,13 +2,35 @@ package com.zeek.javatest.map;
 
 import org.junit.Test;
 
+import java.io.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 /**
  * Created by weibo_li on 2017/4/10.
  */
 public class MapTest {
+
+    public static void main(String[] args) {
+        Map<String, HashSet<String>> map1 = new HashMap<>();
+        // computeIfAbsent方法：判断Map中是否存在值为fruits的key，若不存在的话，以fruits为key以genValue函数
+        // 的返回值value放入到Map中；若Map中之前存在key为fruits的话，直接使用对应的value
+        map1.computeIfAbsent("fruits", k -> genValue(k)).add("apple");
+        map1.computeIfAbsent("fruits", k -> genValue(k)).add("orange");
+        map1.computeIfAbsent("fruits", k -> genValue(k)).add("pear");
+        map1.computeIfAbsent("fruits", k -> genValue(k)).add("banana");
+        map1.computeIfAbsent("fruits", k -> genValue(k)).add("water");
+        System.out.println(map1);
+
+    }
+
+    static HashSet<String> genValue(String str) {
+        return new HashSet<String>();
+    }
 
     @Test
     public void test() {
