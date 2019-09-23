@@ -1,5 +1,6 @@
 package com.zeek.javatest.map;
 
+import com.zeek.javatest.collection.arraylist.Person;
 import org.junit.Test;
 
 import java.io.*;
@@ -50,6 +51,23 @@ public class MapTest {
         qiyeJobCodeMap.put("0203", "工作人员");
         certificationOrganizationCodeMap.put("02", qiyeJobCodeMap);
 
+
+    }
+
+    @Test
+    public void test01() {
+
+        Map<Person, Integer> items = new HashMap<>();
+        items.put(new Person(1, "zhangsan"), 10);
+        items.put(new Person(2, "lisi"), 20);
+
+        items.forEach((k, v) -> {
+            k.age = k.age + 1;
+        });
+
+        items.forEach((k, v) -> {
+            System.out.println("k = " + k + "   ||   v = " +  v);
+        });
 
     }
 }

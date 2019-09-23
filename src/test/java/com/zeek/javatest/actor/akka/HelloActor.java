@@ -1,4 +1,4 @@
-package com.zeek.javatest.thread.akka;
+package com.zeek.javatest.actor.akka;
 
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
