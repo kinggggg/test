@@ -27,12 +27,18 @@ public class Test1 {
 
         System.out.println("--------------");
 
+
         list.forEach(new Consumer<Integer>() {
             @Override
             public void accept(Integer integer) {
-                System.out.println(integer);
+                System.out.println(integer * 2);
             }
         });
+
+        System.out.println("--------------");
+
+        // 方法引用形式创建函数式接口的实例System.out::println
+        list.forEach(System.out::println);
 
         System.out.println("--------------");
 
