@@ -35,7 +35,7 @@ class RunTest {
 
         System.out.println(myInterface.getClass());
         System.out.println(myInterface.getClass().getSuperclass());
-        System.out.println(myInterface.getClass().getInterfaces());
+        System.out.println(myInterface.getClass().getInterfaces()[0]);
 
     }
 }
