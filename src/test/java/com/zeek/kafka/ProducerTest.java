@@ -18,7 +18,7 @@ public class ProducerTest {
     public void test01() throws Exception {
 
         Properties props = new Properties();
-        props.put("bootstrap.servers", "localhost:9092"); //必须指定
+        props.put("bootstrap.servers", "140.143.227.87:9092"); //必须指定
         props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer"); //必须指定 根据序列化后的值确定消息存储到哪个分区
         props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer"); //必须指定
         props.put("acks", "-1"); // -1 所有的副本replication（包括主副本，从副本）均将消息写入后才给生产者客户端相应；0 不关心消息是否写入kafka，kafka直接返回给生产者客户端； 1 只要消息已经写入主分区副本后，kafka就返回给producer生产者客户端
@@ -29,7 +29,7 @@ public class ProducerTest {
         props.put ("max.block.ms", 3000); //当缓冲区满或者metadata不可用时，指定Producer.send()方法最大的等待时间
         Producer<String, String> producer= new KafkaProducer<>(props);
         for(int i = 0; i < 10; i++)
-            producer.send(new ProducerRecord<>("test",
+            producer.send(new ProducerRecord<>("test-topic",
                     Integer.toString(i), Integer.toString(i)), new Callback() {
                 @Override
                 public void onCompletion(RecordMetadata metadata, Exception exception) {
@@ -44,6 +44,10 @@ public class ProducerTest {
 
                 }
             });
-        producer.close();
+//        producer.close();
+
+        while (true) {
+
+        }
     }
 }
