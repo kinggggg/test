@@ -34,6 +34,21 @@ public class LambadaTest {
         }
     }
 
+    @Test
+    public void name() {
+
+        List<Integer> list = Arrays.asList(new Integer(2), new Integer(4));
+
+
+        Integer integer = list.stream()
+                .max(Comparator.comparing(Integer::valueOf)).orElse(1);
+
+        System.out.println(integer);
+
+        list.stream().max(Comparator.comparing(Integer::valueOf));
+
+
+    }
 
     @Test
     public void testForLoop() {
