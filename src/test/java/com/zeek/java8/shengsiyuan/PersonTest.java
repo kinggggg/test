@@ -40,9 +40,8 @@ public class PersonTest {
          * 其中T和U为输入参数，R为返回值！只要明确了这一点，就可以马上定义出BiFunction的泛型类型，
          * 即，第一个泛型类型为Integer（第一个输入参数），第二个泛型类型为List<Person>（第二个输入参数），第三个泛型类型为List<Person>(为返回执行类型)
          */
-        BiFunction<Integer, List<Person>, List<Person>> biFunction = (ageOfPerson, personList) -> {
-           return personList.stream().filter(person -> person.getAge() > ageOfPerson).collect(Collectors.toList());
-        };
+        BiFunction<Integer, List<Person>, List<Person>> biFunction = (ageOfPerson, personList) ->
+           personList.stream().filter(person -> person.getAge() > ageOfPerson).collect(Collectors.toList());
 
         return biFunction.apply(age, persons);
     }
