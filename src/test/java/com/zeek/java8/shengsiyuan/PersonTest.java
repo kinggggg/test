@@ -22,6 +22,11 @@ public class PersonTest {
         personResult = PersonTest.getPersonsByAge(23, persons);
         personResult.forEach(person -> System.out.println(person.getUsername()));
 
+        System.out.println("===========================");
+
+        personResult = PersonTest.getPersonsByAge2(23, persons, (age, personList) -> personList.stream().filter(person -> person.getAge() > 23).collect(Collectors.toList()));
+        personResult.forEach(person -> System.out.println(person.getUsername()));
+
 
     }
 
@@ -41,8 +46,12 @@ public class PersonTest {
          * 即，第一个泛型类型为Integer（第一个输入参数），第二个泛型类型为List<Person>（第二个输入参数），第三个泛型类型为List<Person>(为返回执行类型)
          */
         BiFunction<Integer, List<Person>, List<Person>> biFunction = (ageOfPerson, personList) ->
-           personList.stream().filter(person -> person.getAge() > ageOfPerson).collect(Collectors.toList());
+                personList.stream().filter(person -> person.getAge() > ageOfPerson).collect(Collectors.toList());
 
+        return biFunction.apply(age, persons);
+    }
+
+    public static List<Person> getPersonsByAge2(int age, List<Person> persons, BiFunction<Integer, List<Person>, List<Person>> biFunction) {
         return biFunction.apply(age, persons);
     }
 }
