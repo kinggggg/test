@@ -32,6 +32,13 @@ public class BinaryOperatorTest {
         System.out.println(min);
         System.out.println("==============");
 
+        min = BinaryOperator.minBy((Integer a, Integer b) -> {
+
+            return a -b ;
+        }).apply(1, 2);
+        System.out.println(min);
+        System.out.println("==============");
+
 
         System.out.println("==============");
 
