@@ -20,7 +20,7 @@ public class OptionalTest2 {
         employee2.setName("lisi");
 
         Company company = new Company();
-        Company company = null;
+//        Company company = null;
         company.setName("company1");
 
         List<Employee> employees = Arrays.asList(employee, employee2);
