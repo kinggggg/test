@@ -1,7 +1,9 @@
 package com.zeek.java8.shengsiyuan.methodreference;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.function.Supplier;
 
 /**
  * @ClassName MethodReferenceTest
@@ -29,15 +31,21 @@ public class MethodReferenceTest {
 //        students.sort(Student::compareStudentByScore);
 //        students.forEach(student -> System.out.println(student.getScore()));
 
-        StudentComparator studentComparator = new StudentComparator();
+//        StudentComparator studentComparator = new StudentComparator();
 //        students.sort((studentParam1, studentParam2) -> studentComparator.compareStudentByscore(studentParam1, studentParam2));
 //        students.forEach(student -> System.out.println(student.getScore()));
 
 //        students.sort(studentComparator::compareStudentByscore);
 //        students.forEach(student -> System.out.println(student.getScore()));
 
-        students.sort(Student::compareByScore);
-        students.forEach(student -> System.out.println(student.getScore()));
+//        students.sort(Student::compareByScore);
+//        students.forEach(student -> System.out.println(student.getScore()));
+
+        List<String> cities = Arrays.asList("qingdao", "chongqing", "tianjin", "beijing");
+//        Collections.sort(cities, (city1, city2) -> city1.compareTo(city2));
+//        cities.forEach(city -> System.out.println(city));
+        Collections.sort(cities, String::compareToIgnoreCase);
+        cities.forEach(System.out::println);
 
     }
 }
