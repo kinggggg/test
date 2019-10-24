@@ -42,6 +42,10 @@ public class Student {
         return student1.getName().compareTo(student2.getName());
     }
 
+    public int compareByScore(Student student) {
+        return this.score - student.getScore();
+    }
+
 
 
 }

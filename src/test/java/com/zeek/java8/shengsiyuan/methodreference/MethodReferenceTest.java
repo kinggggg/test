@@ -26,9 +26,18 @@ public class MethodReferenceTest {
 //        students.forEach(student -> System.out.println(student.getScore()));
 
         // 静态方法引用
-        students.sort(Student::compareStudentByScore);
-        students.forEach(student -> System.out.println(student.getScore()));
+//        students.sort(Student::compareStudentByScore);
+//        students.forEach(student -> System.out.println(student.getScore()));
 
+        StudentComparator studentComparator = new StudentComparator();
+//        students.sort((studentParam1, studentParam2) -> studentComparator.compareStudentByscore(studentParam1, studentParam2));
+//        students.forEach(student -> System.out.println(student.getScore()));
+
+//        students.sort(studentComparator::compareStudentByscore);
+//        students.forEach(student -> System.out.println(student.getScore()));
+
+        students.sort(Student::compareByScore);
+        students.forEach(student -> System.out.println(student.getScore()));
 
     }
 }
