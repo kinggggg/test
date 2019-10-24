@@ -3,6 +3,7 @@ package com.zeek.java8.shengsiyuan.methodreference;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 /**
@@ -13,6 +14,14 @@ import java.util.function.Supplier;
  * @Version v1.0
  **/
 public class MethodReferenceTest {
+
+    public String getString(Supplier<String> supplier) {
+        return supplier.get() + "test";
+    }
+
+    public String getString2(String str, Function<String, String> function) {
+        return function.apply(str);
+    }
 
     public static void main(String[] args) {
 
@@ -46,6 +55,13 @@ public class MethodReferenceTest {
 //        cities.forEach(city -> System.out.println(city));
         Collections.sort(cities, String::compareToIgnoreCase);
         cities.forEach(System.out::println);
+
+        MethodReferenceTest methodReferenceTest = new MethodReferenceTest();
+        // 其实举的这个例子不是很好。因为Supplier中的T get();方法不接受参数只有返回值；
+        // 而字符串空参数的构造方法new String()比较特殊，也是没有参数，但是其有返回值，返回值就是为新new出来的字符串
+        System.out.println(methodReferenceTest.getString(String::new));
+
+        System.out.println(methodReferenceTest.getString2("hello", String::new));
 
     }
 }
