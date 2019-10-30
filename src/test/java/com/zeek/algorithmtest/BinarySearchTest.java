@@ -42,6 +42,7 @@ public class BinarySearchTest {
 
     }
 
+    // 二分查找递归形式
     public static int search(int[] array, int low, int high, int target) {
 
         if (low > high) {
