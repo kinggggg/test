@@ -21,24 +21,19 @@ public class BinarySearchTest {
 
     /**
      * @Description: 二分查找递归形式
-     *
-     *
-     *
+     * <p>
+     * <p>
+     * <p>
      * search(int[] array, int start, int end, int target)
-     *
-     *
-     *
-     * @Author: liweibo 
+     * @Author: liweibo
      * @Date: 2019/10/28 4:16 PM
      * @Version: v1.0
-     *
      * @Param null
-     * 
      * @Return:
      **/
     public static int binarySearchRecursion(int[] array, int n, int target) {
 
-        return search(array, 0, n-1, target);
+        return search(array, 0, n - 1, target);
 
     }
 
@@ -53,17 +48,16 @@ public class BinarySearchTest {
 
         if (array[mid] == target) {
             return mid;
-        }else if(array[mid] < target) {
+        } else if (array[mid] < target) {
             low = mid + 1;
             return search(array, low, high, target);
-        }else {
+        } else {
             high = mid - 1;
             return search(array, low, high, target);
         }
 
     }
 
-    
 
     // 二分查找非递归形式
     public static int binarySearch(int[] array, int n, int target) {
@@ -83,13 +77,76 @@ public class BinarySearchTest {
 
             if (array[mid] == target) {
                 return mid;
-            }else if (array[mid] < target) {
+            } else if (array[mid] < target) {
                 low = mid + 1;
-            }else {
-                high = mid -1;
+            } else {
+                high = mid - 1;
             }
         }
 
+        return -1;
+    }
+
+
+    /**
+     * @Description: 前提：
+     * 数组有序排列，数组中有重复的值
+     * <p>
+     * 需求：
+     * 查找最后一个小于等于给定的值的元素的位置
+     * @Author: liweibo
+     * @Date: 2019/10/30 10:35 AM
+     * @Version: v1.0
+     * @Param a
+     * @Param n
+     * @Param value
+     * @Return: int
+     **/
+    public int bsearch8(int[] a, int n, int value) {
+
+        int low = 0;
+        int high = n - 1;
+
+        while (low <= high) {
+            int mid = low + ((high - low) >> 1);
+            if (a[mid] <= value) {
+                if (mid == n - 1 || a[mid + 1] > value) {
+                    return mid;
+                } else {
+                    low = mid + 1;
+                }
+            } else {
+                high = mid - 1;
+            }
+        }
+
+        return -1;
+
+    }
+
+
+    /**
+     * @Description: 前提：
+     * 数组有序排列，数组中有重复的值
+     * <p>
+     * 需求：
+     * 查找第一个大于等于给定的值的元素的位置
+     * @Author: liweibo
+     * @Date: 2019/10/30 10:32 AM
+     * @Version: v1.0
+     **/
+    public int bsearch7(int[] a, int n, int value) {
+        int low = 0;
+        int high = n - 1;
+        while (low <= high) {
+            int mid = low + ((high - low) >> 1);
+            if (a[mid] > value) {
+                high = mid - 1;
+            } else {
+                if ((mid == n - 1) || (a[mid + 1] > value)) return mid;
+                else low = mid + 1;
+            }
+        }
         return -1;
     }
 }
