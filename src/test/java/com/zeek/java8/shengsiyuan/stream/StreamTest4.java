@@ -37,8 +37,9 @@ public class StreamTest4 {
 //        Collection<String> hashSet = stream.collect(Collectors.toCollection(HashSet::new));
 //        hashSet.forEach(System.out::println);
 
-        String joining = stream.collect(Collectors.joining());
-        System.out.println(joining);
+//        String joining = stream.collect(Collectors.joining());
+//        System.out.println(joining);
+
 
 
     }
