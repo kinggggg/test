@@ -13,6 +13,20 @@ import java.util.List;
 public class StringTest {
 
     @Test
+    public void stringPoolTest() {
+
+        String str1 = "abc" ;
+        String str2 = "abc" ;
+
+        System.out.println(str1 == str2);
+
+        String str3 = new String("def") ;
+        String str4 = new String("def") ;
+        System.out.println(str3 == str4);
+
+    }
+
+    @Test
     public void test() {
 
         String str = "用户id,sessionid,自定义1,自定义2,昵称,注册省,注册市,最后登录时间,手机号,注册ip,登录ip,注册ip数,登录ip数,登录sessionid数,用户黑名单,sessionid黑名单,手机号黑名单,ip流量黑名单,手机号蚁盾评分,ip蚁盾评分,同盾手机号&ip评分" ;
