@@ -12,6 +12,20 @@ import org.junit.Test;
 public class InterviewTest {
 
     @Test
+    public void switchTest() {
+
+        // switch不支持long类型
+//        long l = 99;
+//        switch (l) {
+//            case 10:
+//                break;
+//        }
+
+
+
+    }
+
+    @Test
     public void autoBoxTest() {
 
         // 可以直接定义short
@@ -19,6 +33,7 @@ public class InterviewTest {
         // 当+1时，JVM首先会将s转换成int然后+1，此时的结果为int，int的精度比short精度高，不能将int直接赋值给short
 //        s = s + 1;
 
+        // 但是可以通过下面的方式赋值
         s++;
         s += 1;
         System.out.println(s);
