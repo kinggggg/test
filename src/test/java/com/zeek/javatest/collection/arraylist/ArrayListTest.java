@@ -10,6 +10,25 @@ import java.util.*;
  */
 public class ArrayListTest {
 
+
+    @Test
+    public void sizeTest() throws Exception {
+
+        List<String> list = new ArrayList<>(20);
+        list.add("a");
+
+        System.out.println(list.size());
+
+        String[] strs = {"a", "b"};
+        System.out.println(strs.length);
+
+        String[] strs2 = new String[9];
+        strs2[0] = "a" ;
+        strs2[1] = "b" ;
+        System.out.println(strs2.length);
+
+    }
+
     /**
      * @Description: ArrayList面试
      * @Author: liweibo
