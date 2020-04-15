@@ -1,125 +1,258 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.zeek</groupId>
-  <artifactId>test</artifactId>
-  <packaging>war</packaging>
-  <version>1.0-SNAPSHOT</version>
-  <name>test Maven Webapp</name>
-  <url>http://maven.apache.org</url>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.zeek</groupId>
+    <artifactId>test</artifactId>
+    <packaging>war</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <name>test Maven Webapp</name>
+    <url>http://maven.apache.org</url>
 
-  <properties>
-    <skipTests>true</skipTests>
-  </properties>
+    <properties>
+        <skipTests>true</skipTests>
+        <kotlin.version>1.2.71</kotlin.version>
+    </properties>
 
-  <dependencies>
+    <dependencies>
 
-    <!-- Test -->
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.11</version>
-      <scope>test</scope>
-    </dependency>
+        <!-- https://mvnrepository.com/artifact/com.typesafe.akka/akka-actor -->
+        <dependency>
+            <groupId>com.typesafe.akka</groupId>
+            <artifactId>akka-actor_2.13</artifactId>
+            <version>2.5.25</version>
+        </dependency>
 
-    <!-- log -->
-    <dependency>
-      <groupId>log4j</groupId>
-      <artifactId>log4j</artifactId>
-      <version>1.2.17</version>
-    </dependency>
+        <!--freemarker模板引擎依赖开始-->
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.28</version>
+        </dependency>
+        <!--freemarker模板引擎依赖结束-->
 
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-log4j12</artifactId>
-      <version>1.7.21</version>
-    </dependency>
+        <!-- https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib -->
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib-jdk8</artifactId>
+            <version>${kotlin.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-runtime</artifactId>
+            <version>${kotlin.version}</version>
+        </dependency>
 
 
+        <!-- MyBatis Generator - a code generator for MyBatis and iBatis. -->
+        <dependency>
+            <groupId>org.mybatis.generator</groupId>
+            <artifactId>mybatis-generator-core</artifactId>
+            <version>1.3.5</version>
+        </dependency>
 
-    <!-- mongodb java client  -->
-    <dependency>
-      <groupId>org.mongodb.morphia</groupId>
-      <artifactId>morphia</artifactId>
-      <version>1.1.0</version>
-    </dependency>
+        <!--mybatis依赖-->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.4.0</version>
+        </dependency>
 
-    <!-- spring data mongodb -->
-    <dependency>
-      <groupId>org.springframework.data</groupId>
-      <artifactId>spring-data-mongodb</artifactId>
-      <version>1.9.1.RELEASE</version>
-    </dependency>
+        <!-- mysql JDBC驱动 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.34</version>
+        </dependency>
 
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-test</artifactId>
-      <version>4.2.2.RELEASE</version>
-      <scope>test</scope>
-    </dependency>
+        <!--junit-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+        </dependency>
 
-    <!--<dependency>
-      <groupId>org.mongodb</groupId>
-      <artifactId>mongo-java-driver</artifactId>
-      <version>3.2.2</version>
-    </dependency>-->
+        <!--log4j-->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.7</version>
+        </dependency>
 
-    <!-- apache kafka -->
-    <dependency>
-      <groupId>org.apache.kafka</groupId>
-      <artifactId>kafka_2.10</artifactId>
-      <version>0.8.2.1</version>
-    </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.25</version>
+        </dependency>
 
-    <!-- kafka java client-->
-    <dependency>
-      <groupId>org.apache.kafka</groupId>
-      <artifactId>kafka-clients</artifactId>
-      <version>0.8.2.1</version>
-    </dependency>
+        <!--gson-->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.0</version>
+        </dependency>
 
-    <!-- gson -->
-    <dependency>
-      <groupId>com.google.code.gson</groupId>
-      <artifactId>gson</artifactId>
-      <version>2.3.1</version>
-    </dependency>
+        <!--quartz依赖-->
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <version>2.2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz-jobs</artifactId>
+            <version>2.2.1</version>
+        </dependency>
 
-    <!-- quartz定时任务执框架 -->
-    <dependency>
-      <groupId>org.quartz-scheduler</groupId>
-      <artifactId>quartz</artifactId>
-      <version>2.2.1</version>
-    </dependency>
-    <dependency>
-      <groupId>org.quartz-scheduler</groupId>
-      <artifactId>quartz-jobs</artifactId>
-      <version>2.2.1</version>
-    </dependency>
+        <!-- Spring Core -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>4.2.6.RELEASE</version>
+        </dependency>
 
-  </dependencies>
+        <!-- Spring TestContext Framework -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>4.2.6.RELEASE</version>
+        </dependency>
 
-  <build>
-    <finalName>test</finalName>
+        <!-- Spring TestContext Framework -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>4.2.6.RELEASE</version>
+        </dependency>
 
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
+        <!-- Spring TestContext Framework -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>4.2.3.RELEASE</version>
+        </dependency>
 
-  <repositories>
-    <repository>
-      <id>spring-milestone</id>
-      <name>Spring Maven MILESTONE Repository</name>
-      <url>http://repo.spring.io/libs-milestone</url>
-    </repository>
-  </repositories>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.appengine</groupId>
+            <artifactId>appengine-api-1.0-sdk</artifactId>
+            <version>1.8.3</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--kafka相关-->
+        <!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients -->
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-clients</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.6</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.18</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-test</artifactId>
+            <version>${kotlin.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.hive/hive-jdbc -->
+        <dependency>
+            <groupId>org.apache.hive</groupId>
+            <artifactId>hive-jdbc</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+
+
+    </dependencies>
+
+    <build>
+        <finalName>test</finalName>
+
+        <plugins>
+
+            <!-- mybatis 代码自动生成 -->
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.3.0</version>
+            </plugin>
+            <plugin>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-maven-plugin</artifactId>
+                <version>${kotlin.version}</version>
+                <executions>
+                    <execution>
+                        <id>compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>test-compile</id>
+                        <phase>test-compile</phase>
+                        <goals>
+                            <goal>test-compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <jvmTarget>1.8</jvmTarget>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>testCompile</id>
+                        <phase>test-compile</phase>
+                        <goals>
+                            <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>spring-milestone</id>
+            <name>Spring Maven MILESTONE Repository</name>
+            <url>http://repo.spring.io/libs-milestone</url>
+        </repository>
+    </repositories>
 
 </project>
