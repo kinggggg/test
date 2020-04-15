@@ -13,6 +13,14 @@ import java.util.List;
 public class StringTest {
 
     @Test
+    public void arrayTest() {
+
+        String[] str = ".".split("\\.");
+        System.out.println(str[0]);
+
+    }
+
+    @Test
     public void stringPoolTest() {
 
         String str1 = "abc" ;
