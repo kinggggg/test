@@ -47,7 +47,7 @@ public class SumSwapLcci {
     }
 
     public static int[] findSwapValues(int[] array1, int[] array2) {
-        int[] result = new int[2];
+        int[] result = new int[0];
 
         int sum1 = 0;
         for (int i = 0; i < array1.length; i++) {
@@ -61,9 +61,11 @@ public class SumSwapLcci {
 
         for (int m = 0; m < array1.length; m++) {
             for (int n = 0; n < array2.length; n++) {
-                if ((sum1 - (array1[m] - array2[n])) == (sum2 - (array1[m] - array2[n]))) {
+                if ((sum1 - (array1[m] - array2[n])) == (sum2 - (array2[n] - array1[m]))) {
+                    result = new int[2];
                     result[0] = array1[m];
                     result[1] = array2[n];
+                    break;
                 }
             }
         }
