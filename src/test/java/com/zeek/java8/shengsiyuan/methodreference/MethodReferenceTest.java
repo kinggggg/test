@@ -1,10 +1,12 @@
 package com.zeek.java8.shengsiyuan.methodreference;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import com.google.gson.Gson;
+
+import java.util.*;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @ClassName MethodReferenceTest
@@ -63,5 +65,21 @@ public class MethodReferenceTest {
 
         System.out.println(methodReferenceTest.getString2("hello", String::new));
 
+        Student student5 = new Student("name1", 11, true);
+        Student student6 = new Student("name1", 11, false);
+        List<Student> collect = Stream.of(student5, student6).filter(Student::isSex).collect(Collectors.toList());
+        System.out.println(collect);
+
+        Random random = new Random();
+        int i = random.nextInt(1);
+        System.out.println(i);
+        OptionalInt first = random.ints(8, 11).findFirst();
+        System.out.println(first.getAsInt());
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("name", new Object());
+        map.put("name1", new Object());
+        System.out.println(map);
+        System.out.println(new Gson().toJson(map));
     }
 }

@@ -13,9 +13,25 @@ public class Student {
 
     int score;
 
+    boolean sex;
+
     public Student(String name, int score) {
         this.name = name;
         this.score = score;
+    }
+
+    public Student(String name, int score, boolean sex) {
+        this.name = name;
+        this.score = score;
+        this.sex = sex;
+    }
+
+    public boolean isSex() {
+        return sex;
+    }
+
+    public void setSex(boolean sex) {
+        this.sex = sex;
     }
 
     public String getName() {
