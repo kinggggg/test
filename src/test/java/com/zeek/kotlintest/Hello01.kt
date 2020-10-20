@@ -375,6 +375,7 @@ fun main(args: Array<String>) {
     var treeSet = sortedSetOf("Java", "Kotlin", "Go")
     println("创建TreeSet")
     println(treeSet)
+    println("sortedSetOf创建的set集合类型为:${treeSet.javaClass}");
 
     println("===========================5.3.2 使用Set的方法==========================")
     var set2 = setOf("Java", "Kotlin", "Go")
@@ -386,6 +387,11 @@ fun main(args: Array<String>) {
         println(lan)
     }
     println("使用forEach遍历集合")
+    println("第一种形式: 通过lambda")
+    set2.forEach({ele -> println(ele)})
+    println("第二种形式：省略方法的小括号");
+    set2.forEach {ele -> println(ele)}
+    println("第三种形式：直接省略形参");
     set2.forEach { println(it) }
 
     println("===========================5.4 List集合==========================")
