@@ -272,6 +272,7 @@ fun main(args: Array<String>) {
     println("创建包含指定元素的数组，相当于java数组的静态初始化")
     var arr1 = arrayOf("Java", "Kotlin") //kotlin自动推断出类型
     println(arr1)
+    println("arrayOf创建的array类型为${arr1.javaClass}")
     //创建指定长度，元素为null的数组
     var arr2 = arrayOfNulls<Double>(5) //必须指定类型
     for(e in arr2) {
@@ -293,6 +294,7 @@ fun main(args: Array<String>) {
     println("创建IntArray")
     val intArrayOf = intArrayOf(1, 2, 3)
     println(Arrays.toString(intArrayOf))
+    println("intArrayOf创建的array类型为${intArrayOf.javaClass}")
 
     var intArray2 = IntArray(5, {it * it})
     println(Arrays.toString(intArray2))
@@ -368,14 +370,17 @@ fun main(args: Array<String>) {
     var hashSet = hashSetOf("Java", "Kotlin", "Go")
     println("不保证元素的顺序")
     println(hashSet)
+    println("hashSetOf创建的set实际类型为${hashSet.javaClass}")
 
     var linkedHashSet = linkedSetOf("Java", "Kotlin", "Go")
     println("集合元素按照添加顺序")
     println(linkedHashSet)
+    println("linkedSetOf创建的set实际类型为${linkedHashSet.javaClass}")
 
     var treeSet = sortedSetOf("Java", "Kotlin", "Go")
     println("创建TreeSet${treeSet.javaClass}")
     println(treeSet)
+    println("sortedSetOf创建的set集合类型为:${treeSet.javaClass}");
 
     println("===========================5.3.2 使用Set的方法==========================")
     var set2 = setOf("Java", "Kotlin", "Go")
@@ -387,6 +392,11 @@ fun main(args: Array<String>) {
         println(lan)
     }
     println("使用forEach遍历集合")
+    println("第一种形式: 通过lambda")
+    set2.forEach({ele -> println(ele)})
+    println("第二种形式：省略方法的小括号");
+    set2.forEach {ele -> println(ele)}
+    println("第三种形式：直接省略形参");
     set2.forEach { println(it) }
 
     println("===========================5.4 List集合==========================")
@@ -419,15 +429,17 @@ fun main(args: Array<String>) {
     println("不保证顺序")
     var hashMap = hashMapOf("Java" to 86, "Kotlin" to 92, "Go" to 93)
     println(hashMap)
+    println("hashMapOf创建的集合实际类型为:${hashMap.javaClass}") // java.util.HashMap
     println("创建LinkedHashMap")
     println("保证顺序")
     var linkedHashMap = linkedMapOf("Java" to 86, "Kotlin" to 92, "Go" to 93)
     println(linkedHashMap)
+    println("linkedMapOf创建的集合实际类型为:${linkedHashMap.javaClass}") // java.util.LinkedHashMap
     println("创建TreeMap")
     println("保证顺序,key由小到大排列")
     var treeMap = sortedMapOf("Java" to 86, "Kotlin" to 92, "Go" to 93)
     println(treeMap)
-
+    println("sortedMapOf创建的集合实际类型为:${treeMap.javaClass}") // java.util.TreeMap
     println("===========================遍历map==========================")
     var map2 = mapOf("Java" to 86, "Kotlin" to 92, "Go" to 93)
     println("通过entry进行遍历")
