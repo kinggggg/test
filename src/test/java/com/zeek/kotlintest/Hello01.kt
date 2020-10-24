@@ -326,6 +326,7 @@ fun main(args: Array<String>) {
     println("===========================5.1.5 数组常用方法==========================")
     var intArray3 = arrayOf(1, 2, 3)
     println(intArray3.any({it > 1}))
+    println("intArray3.any({it > 1})")
 
     var nullVal : String? = "abc";
     println(nullVal?.length) //?.表明若nullVal的值为null的话，直接返回null，否则返回nullVal的length属性的值
@@ -377,7 +378,7 @@ fun main(args: Array<String>) {
     println("linkedSetOf创建的set实际类型为${linkedHashSet.javaClass}")
 
     var treeSet = sortedSetOf("Java", "Kotlin", "Go")
-    println("创建TreeSet")
+    println("创建TreeSet${treeSet.javaClass}")
     println(treeSet)
     println("sortedSetOf创建的set集合类型为:${treeSet.javaClass}");
 
