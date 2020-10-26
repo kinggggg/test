@@ -487,8 +487,16 @@ fun main(args: Array<String>) {
 
     println("===========================个数可变形参：vararg修饰==========================")
     test(2, "疯狂Kotlin", "Go语言")
+    // 这样定义可变形参的函数可以编译通过，但是无法这样调用
+//    testParam("a", "b", "c", "d")
+}
 
+fun testParam(vararg names: String, username: String) {
+    for (name in names) {
+        println(name)
+    }
 
+    println(username)
 }
 
 /**
