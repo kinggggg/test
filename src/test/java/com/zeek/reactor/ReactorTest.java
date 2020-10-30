@@ -8,6 +8,7 @@ import reactor.core.scheduler.Scheduler;
 import reactor.core.scheduler.Schedulers;
 import reactor.test.StepVerifier;
 
+import javax.xml.bind.SchemaOutputResolver;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
@@ -117,6 +118,8 @@ public class ReactorTest {
         Flux<String> stringFlux = Flux.just("a", "b", "c")
                                       .flatMap(n -> Mono.just(n).log()
                                                         .map(p -> {
+                                                            // 通过输出线程的名称可以看到在不同的线程中执行
+                                                            System.out.println(Thread.currentThread().getName());
                                                            return p + p.toUpperCase();})
                                                         .subscribeOn(Schedulers.parallel())
                                        );
@@ -127,6 +130,33 @@ public class ReactorTest {
                 .expectNextMatches(p -> stringList.contains(p))
                 .expectNextMatches(p -> stringList.contains(p))
                 .verifyComplete();
+    }
+
+    @Test
+    public void buffer() {
+        Flux<List<String>> bufferedFlux = Flux.just("a", "b", "c", "d", "e")
+                .buffer(3);
+        StepVerifier.create(bufferedFlux)
+                .expectNext(Arrays.asList("a", "b", "c"))
+                .expectNext(Arrays.asList("d", "e"))
+                .verifyComplete();
+    }
+
+    @Test
+    public void buffer2() {
+        Flux<List<String>> bufferedFlux = Flux.just("a", "b", "c", "d", "e")
+                .buffer(3);
+                bufferedFlux.flatMap(x ->
+                        Flux.fromIterable(x)
+                                .map(y -> {
+                                    System.out.println(Thread.currentThread().getName());
+                                    System.out.println(y);
+                                    return y.toUpperCase();
+                                })
+                                .subscribeOn(Schedulers.parallel())
+                                .log())
+                        .subscribe();
+
     }
 
     @Test
