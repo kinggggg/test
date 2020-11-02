@@ -4,11 +4,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Scheduler;
+import reactor.core.scheduler.Schedulers;
 import reactor.test.StepVerifier;
 import reactor.util.function.Tuple2;
 
+import javax.xml.bind.SchemaOutputResolver;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
@@ -180,6 +184,75 @@ public class ReactorTest {
     }
 
     @Test
+    public void flatMap() {
+//        Flux<Player> playerFlux = Flux.just("a AA", "b BB", "c CC")
+//                .flatMap(n -> Mono.just(n)
+//                        .map(p -> {
+//                            String[] split = p.split("\\s");
+//                            return new Player(split[0], split[1]);
+//                        })
+//                        .subscribeOn(Schedulers.parallel())
+//                );
+
+        List<Player> playerList = Arrays.asList(new Player("a", "AA"), new Player("b", "BB"), new Player("c", "CC"));
+        // 下面输出false，因此下面的测试会失败
+        System.out.println(playerList.contains(new Player("a", "AA")));
+//        StepVerifier.create(playerFlux)
+//                .expectNextMatches(p -> playerList.contains(p))
+//                .expectNextMatches(p -> playerList.contains(p))
+//                .expectNextMatches(p -> playerList.contains(p))
+//                .verifyComplete();
+
+
+    }
+
+    @Test
+    public void flatMap2() {
+        Flux<String> stringFlux = Flux.just("a", "b", "c")
+                                      .flatMap(n -> Mono.just(n).log()
+                                                        .map(p -> {
+                                                            // 通过输出线程的名称可以看到在不同的线程中执行
+                                                            System.out.println(Thread.currentThread().getName());
+                                                           return p + p.toUpperCase();})
+                                                        .subscribeOn(Schedulers.parallel())
+                                       );
+
+        List<String> stringList = Arrays.asList("aA", "bB", "cC");
+        StepVerifier.create(stringFlux)
+                .expectNextMatches(p -> stringList.contains(p))
+                .expectNextMatches(p -> stringList.contains(p))
+                .expectNextMatches(p -> stringList.contains(p))
+                .verifyComplete();
+    }
+
+    @Test
+    public void buffer() {
+        Flux<List<String>> bufferedFlux = Flux.just("a", "b", "c", "d", "e")
+                .buffer(3);
+        StepVerifier.create(bufferedFlux)
+                .expectNext(Arrays.asList("a", "b", "c"))
+                .expectNext(Arrays.asList("d", "e"))
+                .verifyComplete();
+    }
+
+    @Test
+    public void buffer2() {
+        Flux<List<String>> bufferedFlux = Flux.just("a", "b", "c", "d", "e")
+                .buffer(3);
+                bufferedFlux.flatMap(x ->
+                        Flux.fromIterable(x)
+                                .map(y -> {
+                                    System.out.println(Thread.currentThread().getName());
+                                    System.out.println(y);
+                                    return y.toUpperCase();
+                                })
+                                .subscribeOn(Schedulers.parallel())
+                                .log())
+                        .subscribe();
+
+    }
+
+    @Test
     public void collectMap() {
         System.out.println("collectMap");
         Flux<String> animalFlux = Flux.just("aardvark", "elephant", "koala", "eagle", "kangaroo");
@@ -197,3 +270,4 @@ public class ReactorTest {
                 .verifyComplete();
     }
 }
+

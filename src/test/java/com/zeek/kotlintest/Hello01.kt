@@ -487,8 +487,43 @@ fun main(args: Array<String>) {
 
     println("===========================个数可变形参：vararg修饰==========================")
     test(2, "疯狂Kotlin", "Go语言")
+    // 这样定义可变形参的函数可以编译通过，但是无法这样调用
+//    testParam("a", "b", "c", "d")
 
+    var returnFun = returnFun("add")
+    println(returnFun(1, 2))
+    returnFun = returnFun("sub")
+    println(returnFun(1, 2))
 
+}
+
+fun returnFun(name: String): (i: Int, j: Int) -> Int {
+
+    fun add(i: Int, j: Int): Int {
+        return i + j
+    }
+
+    fun sub(i: Int, j: Int): Int {
+        return i - j
+    }
+
+    when (name) {
+        "add" -> return ::add
+        "sub" -> return ::sub
+        else -> return ::add
+    }
+
+}
+
+/**
+ * 可变参数
+ */
+fun testParam(vararg names: String, username: String) {
+    for (name in names) {
+        println(name)
+    }
+
+    println(username)
 }
 
 /**

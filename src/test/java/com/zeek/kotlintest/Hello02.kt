@@ -8,6 +8,11 @@ fun main(args: Array<String>) {
     println("定义函数类型的变量")
     var myfun : (Int, Int) -> Int
     var test : (String)
+    // 只能用it不能用n
+    var square: (Int) -> Int = { it * it }
+    println("调用square函数${square(2)}")
+    square = {n -> n * n}
+    println("调用square函数${square(2)}")
 
     fun area(width : Int, height : Int) : Int {
         return width * height;
@@ -108,7 +113,3 @@ fun plus(one : Int, two : Int) : Int {
 fun minus(one : Int, two : Int) : Int {
     return one - two;
 }
-
-
-
-
