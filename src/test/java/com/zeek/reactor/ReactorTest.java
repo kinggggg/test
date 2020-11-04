@@ -4,12 +4,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import reactor.core.scheduler.Scheduler;
 import reactor.core.scheduler.Schedulers;
 import reactor.test.StepVerifier;
+import reactor.util.function.Tuple2;
 
-import javax.xml.bind.SchemaOutputResolver;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -67,9 +67,102 @@ public class ReactorTest {
     }
 
     @Test
+    public void createAFlux_fromIterable() {
+        List<String> fruitList = new ArrayList<>();
+        fruitList.add("Apple");
+        fruitList.add("Orange");
+        fruitList.add("Grape");
+        fruitList.add("Banana");
+        fruitList.add("Strawberry");
+        Flux<String> fruitFlux = Flux.fromIterable(fruitList);
+    }
+
+    @Test
     public void createAFlux_fromStream() {
         Stream<String> fruitStream = Stream.of("Apple", "Orange", "Grape", "Banana", "Strawberry");
         Flux<String> fruitFlux = Flux.fromStream(fruitStream);
+    }
+
+    @Test
+    public void createAFlux_range() {
+        Flux<Integer> intervalFlux = Flux.range(1, 5);
+        StepVerifier.create(intervalFlux)
+                .expectNext(1)
+                .expectNext(2)
+                .expectNext(3)
+                .expectNext(4)
+                .expectNext(5)
+                .verifyComplete();
+    }
+
+    @Test
+    public void createAFlux_interval() {
+        Flux<Long> intervalFlux = Flux.interval(Duration.ofSeconds(1))
+                .take(5);
+        StepVerifier.create(intervalFlux)
+                .expectNext(0l)
+                .expectNext(1l)
+                .expectNext(2l)
+                .expectNext(3l)
+                .expectNext(4l)
+                .verifyComplete();
+    }
+
+    @Test
+    public void mergeFluxes() {
+        Flux<String> characterFlux = Flux.just("Ga", "Ko", "Ba")
+                .delayElements(Duration.ofMillis(500));
+        Flux<String> foodFlux = Flux.just("La", "Lo", "Ap")
+                .delaySubscription(Duration.ofMillis(250))
+                .delayElements(Duration.ofMillis(500));
+        Flux<String> mergedFlux = characterFlux.mergeWith(foodFlux);
+        StepVerifier.create(mergedFlux)
+                .expectNext("Ga")
+                .expectNext("La")
+                .expectNext("Ko")
+                .expectNext("Lo")
+                .expectNext("Ba")
+                .expectNext("Ap")
+                .verifyComplete();
+
+    }
+
+    @Test
+    public void zipFluxes() {
+        Flux<String> characterFlux = Flux.just("Ga", "Ko", "Ba")
+                .delayElements(Duration.ofMillis(500));
+        Flux<String> foodFlux = Flux.just("La", "Lo", "Ap")
+                .delaySubscription(Duration.ofMillis(250))
+                .delayElements(Duration.ofMillis(500));
+        Flux<Tuple2<String, String>> zippedFlux = characterFlux.zipWith(foodFlux);
+        StepVerifier.create(zippedFlux)
+                .expectNextMatches(p ->
+                        p.getT1().equals("Ga") &&
+                                p.getT2().equals("La"))
+                .expectNextMatches(p ->
+                        p.getT1().equals("Ko") &&
+                                p.getT2().equals("Lo"))
+                .expectNextMatches(p ->
+                        p.getT1().equals("Ba") &&
+                                p.getT2().equals("Ap"))
+                .verifyComplete();
+
+    }
+
+    @Test
+    public void zipFluxToObject() {
+        Flux<String> characterFlux = Flux.just("Ga", "Ko", "Ba")
+                .delayElements(Duration.ofMillis(500));
+        Flux<String> foodFlux = Flux.just("La", "Lo", "Ap")
+                .delaySubscription(Duration.ofMillis(250))
+                .delayElements(Duration.ofMillis(500));
+        Flux<String> zippedFlux = Flux.zip(characterFlux, foodFlux, (c, f) -> c + " eats " + f);
+        StepVerifier.create(zippedFlux)
+                .expectNext("Ga eats La")
+                .expectNext("Ko eats Lo")
+                .expectNext("Ba eats Ap")
+                .verifyComplete();
+
     }
 
     @Test
@@ -86,8 +179,6 @@ public class ReactorTest {
                 .expectNext("2")
                 .expectNext("3")
                 .verifyComplete();
-
-
     }
 
     @Test
@@ -116,13 +207,14 @@ public class ReactorTest {
     @Test
     public void flatMap2() {
         Flux<String> stringFlux = Flux.just("a", "b", "c")
-                                      .flatMap(n -> Mono.just(n).log()
-                                                        .map(p -> {
-                                                            // 通过输出线程的名称可以看到在不同的线程中执行
-                                                            System.out.println(Thread.currentThread().getName());
-                                                           return p + p.toUpperCase();})
-                                                        .subscribeOn(Schedulers.parallel())
-                                       );
+                .flatMap(n -> Mono.just(n).log()
+                        .map(p -> {
+                            // 通过输出线程的名称可以看到在不同的线程中执行
+                            System.out.println(Thread.currentThread().getName());
+                            return p + p.toUpperCase();
+                        })
+                        .subscribeOn(Schedulers.parallel())
+                );
 
         List<String> stringList = Arrays.asList("aA", "bB", "cC");
         StepVerifier.create(stringFlux)
@@ -146,16 +238,16 @@ public class ReactorTest {
     public void buffer2() {
         Flux<List<String>> bufferedFlux = Flux.just("a", "b", "c", "d", "e")
                 .buffer(3);
-                bufferedFlux.flatMap(x ->
-                        Flux.fromIterable(x)
-                                .map(y -> {
-                                    System.out.println(Thread.currentThread().getName());
-                                    System.out.println(y);
-                                    return y.toUpperCase();
-                                })
-                                .subscribeOn(Schedulers.parallel())
-                                .log())
-                        .subscribe();
+        bufferedFlux.flatMap(x ->
+                Flux.fromIterable(x)
+                        .map(y -> {
+                            System.out.println(Thread.currentThread().getName());
+                            System.out.println(y);
+                            return y.toUpperCase();
+                        })
+                        .subscribeOn(Schedulers.parallel())
+                        .log())
+                .subscribe();
 
     }
 
