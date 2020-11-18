@@ -8,8 +8,12 @@ fun main(args: Array<String>) {
     println("定义函数类型的变量")
     var myfun : (Int, Int) -> Int
     var test : (String)
+    var multiVar : (Int, Int) -> Int
+    multiVar = ::multi;
+
     // 只能用it不能用n
     var square: (Int) -> Int = { it * it }
+//    square = { n * n}
     println("调用square函数${square(2)}")
     square = {n -> n * n}
     println("调用square函数${square(2)}")
