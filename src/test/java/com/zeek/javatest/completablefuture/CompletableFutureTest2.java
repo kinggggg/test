@@ -7,6 +7,8 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author liweibo03 <liweibo03@kuaishou.com>
  * Created on 2020-11-26
+ *
+ * 文章很不错 https://www.jianshu.com/p/6bac52527ca4
  */
 public class CompletableFutureTest2 {
 

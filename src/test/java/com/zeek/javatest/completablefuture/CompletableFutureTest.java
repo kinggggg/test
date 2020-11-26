@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 /**
  * Created by weibo_li on 2017/2/14.
+ *
  */
 public class CompletableFutureTest {
 
