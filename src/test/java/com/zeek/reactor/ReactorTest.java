@@ -268,5 +268,12 @@ public class ReactorTest {
                 })
                 .verifyComplete();
     }
+
+    // ===========// ===========// ===========// ===========// ===========// ===========// ===========// ===========
+
+    @Test
+    public void rangeTest(){
+        Flux.range(1,50).buffer(10).subscribe(System.out::println);
+    }
 }
 
