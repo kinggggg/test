@@ -52,5 +52,8 @@ public class StreamTest {
         System.out.println("==================");
 
         System.out.println("==================");
+
+        boolean b = Arrays.asList("a", "cc").stream().anyMatch(ele -> ele.equals("c"));
+        System.out.println(b);
     }
 }
