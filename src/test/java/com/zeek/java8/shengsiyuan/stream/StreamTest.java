@@ -1,5 +1,6 @@
 package com.zeek.java8.shengsiyuan.stream;
 
+import io.netty.channel.nio.NioEventLoopGroup;
 import org.junit.Test;
 
 import java.util.*;
@@ -16,6 +17,35 @@ import java.util.stream.Stream;
  * @Version v1.0
  **/
 public class StreamTest {
+
+    /**
+     * 通过stream去重. String类实现了hashCode和equals方法
+     */
+    @Test
+    public void test6() {
+
+        CatFlatMap cat1 = new CatFlatMap("cat1", 20);
+        NickName nickName = new NickName();
+        nickName.getNames().add("cat1-name1");
+        nickName.getNames().add("cat1-name2");
+        cat1.setNickName(nickName);
+
+        CatFlatMap cat2 = new CatFlatMap("cat1", 20);
+        NickName nickName2 = new NickName();
+        nickName2.getNames().add("cat1-name1");
+        nickName2.getNames().add("cat2-name2");
+        cat2.setNickName(nickName2);
+
+        List<CatFlatMap> catFlatMaps = new ArrayList<>();
+        catFlatMaps.add(cat1);
+        catFlatMaps.add(cat2);
+
+        List<List<String>> collect = catFlatMaps.stream().flatMap(catFlatMap -> Stream.of(catFlatMap.getNickName().getNames())).distinct().collect(Collectors.toList());
+        List<String> collect1 = catFlatMaps.stream().flatMap(catFlatMap -> catFlatMap.getNickName().getNames().stream()).distinct().collect(Collectors.toList());
+        System.out.println(collect1);
+
+
+    }
 
     @Test
     public void test5() {
