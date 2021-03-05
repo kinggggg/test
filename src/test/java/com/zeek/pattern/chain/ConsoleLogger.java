@@ -1,6 +1,6 @@
 package com.zeek.pattern.chain;
 
-public class ConsoleLogger extends com.zeek.springcloudgatewayservice.chain.AbstractLogger {
+public class ConsoleLogger extends AbstractLogger {
  
    public ConsoleLogger(int level){
       this.level = level;

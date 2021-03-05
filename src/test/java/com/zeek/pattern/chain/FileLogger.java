@@ -1,6 +1,6 @@
 package com.zeek.pattern.chain;
 
-public class FileLogger extends com.zeek.springcloudgatewayservice.chain.AbstractLogger {
+public class FileLogger extends AbstractLogger {
  
    public FileLogger(int level){
       this.level = level;
